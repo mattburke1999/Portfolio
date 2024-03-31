@@ -1,0 +1,21 @@
+.stack {
+    height: 100vh;
+}
+.stack-logo {
+    width: 100px;
+    height: 100px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.stack-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 105px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+}
+.description {
+    margin: 0;
+    text-align: center;
+}
