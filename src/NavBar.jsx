@@ -1,12 +1,12 @@
-import './NavBar.css'
+import styles from './NavBar.module.css'
 
-export default function NavBar() {
+export default function NavBar({homeRef, stackRef, scrollToSection}) {
     return (
-        <nav className='navbar'>
-            <a href="#">Home</a>
-            <a href="#">Tech Stack</a>
-            <a href="#">Work History</a>
-            <a href="#">Projects</a>
+        <nav className={styles.navbar}>
+            <button className={styles.link} onClick={() => scrollToSection(homeRef)}>Home</button> 
+            <button className={styles.link} onClick={() => scrollToSection(stackRef)}>Tech Stack</button>
+            <button className={styles.link} >Work History</button>
+            <button className={styles.link} >Projects</button>
         </nav>
     );
 }
