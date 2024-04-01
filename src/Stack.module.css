@@ -10,40 +10,49 @@
     justify-content: center;
 }
 .stackLogo {
-    width: 100px;
-    height: 100px;
-    margin-top: 10px;
+    width: 9vh;
+    height: 9vh;
+    margin-top: 2vh;
     margin-bottom: 0;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    opacity: .9;
 }
 .stackItem {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 105px;
-    border: 6px solid #000000;
+    width: 17.5vh;
+    border: 5px solid black;
     border-radius: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+    background-color: white;
+    opacity: .8;
 }
-.stackItem:hover {
-    border: 6px solid #0A395B;
+.stackItem.hoverEffect:hover {
+    border: 5px solid #0A395B;
     /* margin: 1px; */
-    margin-left: 35px;
-    margin-right: 35px;
-    width: 115px;
+    margin-left: 4vh;
+    margin-right: 4vh;
+    width: 18.5vh;
+    opacity: 1;
 }
 .description {
     margin: 0;
+    font-size: 1.05rem;
     text-align: center;
+    margin-bottom: 0.67vh;
+    color: black;
 }
 .stackTitle {
     font-size: 3rem;
     font-weight: bold;
     margin-top: 25px;
+    margin-bottom: 3vh;
+    color: white;
 }
 .stackPage {
     display: flex;
@@ -51,5 +60,23 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #99A1A7;
+    /* background-image: url('/background.jpg');
+    background-size: cover; */
 }
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }

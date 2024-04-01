@@ -4,7 +4,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('/background.jpg');
+    background-image: url('/home.jpg');
+    background-size: cover;
 }
 .name {
     font-size: 3.5rem;

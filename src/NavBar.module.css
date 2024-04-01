@@ -1,11 +1,12 @@
 .navbar{
     display: flex;
     justify-content: flex-end;
-    background-color: #233B4D;
+    background-color: #595C6D;
     height: 55px;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: black 0px 0px 20px;
 }
 .link {
     font-size: 20px;
