@@ -17,6 +17,7 @@
     background-color: inherit;
     border: none;
     color: white;
+    font-family: montserrat, sans-serif
 }
 .link:hover {
     color: #81EDEB;

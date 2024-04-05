@@ -6,8 +6,8 @@ export default function HelloPage({homeRef}) {
   return (
     <>
     <div className={styles.hello} ref={homeRef}>
-     <h1 className={styles.name}> Hello, I'm Matthew.</h1>
-     <h1 className={styles.description}> I'm a full-stack web developer with a focus in data.</h1>
+     <h1 className={styles.name}> Hello, I'm <span className={styles.highlight}>Matthew</span>.</h1>
+     <h1 className={styles.description}> I'm a <span className={styles.highlight}>full-stack web developer</span> with a focus in <span className={styles.highlight}>data</span>.</h1>
     </div>
 </>
   );

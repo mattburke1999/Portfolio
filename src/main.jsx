@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import ParentComponent from './MainPage.jsx'
 import HelloPage from './Hello.jsx'
 import NavBar from './NavBar.jsx'
 import Stack from './Stack.jsx'
-import './main.css'
+// import './main.css'
 import { useRef } from 'react';
+import styles from './main.module.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -30,6 +30,7 @@ function App() {
         <>
             <NavBar scrollToSection={scrollToSection} homeRef={homeRef} stackRef={stackRef}/>
             <HelloPage homeRef={homeRef}/>
+            <hr className={styles.pageBreak}/>
             <Stack stackRef={stackRef}/>
         </>
     );

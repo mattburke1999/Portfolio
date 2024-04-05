@@ -1,0 +1,11 @@
+body {
+    font-family: montserrat, sans-serif;
+    background-color: rgb(103, 103, 107);
+    background: cover;
+}
+
+.pageBreak {
+    margin:0;
+    border-width: 0.5px;
+    border-color: black;
+}

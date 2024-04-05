@@ -1,0 +1,44 @@
+.liTools {
+    list-style-type: circle;
+    color: yellow;
+}
+
+.azFunc {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.liTools::marker {
+    color: yellow;
+}
+
+.expert {
+    display: flex;
+    align-items: center; 
+}
+
+.expert h3 {
+    color: yellow;
+    margin-right: 10vh;
+    margin-left: 10vh;
+}
+
+.tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.projRef {
+    border: none;
+    background-color: inherit;
+    color: blue;
+    text-decoration: underline;
+}
+
+.projRef:hover {
+    cursor: pointer;
+}
+.proj{
+    margin-bottom: 5px;
+}
