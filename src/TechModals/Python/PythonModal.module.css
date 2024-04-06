@@ -3,11 +3,7 @@
     color: yellow;
 }
 
-.azFunc {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
-}
+
 
 .liTools::marker {
     color: yellow;
@@ -29,14 +25,16 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.projRef {
+.projRef, .azFunc {
+    font-family: montserrat, sans-serif;
+    font-size: 1rem;
     border: none;
     background-color: inherit;
     color: blue;
     text-decoration: underline;
 }
 
-.projRef:hover {
+.projRef:hover, .azFunc:hover {
     cursor: pointer;
 }
 .proj{

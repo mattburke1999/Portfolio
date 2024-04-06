@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import HelloPage from './Hello.jsx'
-import NavBar from './NavBar.jsx'
-import Stack from './Stack.jsx'
+import HelloPage from './HomePage/Hello.jsx'
+import NavBar from './NavBar/NavBar.jsx'
+import Stack from './Stack/Stack.jsx'
 // import './main.css'
 import { useRef } from 'react';
 import styles from './main.module.css';

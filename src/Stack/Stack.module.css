@@ -75,7 +75,7 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
   
-.pyModal, .csModal {
+.pyModal, .csModal, .sqlModal, .jsModal, .azFuncModal {
     position: absolute;
     top: 160%;
     left: 50%;
@@ -89,11 +89,14 @@
     border-color: black;
     z-index: 1000;  
 }
-.pyModal {
+.pyModal, .sqlModal, .azFuncModal {
     background-color: rgb(33, 118, 167);
 }
 .csModal {
     background-color: rgb(136, 33, 167);
+}
+.jsModal {
+    background-color: rgb(231, 202, 39);
 }
   
   .closeButton {
