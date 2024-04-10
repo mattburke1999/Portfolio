@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import HelloPage from './HomePage/Hello.jsx'
 import NavBar from './NavBar/NavBar.jsx'
 import Stack from './Stack/Stack.jsx'
+import Experience from './Experience/Experience.jsx'
 // import './main.css'
 import { useRef } from 'react';
 import styles from './main.module.css';
@@ -17,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 function App() {
     const homeRef = useRef(null);
     const stackRef = useRef(null);
-    // const WorkRef = useRef(null);
+    const expRef = useRef(null);
     // const ProjectsRef = useRef(null);
   
     const scrollToSection = (sectionRef) => {
@@ -28,10 +29,12 @@ function App() {
     };
     return (
         <>
-            <NavBar scrollToSection={scrollToSection} homeRef={homeRef} stackRef={stackRef}/>
+            <NavBar scrollToSection={scrollToSection} homeRef={homeRef} stackRef={stackRef} expRef={expRef}/>
             <HelloPage homeRef={homeRef}/>
             <hr className={styles.pageBreak}/>
             <Stack stackRef={stackRef}/>
+            <hr className={styles.pageBreak}/>
+            <Experience expRef={expRef}/>
         </>
     );
 }
