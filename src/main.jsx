@@ -7,6 +7,7 @@ import Experience from './Experience/Experience.jsx'
 // import './main.css'
 import { useRef } from 'react';
 import styles from './main.module.css';
+import Background from './Background/Background.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -29,12 +30,14 @@ function App() {
     };
     return (
         <>
+            <Background className={styles.bg}/>
             <NavBar scrollToSection={scrollToSection} homeRef={homeRef} stackRef={stackRef} expRef={expRef}/>
             <HelloPage homeRef={homeRef}/>
             <hr className={styles.pageBreak}/>
             <Stack stackRef={stackRef}/>
             <hr className={styles.pageBreak}/>
             <Experience expRef={expRef}/>
+
         </>
     );
 }

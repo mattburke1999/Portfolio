@@ -1,11 +1,11 @@
 .liTools {
     list-style-type: circle;
-    color: white;
+    color: rgb(124, 118, 118);
 }
 
 
 .liTools::marker {
-    color: white;
+    color: rgb(124, 118, 118);
 }
 
 .expert {
@@ -14,7 +14,7 @@
 }
 
 .expert h3 {
-    color: white;
+    color: rgb(124, 118, 118);
     margin-right: 10vh;
     margin-left: 10vh;
 }

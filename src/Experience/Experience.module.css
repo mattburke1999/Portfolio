@@ -2,11 +2,6 @@
     box-sizing: border-box;
   }
 
-  /* Set a background color */
-  body {
-    background-color: #474e5d;
-    font-family: Helvetica, sans-serif;
-  }
 
   /* The actual timeline (the vertical ruler) */
   .timeline {
@@ -43,7 +38,7 @@
     height: 25px;
     right: -17px;
     background-color: white;
-    border: 4px solid #FF9F55;
+    border: 4px solid #55ff7a;
     top: 15px;
     border-radius: 50%;
     z-index: 1;
@@ -94,10 +89,25 @@
 
   /* The actual content */
   .content {
-    padding: 20px 30px;
+    padding: 20px 20px;
     background-color: white;
     position: relative;
     border-radius: 6px;
+  }
+
+  .title {
+    color: white;
+    margin-left: 1rem;
+  }
+  .expBullet {
+    color: black;
+  }
+  .expBullet::marker {
+    color: black;
+  }
+  .expBulletContainer {
+    padding: 0;
+    padding-left: 1rem;
   }
 
   /* Media queries - Responsive timeline on screens less than 600px wide */

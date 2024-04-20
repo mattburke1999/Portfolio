@@ -1,8 +1,8 @@
 body {
     font-family: montserrat, sans-serif;
-    background-color: rgb(103, 103, 107);
-    background: cover;
+    z-index: -1000;
 }
+
 
 .pageBreak {
     margin:0;
