@@ -2,7 +2,7 @@ import styles from './Background.module.css';
 import { useState, useEffect } from 'react';
 
 
-function Square({color}) {
+function Square({color, speed}) {
     const [x, setX] = useState(Math.random() * window.innerWidth);
     const [y, setY] = useState(Math.random() * window.innerHeight * 4 + window.innerHeight / 2);
     // Initialize angle with a random value
@@ -16,7 +16,7 @@ function Square({color}) {
     else {// color is blue 
         var colorCode = "#1180E8";
     }
-    const speed = .15;
+    // const speed = Math.random() + .1;
     useEffect(() => {
         const id = window.requestAnimationFrame(() => {
             // Calculate the new x and y positions
@@ -52,8 +52,8 @@ function Square({color}) {
     return (
         <rect className={styles.square}
             style={{fill: colorCode, stroke: '#4d4d4d', strokeWidth: 0.264583}}
-            width=".15rem"
-            height=".15rem"
+            width=".2rem"
+            height=".2rem"
             // set x and y as random place on screen
             x={x}
             y={y}
@@ -64,10 +64,11 @@ function Square({color}) {
 
 function create_squares() {
     const squares = [];
-    for (let i = 0; i < 250; i++){
-        squares.push(<Square color="blue" key={`blue${i}`}/>);
-        squares.push(<Square color="green" key={`green${i}`}/>);
-        squares.push(<Square color="purple" key={`purple${i}`}/>);
+    for (let i = 0; i < 225; i++){
+        let speed = .8 * Math.random() + .1;
+        squares.push(<Square color="blue" speed={speed} key={`blue${i}`}/>);
+        squares.push(<Square color="green" speed={speed} key={`green${i}`}/>);
+        squares.push(<Square color="purple" speed={speed} key={`purple${i}`}/>);
     }
     return squares;
 }
