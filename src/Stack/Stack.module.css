@@ -33,6 +33,18 @@
     background-color: white;
     opacity: .8;
 }
+
+.target{
+    position: absolute;
+    width: 17.5vh;
+    height: 67px;
+    background-color: white;
+    border: 3.5px dashed black;
+    top: 43.5%;
+    left: 7.5%;
+    border-radius: 10px;
+}
+
 .stackItem.hoverEffect:hover {
     border: 5px solid #0A395B;
     /* margin: 1px; */

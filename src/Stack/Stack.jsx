@@ -1,5 +1,5 @@
 import styles from './Stack.module.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import PythonModal from '../TechModals/Python/PythonModal';
 import CSharpModal from '../TechModals/CSharp/CSharpModal';
 import SQLModal from '../TechModals/SQL/SQLModal';
@@ -42,19 +42,78 @@ function TechModal({ isModalVisible, setModalVisible, modalName, modalContent })
     );
 }
 
-export default function Stack({ stackRef }) {
+export default function Stack({ stackRef, pageBreak }) {
     const [isPythonModalVisible, setIsPythonModalVisible] = useState(false);
     const [isCSharpModalVisible, setIsCSharpModalVisible] = useState(false);
     const [isSQLModalVisible, setIsSQLModalVisible] = useState(false);
     const [isJSModalVisible, setIsJSModalVisible] = useState(false);
     const [isAzFuncModalVisible, setIsAzFuncModalVisible] = useState(false);
+
+    const [fallen, setFallen] = useState(false);
+    const [pickedUp, setPickedUp] = useState(false);
+
+    const falldownRef = useRef(null);
+
+    const cssFallDown = (element) => {
+        if (!fallen && !pickedUp) {    
+            let elementPosition = element.getBoundingClientRect();
+            let pageBreakPosition = pageBreak.current.getBoundingClientRect();
+            let distanceToBottom = pageBreakPosition.bottom - elementPosition.bottom;
+
+            let animation = [
+                { transform: `translateY(0)` }
+            ];
+
+            for (let i = 1; i <= 8; i++) {
+                let decrement = 80 / Math.pow(1.5, i); // Reduce the divisor for more pronounced bounces
+                animation.push({ transform: `translateY(${distanceToBottom + decrement}px)` });
+                animation.push({ transform: `translateY(${distanceToBottom - decrement}px)` });
+            }
+
+            // Ensure the element ends up at distanceToBottom
+            animation.push({ transform: `translateY(${distanceToBottom}px)` });
+
+            element.animate(animation, {
+                duration: 3500, // Slightly longer duration for more pronounced effect
+                iterations: 1,
+                easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)', // Custom easing for bouncier effect
+            });
+            // set the elements position to the bottom of the page
+            element.style.transform = `translateY(${distanceToBottom}px)`;
+            setFallen(true);
+        }
+    }
+
+    const draggedOver = () => {
+        setPickedUp(true);
+        setFallen(false);
+        //remove transform style
+        let button = falldownRef.current;
+        button.style.transform = '';
+
+    }
+
     return (
         <div className={styles.stackPage} ref={stackRef}>
             <h1 className={styles.stackTitle}>My Tech Stack</h1>
             <div className={styles.stackContainer}>
                 <StackColumn >
                     <StackItem image='./java-logo.png' text='Java' />
-                    <StackItem image='./css-logo.png' text='CSS' />
+                    {fallen && (
+                        <div 
+                        className = {styles.target}
+                        onDrop={() => draggedOver()}
+                        onDragOver = {(event) => event.preventDefault()}
+                    ></div>   
+                    )}
+                    <button 
+                        ref = {falldownRef}
+                        className={`${styles.stackItem} ${(!pickedUp) ? styles.hoverEffect: ''}`} 
+                        onClick={() => cssFallDown(falldownRef.current)}
+                        draggable={fallen && !pickedUp}
+                    >
+                        <StackItem image='./css-logo.png' text='CSS' hoverEffect={true}/>
+                    </button>
                     <button className={`${styles.stackItem} ${styles.hoverEffect}`} onClick={() => setIsJSModalVisible(true)}>
                         <StackItem image='./js-logo.png' text='JavaScript' hoverEffect={true} />
                     </button>

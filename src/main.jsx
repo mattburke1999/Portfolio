@@ -4,7 +4,6 @@ import HelloPage from './HomePage/Hello.jsx'
 import NavBar from './NavBar/NavBar.jsx'
 import Stack from './Stack/Stack.jsx'
 import Experience from './Experience/Experience.jsx'
-// import './main.css'
 import { useRef } from 'react';
 import styles from './main.module.css';
 import Background from './Background/Background.jsx'
@@ -21,6 +20,7 @@ function App() {
     const stackRef = useRef(null);
     const expRef = useRef(null);
     // const ProjectsRef = useRef(null);
+    const pageBreakRef = useRef(null);
   
     const scrollToSection = (sectionRef) => {
       window.scrollTo({
@@ -34,8 +34,8 @@ function App() {
             <NavBar scrollToSection={scrollToSection} homeRef={homeRef} stackRef={stackRef} expRef={expRef}/>
             <HelloPage homeRef={homeRef}/>
             <hr className={styles.pageBreak}/>
-            <Stack stackRef={stackRef}/>
-            <hr className={styles.pageBreak}/>
+            <Stack stackRef={stackRef} pageBreak={pageBreakRef}/>
+            <hr className={styles.pageBreak} ref={pageBreakRef}/>
             <Experience expRef={expRef}/>
 
         </>
