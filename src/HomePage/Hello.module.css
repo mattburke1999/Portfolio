@@ -5,31 +5,217 @@
     align-items: flex-end;
     height: 100vh;
     background-image: url('bg.jpg');
+    /* change size of image */
+    background-size: cover;
     animation: fadeIn 1s ease-in;
 }
 .name {
-    font-size: 3.5rem;
+    font-size: 3rem;
+    position: relative;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+.description {
+    font-size: 2rem;
+    position: relative;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
 }
 .description, .name {
-    font-size: 2.5rem;
     color:  white;
     text-shadow: 2px 2px 4px #000000;
-    margin-bottom: 20px;
-    margin-right: 35px;
+    margin-bottom: 2.25rem;
+    margin-right: 3.5rem;
+    display: inline-block; /* Ensures the transform doesn't affect layout */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
 }
 
 .highlight3 {
     color: #1180E8;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
 }
 .highlight2 {
     color: #008000;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
 }
 .highlight1 {
     color: #B53CD6;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
 }
 
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
     
+}
+.description1 {
+    color:  white;
+    text-shadow: 2px 2px 4px #000000;
+    margin-bottom: 2.25rem;
+    margin-right: 3.5rem;
+    cursor: default;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: top right;
+}
+
+.description1:active {
+    cursor: grabbing;
+}
+
+.resetRotation {
+    transform: rotate(0deg);
+}
+
+.hoverEffect {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+    /* Smooth transition */
+}
+
+.hoverEffect:hover {
+    transform: scale(1.1); /* Scale the text to enlarge it */
+}
+
+.hingeEffect {
+    transition: transform 0.3s ease-in-out;
+    transform-origin: top right;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+
+.hinged {
+    transform-origin: top right;
+    transform: rotate(-90deg);
+    color:  white;
+    text-shadow: 2px 2px 4px #000000;
+    margin-right: 3.5rem;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+
+.hingeEffectActive {
+    animation: hinge 3s forwards;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+
+.target {
+    width: 55px;
+    height: 30px;
+    background-color: white;
+    color: black;
+    border-radius: 12.5%;
+    font-size: 9px;
+    font-family: 'comic sans ms';
+    padding-top: 3px;
+    text-align: center;
+    border: 2px dashed black;
+    position: absolute;
+    top: 28rem;
+    right: 29.2rem;
+}
+.alert, .fixed {
+    position: absolute;
+    top: 75vh;
+    left: 20vw;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.alert {
+    background-color: #ff000d; 
+    border: 2px solid #fff;
+    max-width: 350px;
+}
+.fixed {
+    background-color: #2fba19; 
+    border: 2px solid #fff;
+    max-width: 275px;
+}
+
+.alert h1, .fixed h1 {
+    font-family: 'Comic Sans MS', sans-serif;
+    color: #fff;
+    font-size: 1rem;
+    margin: 10px 0;
+}
+.fixed h1 {
+    color: #000;
+}
+
+@keyframes hinge {
+    0% {
+        transform: rotate(0);
+    }
+    8% {
+        transform: translate(1px, -6.5px) rotate(-140deg) ;
+        animation-timing-function: ease-out;
+    }
+    16% {
+        transform: translate(6px, -6.5px) rotate(-40deg) ;
+        animation-timing-function: ease-out;
+    }
+    24% {
+        transform: translate(11px, -6.5px) rotate(-120deg) ;
+        animation-timing-function: ease-out;
+    }
+    32% {
+        transform: translate(16px, -6.5px) rotate(-60deg) ;
+        animation-timing-function: ease-out;
+    }
+    40% {
+        transform: translate(21px, -6.5px) rotate(-107.5deg) ;         
+        animation-timing-function: ease-out;
+    }
+    48% {
+        transform: translate(26px, -6.5px) rotate(-72.5deg) ;         
+        animation-timing-function: ease-out;
+    }
+    56% {
+        transform: translate(30.5px, -6.5px) rotate(-100deg) ;         
+        animation-timing-function: ease-out;
+    }
+    64% {
+        transform: translate(30.5px, -6.5px) rotate(-80deg) ;         
+        animation-timing-function: ease-out;
+    }
+    72% {
+        transform: translate(30.5px, -6.5px) rotate(-95deg) ;         
+        animation-timing-function: ease-out;
+    }
+    80% {
+        transform: translate(30.5px, -6.5px) rotate(-86deg) ;         
+        animation-timing-function: ease-out;
+    }
+    88% {
+        transform: translate(30.5px, -6.5px) rotate(-93deg) ;         
+        animation-timing-function: ease-out;
+    }
+    96% {
+        transform: translate(px, -6.5px) rotate(-88deg) ;         
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate(30.5px, -6.5px) rotate(-90deg) ;         
+    }
 }
