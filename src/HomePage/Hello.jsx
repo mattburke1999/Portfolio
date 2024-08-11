@@ -1,6 +1,7 @@
 import styles from './Hello.module.css'
 import { useState } from 'react';
 import Rotatable from '../RotatableComponent/Rotatable';
+import PropTypes from 'prop-types';
 
 export default function HelloPage({ homeRef }) {
 
@@ -31,12 +32,12 @@ export default function HelloPage({ homeRef }) {
             <div className={styles.hello} ref={homeRef}>
                 <h1 className={styles.name}>
                     <span className={styles.hoverEffect}>Hello,&nbsp;</span>
-                    <span className={styles.hoverEffect}>I'm&nbsp;</span>
+                    <span className={styles.hoverEffect}>I&apos;m&nbsp;</span>
                     <span className={`${styles.highlight1} ${styles.hoverEffect}`}>Matthew</span>
                     .
                 </h1>
                 <h1 className={styles.description}>
-                    <span className={styles.hoverEffect}>I'm&nbsp;</span>
+                    <span className={styles.hoverEffect}>I&apos;m&nbsp;</span>
                     <span className={styles.hoverEffect}>a&nbsp;</span>
                     <span className={`${styles.highlight2} ${styles.hoverEffect}`}>full-stack&nbsp;</span>
                     <span className={styles.hoverEffect}>web&nbsp;</span>
@@ -56,7 +57,7 @@ export default function HelloPage({ homeRef }) {
                 : rotatable ?
                     <>
                         <div className={styles.alert}>
-                            <h1>Woah! Looks like that wasn't</h1>
+                            <h1>Woah! Looks like that wasn&apos;t</h1>
                             <h1>fully secured. Can you help</h1>
                             <h1>me put it back?</h1>
                         </div>
@@ -74,7 +75,7 @@ export default function HelloPage({ homeRef }) {
                 <>
                     {fixTimer&&(
                         <div className={styles.fixed}>
-                            <h1>Thanks, that's</h1>
+                            <h1>Thanks, that&apos;s</h1>
                             <h1>much better.</h1>
                         </div>
                     )}
@@ -89,3 +90,7 @@ export default function HelloPage({ homeRef }) {
         </>
     );
 }
+
+HelloPage.propTypes = {
+    homeRef: PropTypes.object.isRequired,
+};

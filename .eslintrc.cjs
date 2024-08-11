@@ -16,5 +16,9 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/no-unknown-property': [
+        0, 
+        {ignore: ['xmlns:svg']}
+    ]
   },
 }

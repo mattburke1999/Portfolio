@@ -1,20 +1,22 @@
 import styles from './Background.module.css';
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 
 function Square({color, speed}) {
     const [x, setX] = useState(Math.random() * window.innerWidth);
     const [y, setY] = useState(Math.random() * window.innerHeight * 4 + window.innerHeight / 2);
     // Initialize angle with a random value
-    const [angle, setAngle] = useState(Math.random() * 2 * Math.PI);
+    const angle = Math.random() * 2 * Math.PI;
+    let colorCode;
     if (color === "green"){
-        var colorCode = "#008000";
+        colorCode = "#008000";
     }
     else if (color === "purple"){
-        var colorCode = "#B53CD6";
+        colorCode = "#B53CD6";
     }
     else {// color is blue 
-        var colorCode = "#1180E8";
+        colorCode = "#1180E8";
     }
     // const speed = Math.random() + .1;
     useEffect(() => {
@@ -48,7 +50,7 @@ function Square({color, speed}) {
 
         // Clean up the effect by cancelling the animation frame
         return () => window.cancelAnimationFrame(id);
-    }, [x, y, angle]);
+    }, [x, y, angle, speed]);
     return (
         <rect className={styles.square}
             style={{fill: colorCode, stroke: '#4d4d4d', strokeWidth: 0.264583}}
@@ -59,7 +61,11 @@ function Square({color, speed}) {
             y={y}
             ry="0" 
         />
-    )
+    );
+}
+Square.propTypes = {
+    color: PropTypes.string.isRequired,
+    speed: PropTypes.number.isRequired
 }
 
 function create_squares() {
@@ -83,7 +89,7 @@ export default function Background() {
             version="1.1"
             id="svg1"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:svg="http://www.w3.org/2000/svg">
+            xmlns:svg="http://www.w3.org/2000/svg"> --fix
             <defs
                 id="defs1" />
             <g
