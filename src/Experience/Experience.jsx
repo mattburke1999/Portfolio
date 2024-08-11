@@ -20,7 +20,7 @@ export default function Experience({expRef}) {
                 <>
                     <h2>Nov 2022 - Present</h2>
                     <h3>Loyalty Lane (Givex)</h3>
-                    <h3>Software Data Engineer</h3>
+                    <h3>Software Engineer</h3>
                     <ul className={styles.expBulletContainer}>
                         <li className={styles.expBullet}>Bullet 1</li>
                         <li className={styles.expBullet}>Bullet 2</li>
