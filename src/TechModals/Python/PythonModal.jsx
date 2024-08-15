@@ -1,5 +1,5 @@
 import pystyles from './PythonModal.module.css';
-//WE will somehow open up the azFuncModal from the az func button
+import PropTypes from 'prop-types';
 
 function azFuncButton(setIsPythonModalVisible, setIsAzFuncModalVisible) {
     setIsPythonModalVisible(false);
@@ -38,3 +38,8 @@ export default function PythonModal({ setIsPythonModalVisible, setIsAzFuncModalV
         </div>
     );
 }
+
+PythonModal.propTypes = {
+    setIsPythonModalVisible: PropTypes.func.isRequired,
+    setIsAzFuncModalVisible: PropTypes.func.isRequired
+};

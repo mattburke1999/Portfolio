@@ -6,7 +6,7 @@ export default function SQLModal() {
   <div className={sqlstyles.modalContent}>
     <h1>SQL</h1>
       <p><strong>Experience:</strong> 2 years</p>
-      <p>I've worked extensively with various SQL databases, managing data effectively for different applications.</p>
+      <p>I&apos;ve worked extensively with various SQL databases, managing data effectively for different applications.</p>
       <h3>RDBMS:</h3>
       <ul className={sqlstyles.tools}>
         <li className={sqlstyles.liTools}>SQL Server</li>
