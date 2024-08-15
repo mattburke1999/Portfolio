@@ -5,17 +5,24 @@ import CSharpModal from '../TechModals/CSharp/CSharpModal';
 import SQLModal from '../TechModals/SQL/SQLModal';
 import JSModal from '../TechModals/JS/JSModal';
 import AzFuncModal from '../TechModals/AzFunc/AzFuncModal';
+import PropTypes from 'prop-types';
 
 function StackItem({ image, text, hoverEffect = false }) {
     // if hoverEffect is true, name the div className stackItem.hoverEffect, else name it stackItem
     const divClassName = hoverEffect ? '' : styles.stackItem;
     return (
         <div className={divClassName}>
-            <img className={styles.stackLogo} src={image} alt='stack-item' />
+            <img draggable={false} className={styles.stackLogo} src={image} alt='stack-item' />
             <h3 className={styles.description}>{text}</h3>
         </div>
     );
 }
+
+StackItem.propTypes = {
+    image: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    hoverEffect: PropTypes.bool
+};
 
 function StackColumn({ children }) {
     return (
@@ -24,6 +31,10 @@ function StackColumn({ children }) {
         </div>
     );
 }
+
+StackColumn.propTypes = {
+    children: PropTypes.arrayOf(PropTypes.element)
+};
 
 function TechModal({ isModalVisible, setModalVisible, modalName, modalContent }) {
     return (
@@ -42,12 +53,20 @@ function TechModal({ isModalVisible, setModalVisible, modalName, modalContent })
     );
 }
 
-export default function Stack({ stackRef, pageBreak }) {
+TechModal.propTypes = {
+    isModalVisible: PropTypes.bool.isRequired,
+    setModalVisible: PropTypes.func.isRequired,
+    modalName: PropTypes.string.isRequired,
+    modalContent: PropTypes.element.isRequired
+};
+
+export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
     const [isPythonModalVisible, setIsPythonModalVisible] = useState(false);
     const [isCSharpModalVisible, setIsCSharpModalVisible] = useState(false);
     const [isSQLModalVisible, setIsSQLModalVisible] = useState(false);
     const [isJSModalVisible, setIsJSModalVisible] = useState(false);
     const [isAzFuncModalVisible, setIsAzFuncModalVisible] = useState(false);
+    const [target_styles, setTargetStyles] = useState({});
 
     const [fallen, setFallen] = useState(false);
     const [pickedUp, setPickedUp] = useState(false);
@@ -55,10 +74,21 @@ export default function Stack({ stackRef, pageBreak }) {
     const falldownRef = useRef(null);
 
     const cssFallDown = (element) => {
-        if (!fallen && !pickedUp) {    
+        if (!fallen && !pickedUp) {
+            // remove hoverEffect class from element
+            element.classList.remove(styles.hoverEffect);
             let elementPosition = element.getBoundingClientRect();
-            let pageBreakPosition = pageBreak.current.getBoundingClientRect();
-            let distanceToBottom = pageBreakPosition.bottom - elementPosition.bottom;
+            let bottomPageBreakPosition = bottomPageBreak.current.getBoundingClientRect();
+            let topPageBreakPosition = topPageBreak.current.getBoundingClientRect();
+            let distanceToBottom = bottomPageBreakPosition.bottom - elementPosition.bottom;
+
+            let distanceToTop = elementPosition.top - topPageBreakPosition.top - elementPosition.height;
+
+            //set width of target to width of element and height of target to height of element
+            setTargetStyles({ width: `${elementPosition.width}px`, 
+                height: `${distanceToBottom.height}px`,
+                top: `${distanceToTop}px`
+            });
 
             let animation = [
                 { transform: `translateY(0)` }
@@ -99,16 +129,17 @@ export default function Stack({ stackRef, pageBreak }) {
             <div className={styles.stackContainer}>
                 <StackColumn >
                     <StackItem image='./java-logo.png' text='Java' />
-                    {fallen && (
+                    {fallen ? (
                         <div 
+                        style={target_styles}
                         className = {styles.target}
                         onDrop={() => draggedOver()}
                         onDragOver = {(event) => event.preventDefault()}
                     ></div>   
-                    )}
+                    ): null}
                     <button 
                         ref = {falldownRef}
-                        className={`${styles.stackItem} ${(!pickedUp) ? styles.hoverEffect: ''}`} 
+                        className={`${styles.stackItem} ${(!pickedUp && !fallen) ? styles.hoverEffect: ''}`} 
                         onClick={() => cssFallDown(falldownRef.current)}
                         draggable={fallen && !pickedUp}
                     >
@@ -147,3 +178,9 @@ export default function Stack({ stackRef, pageBreak }) {
         </div>
     );
 }
+
+Stack.propTypes = {
+    stackRef: PropTypes.object.isRequired,
+    bottomPageBreak: PropTypes.object.isRequired,
+    topPageBreak: PropTypes.object.isRequired
+};
