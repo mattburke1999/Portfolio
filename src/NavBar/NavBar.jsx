@@ -1,4 +1,5 @@
 import styles from './NavBar.module.css'
+import PropTypes from 'prop-types';
 
 export default function NavBar({homeRef, stackRef, expRef, scrollToSection}) {
     return (
@@ -10,3 +11,10 @@ export default function NavBar({homeRef, stackRef, expRef, scrollToSection}) {
         </nav>
     );
 }
+
+NavBar.propTypes = {
+    homeRef: PropTypes.object.isRequired,
+    stackRef: PropTypes.object.isRequired,
+    expRef: PropTypes.object.isRequired,
+    scrollToSection: PropTypes.func.isRequired
+};
