@@ -82,7 +82,7 @@ export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
             let topPageBreakPosition = topPageBreak.current.getBoundingClientRect();
             let distanceToBottom = bottomPageBreakPosition.bottom - elementPosition.bottom;
 
-            let distanceToTop = elementPosition.top - topPageBreakPosition.top - elementPosition.height;
+            let distanceToTop = elementPosition.top - topPageBreakPosition.top - (elementPosition.height - 10); // 10 for border width (top and bottom)
 
             //set width of target to width of element and height of target to height of element
             setTargetStyles({ width: `${elementPosition.width}px`, 
