@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 
-function Square({color, speed}) {
+function Square({color, speed, angle}) {
     const [x, setX] = useState(Math.random() * window.innerWidth);
     const [y, setY] = useState(Math.random() * window.innerHeight * 4 + window.innerHeight / 2);
     // Initialize angle with a random value
-    const angle = Math.random() * 2 * Math.PI;
+    
     let colorCode;
     if (color === "green"){
         colorCode = "#008000";
@@ -36,10 +36,10 @@ function Square({color, speed}) {
     
             // If the square goes off the bottom of the screen, reset it to the top
             if (newY > window.innerHeight*5) {
-                newY = 0;
+                newY = window.innerHeight + 55; // 55 is the height of the nav bar
             }
             // If the square goes off the top of the screen, reset it to the bottom
-            else if (newY < 0) {
+            else if (newY < window.innerHeight + 55) {
                 newY = window.innerHeight*5;
             }
     
@@ -65,18 +65,23 @@ function Square({color, speed}) {
 }
 Square.propTypes = {
     color: PropTypes.string.isRequired,
-    speed: PropTypes.number.isRequired
+    speed: PropTypes.number.isRequired,
+    angle: PropTypes.number.isRequired
 }
 
 function create_squares() {
     const squares = [];
     for (let i = 0; i < 225; i++){
-        let speed = .8 * Math.random() + .1;
-        squares.push(<Square color="blue" speed={speed} key={`blue${i}`}/>);
-        squares.push(<Square color="green" speed={speed} key={`green${i}`}/>);
-        squares.push(<Square color="purple" speed={speed} key={`purple${i}`}/>);
+        let speed = .6 * Math.random() + .1;
+        let angle = Math.random() * 2 * Math.PI;
+        squares.push(<Square color="blue" speed={speed} angle={angle} key={`blue${i}`} />);
+        squares.push(<Square color="green" speed={speed} angle={angle} key={`green${i}`} />);
+        squares.push(<Square color="purple" speed={speed} angle={angle} key={`purple${i}`} />);
     }
     return squares;
+}
+create_squares.propTypes = {
+    homeRef: PropTypes.object.isRequired
 }
 
 
