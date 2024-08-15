@@ -86,7 +86,7 @@ export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
 
             //set width of target to width of element and height of target to height of element
             setTargetStyles({ width: `${elementPosition.width}px`, 
-                height: `${distanceToBottom.height}px`,
+                height: `${elementPosition.height}px`,
                 top: `${distanceToTop}px`
             });
 
@@ -174,7 +174,7 @@ export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
             <TechModal isModalVisible={isCSharpModalVisible} setModalVisible={setIsCSharpModalVisible} modalName='csModal' modalContent={<CSharpModal />} />
             <TechModal isModalVisible={isSQLModalVisible} setModalVisible={setIsSQLModalVisible} modalName='sqlModal' modalContent={<SQLModal />} />
             <TechModal isModalVisible={isJSModalVisible} setModalVisible={setIsJSModalVisible} modalName='jsModal' modalContent={<JSModal />} />
-            <TechModal isModalVisible={isAzFuncModalVisible} setModalVisible={setIsAzFuncModalVisible} modalName='azFuncModal' modalContent={<AzFuncModal />} />
+            <TechModal isModalVisible={isAzFuncModalVisible} setModalVisible={setIsAzFuncModalVisible} modalName='azFuncModal' modalContent={<AzFuncModal setIsPythonModalVisible={setIsPythonModalVisible} setIsAzFuncModalVisible={setIsAzFuncModalVisible} />} />
         </div>
     );
 }
