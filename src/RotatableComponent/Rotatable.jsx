@@ -66,20 +66,23 @@ class Rotatable extends Component {
         }
 
         this.handle.textContent = 'Drag me back please';
-        this.handle.style.textAlign = 'center';
-        this.handle.style.font = '9px comic sans ms';
-        this.handle.style.cursor = 'pointer';
-        this.handle.style.paddingTop = '3px';
-        this.handle.style.width = '55px';
-        this.handle.style.height = '30px';
-        this.handle.style.background = 'white';
-        this.handle.style.color = 'black';
-        this.handle.style.borderRadius = '12.5%';
-        this.handle.style.textShadow = 'none';
-        this.handle.style.position = 'relative';
-        this.handle.style.right = '60px';
-        this.handle.style.top = '35px';
-        this.handle.style.border = '1px solid black';
+        Object.assign(this.handle.style, {
+            textAlign: 'center',
+            font: '9px comic sans ms',
+            cursor: 'pointer',
+            paddingTop: '3px',
+            width: '55px',
+            height: '30px',
+            background: 'white',
+            color: 'black',
+            borderRadius: '12.5%',
+            textShadow: 'none',
+            position: 'relative',
+            right: '60px',
+            top: '35px',
+            border: '1px solid black'
+        });
+
 
         this.handle.addEventListener('mousedown', this.handleStartRotate);
         document.addEventListener('mouseup', this.handleStopRotate);
@@ -170,6 +173,7 @@ class Rotatable extends Component {
                 handleRect.top > targetRect.bottom
             );
             if (isOverlapping) {
+                this.handleStopRotate(e);
                 this.props.overlapFunction();
                 return;
             }
