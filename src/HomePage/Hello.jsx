@@ -9,10 +9,18 @@ export default function HelloPage({ homeRef }) {
     const [hingeDone, setHingeDone] = useState(false);
     const [rotatable, setRotatable] = useState(false);
     const [fixTimer, setFixTimer] = useState(false);
+    const [target_style, setTargetStyle] = useState({});
 
     const handleMouseOver = () => {
+        let hingeRow = document.getElementById('hingeRow');
+        // find top of hingeRow relative to it's parent div
+        let hingeTop = hingeRow.getBoundingClientRect().top - homeRef.current.getBoundingClientRect().top + 2*hingeRow.clientHeight;
+        console.log(hingeTop);
+        setTargetStyle({ top: `${hingeTop}px` });
+        console.log(target_style);
         setHingeActive(true);
         setTimeout(() => {
+            //get the top of hingeRow relative to the viewport
             setHingeDone(true);
             setRotatable(true);
         }, 3200);
@@ -61,7 +69,7 @@ export default function HelloPage({ homeRef }) {
                             <h1>fully secured. Can you help</h1>
                             <h1>me put it back?</h1>
                         </div>
-                        <div id='target' className={styles.target}>Drag here</div>
+                        <div id='target' className={styles.target} style={target_style}>Drag here</div>
                         <Rotatable canRotate={rotatable} overlapFunction={targetOverlap}>
                             <h1
                                 id='hingedRow'

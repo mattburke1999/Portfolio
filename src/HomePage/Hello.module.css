@@ -130,7 +130,7 @@
     text-align: center;
     border: 2px dashed black;
     position: absolute;
-    top: 28rem;
+    /* top: 38rem; */
     right: 29.2rem;
 }
 .alert, .fixed {
