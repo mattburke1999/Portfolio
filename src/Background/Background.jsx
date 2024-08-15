@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 
-function Square({color, speed, angle}) {
+function Square({color, speed, angle, width}) {
     const [x, setX] = useState(Math.random() * window.innerWidth);
     const [y, setY] = useState(Math.random() * window.innerHeight * 4 + window.innerHeight / 2);
     // Initialize angle with a random value
@@ -54,8 +54,8 @@ function Square({color, speed, angle}) {
     return (
         <rect className={styles.square}
             style={{fill: colorCode, stroke: '#4d4d4d', strokeWidth: 0.264583}}
-            width=".2rem"
-            height=".2rem"
+            width={`${width}rem`}
+            height={`${width}rem`}
             // set x and y as random place on screen
             x={x}
             y={y}
@@ -66,17 +66,21 @@ function Square({color, speed, angle}) {
 Square.propTypes = {
     color: PropTypes.string.isRequired,
     speed: PropTypes.number.isRequired,
-    angle: PropTypes.number.isRequired
+    angle: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
 }
 
 function create_squares() {
+    let s = .002;
+    let w = .0015;
     const squares = [];
-    for (let i = 0; i < 225; i++){
-        let speed = .6 * Math.random() + .1;
+    for (let i = 0; i < 75; i++){
+        let speed = i*s + .1;
+        let width = i*w + .1;
         let angle = Math.random() * 2 * Math.PI;
-        squares.push(<Square color="blue" speed={speed} angle={angle} key={`blue${i}`} />);
-        squares.push(<Square color="green" speed={speed} angle={angle} key={`green${i}`} />);
-        squares.push(<Square color="purple" speed={speed} angle={angle} key={`purple${i}`} />);
+        squares.push(<Square color="blue" speed={speed} angle={angle} width={width} key={`blue${i}`} />);
+        squares.push(<Square color="green" speed={speed} angle={angle} width={width} key={`green${i}`} />);
+        squares.push(<Square color="purple" speed={speed} angle={angle} width={width} key={`purple${i}`} />);
     }
     return squares;
 }
