@@ -20,5 +20,11 @@
     font-family: montserrat, sans-serif
 }
 .link:hover {
-    color: #81EDEB;
+    color: #1180E8;
+}
+.link:nth-child(2):hover {
+    color: #008000;
+}
+.link:nth-child(3):hover {
+    color: #B53CD6;
 }

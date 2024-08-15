@@ -38,11 +38,21 @@
     height: 25px;
     right: -17px;
     background-color: white;
-    border: 4px solid #55ff7a;
+    border: 4px solid #008000;
     top: 15px;
     border-radius: 50%;
     z-index: 1;
   }
+  /* let the second circle have a blue border */
+    .container:nth-child(2)::after {
+        border: 4px solid #1180E8;
+        /* rgb(16, 61, 209); */
+    }
+    /* let the third circle have a purple border */
+    .container:nth-child(3)::after {
+        border: 4px solid #B53CD6;
+        /* rgb(187, 11, 187); */
+    }
 
   /* Place the container to the left */
   .left {
