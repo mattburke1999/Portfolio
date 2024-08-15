@@ -4,7 +4,7 @@ import NavBar from '../NavBar/NavBar.jsx'
 import Stack from '../Stack/Stack.jsx'
 import Experience from '../Experience/Experience.jsx'
 import { useRef } from 'react';
-import styles from './main.module.css';
+import styles from './App.module.css';
 import Background from '../Background/Background.jsx'
 
 export default function App() {
