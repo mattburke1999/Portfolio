@@ -4,12 +4,14 @@
     height: 100vh;
     position: relative;
 }
+
 .stackColumn {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .stackLogo {
     width: 5.5vh;
     height: 5.5vh;
@@ -19,6 +21,7 @@
     margin-right: 1vh;
     opacity: .9;
 }
+
 .stackItem {
     display: flex;
     flex-direction: column;
@@ -34,7 +37,7 @@
     opacity: .8;
 }
 
-.target{
+.target {
     position: absolute;
     width: 17.5vh;
     height: 67px;
@@ -54,6 +57,7 @@
     opacity: 1;
     cursor: pointer;
 }
+
 .description {
     margin: 0;
     font-size: .95rem;
@@ -61,6 +65,7 @@
     margin-bottom: 0.67vh;
     color: black;
 }
+
 .stackTitle {
     font-size: 3rem;
     font-weight: bold;
@@ -68,6 +73,7 @@
     margin-bottom: 0vh;
     color: white;
 }
+
 .stackPage {
     display: flex;
     flex-direction: column;
@@ -75,6 +81,7 @@
     justify-content: center;
     height: 100vh;
 }
+
 .modalBackground {
     position: absolute;
     top: 110vh;
@@ -82,9 +89,13 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-.pyModal, .csModal, .sqlModal, .jsModal, .azFuncModal {
+}
+
+.pyModal,
+.csModal,
+.sqlModal,
+.jsModal,
+.azFuncModal {
     position: absolute;
     top: 160%;
     left: 50%;
@@ -96,19 +107,24 @@
     border-width: 2px;
     box-shadow: 0px 0px 20px black;
     border-color: black;
-    z-index: 1000;  
+    z-index: 1000;
 }
-.pyModal, .sqlModal, .azFuncModal {
+
+.pyModal,
+.sqlModal,
+.azFuncModal {
     background-color: rgb(33, 118, 167);
 }
+
 .csModal {
     background-color: rgb(136, 33, 167);
 }
+
 .jsModal {
     background-color: rgb(231, 202, 39);
 }
-  
-  .closeButton {
+
+.closeButton {
     position: absolute;
     top: 1px;
     right: 7px;
@@ -119,4 +135,82 @@
     background-color: inherit;
     border: none;
     cursor: pointer;
-  }
+}
+
+.fadeIn {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+/* start with element at 125% size and opacity 0 and go to normal size with opacity 1*/
+    from {
+        transform: scale(.25);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.fadeN {
+    /* fade from north */
+    --fade-startX: 0;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeNW {
+    /* fade from north-west angle */
+    --fade-startX: -100%;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeW {
+    --fade-startX: -100%;
+    --fade-startY: 0;
+    animation: fade 1s ease-in;
+}
+
+.fadeSW {
+    --fade-startX: -100%;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeS {
+    --fade-startX: 0;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeNE {
+    --fade-startX: 100%;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeE {
+    --fade-startX: 100%;
+    --fade-startY: 0;
+    animation: fade 1s ease-in;
+}
+
+.fadeSE {
+    --fade-startX: 100%;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translate(var(--fade-startX), var(--fade-startY));
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}

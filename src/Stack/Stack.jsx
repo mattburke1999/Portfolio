@@ -1,5 +1,5 @@
 import styles from './Stack.module.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import PythonModal from '../TechModals/Python/PythonModal';
 import CSharpModal from '../TechModals/CSharp/CSharpModal';
 import SQLModal from '../TechModals/SQL/SQLModal';
@@ -7,9 +7,9 @@ import JSModal from '../TechModals/JS/JSModal';
 import AzFuncModal from '../TechModals/AzFunc/AzFuncModal';
 import PropTypes from 'prop-types';
 
-function StackItem({ image, text, hoverEffect = false }) {
-    // if hoverEffect is true, name the div className stackItem.hoverEffect, else name it stackItem
-    const divClassName = hoverEffect ? '' : styles.stackItem;
+function StackItem({ addClass, image, text, hoverEffect = false }) {
+    // if hoverEffect is not true add stackItem class to div
+    const divClassName = hoverEffect ? addClass : `${addClass ? addClass : ''} ${styles.stackItem}`;
     return (
         <div className={divClassName}>
             <img draggable={false} className={styles.stackLogo} src={image} alt='stack-item' />
@@ -19,6 +19,7 @@ function StackItem({ image, text, hoverEffect = false }) {
 }
 
 StackItem.propTypes = {
+    addClass: PropTypes.string,
     image: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     hoverEffect: PropTypes.bool
@@ -67,6 +68,7 @@ export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
     const [isJSModalVisible, setIsJSModalVisible] = useState(false);
     const [isAzFuncModalVisible, setIsAzFuncModalVisible] = useState(false);
     const [target_styles, setTargetStyles] = useState({});
+    const [scrolledBy, setScrolledBy] = useState(false);
 
     const [fallen, setFallen] = useState(false);
     const [pickedUp, setPickedUp] = useState(false);
@@ -112,7 +114,23 @@ export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
             element.style.transform = `translateY(${distanceToBottom}px)`;
             setFallen(true);
         }
+    };
+
+    const scrollView = () => {
+        setScrolledBy(true);
     }
+
+    // when the user scrolls to the stack section, call the scrollView function
+    useEffect(() => {
+        // Add the scroll event listener when the component mounts
+        window.addEventListener('scroll', scrollView);
+    
+        // Clean up the event listener when the component unmounts
+        return () => {
+          window.removeEventListener('scroll', scrollView);
+        };
+      }, []);
+        
 
     const draggedOver = () => {
         setPickedUp(true);
@@ -128,7 +146,7 @@ export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
             <h1 className={styles.stackTitle}>My Tech Stack</h1>
             <div className={styles.stackContainer}>
                 <StackColumn >
-                    <StackItem image='./java-logo.png' text='Java' />
+                    <StackItem addClass={scrolledBy ? styles.fadeNW: ''} image='./java-logo.png' text='Java' />
                     {fallen ? (
                         <div 
                         style={target_styles}
@@ -139,33 +157,33 @@ export default function Stack({ stackRef, bottomPageBreak, topPageBreak }) {
                     ): null}
                     <button 
                         ref = {falldownRef}
-                        className={`${styles.stackItem} ${(!pickedUp && !fallen) ? styles.hoverEffect: ''}`} 
+                        className={`${styles.stackItem} ${(!pickedUp && !fallen) ? styles.hoverEffect: ''} ${scrolledBy ? styles.fadeW: ''}`} 
                         onClick={() => cssFallDown(falldownRef.current)}
                         draggable={fallen && !pickedUp}
                     >
                         <StackItem image='./css-logo.png' text='CSS' hoverEffect={true}/>
                     </button>
-                    <button className={`${styles.stackItem} ${styles.hoverEffect}`} onClick={() => setIsJSModalVisible(true)}>
+                    <button className={`${styles.stackItem} ${styles.hoverEffect} ${scrolledBy ? styles.fadeSW: ''}`} onClick={() => setIsJSModalVisible(true)}>
                         <StackItem image='./js-logo.png' text='JavaScript' hoverEffect={true} />
                     </button>
                 </StackColumn>
                 <StackColumn >
-                    <StackItem image='./html-logo.png' text='HTML' />
-                    <button className={`${styles.stackItem} ${styles.hoverEffect}`} onClick={() => setIsSQLModalVisible(true)}>
+                    <StackItem addClass={scrolledBy ? styles.fadeN: ''} image='./html-logo.png' text='HTML' />
+                    <button className={`${styles.stackItem} ${styles.hoverEffect} ${scrolledBy ? styles.fadeIn: ''}`} onClick={() => setIsSQLModalVisible(true)}>
                         <StackItem image='./sql-logo.png' text='SQL' hoverEffect={true} />
                     </button>
-                    <button className={`${styles.stackItem} ${styles.hoverEffect}`} onClick={() => setIsPythonModalVisible(true)}>
+                    <button className={`${styles.stackItem} ${styles.hoverEffect} ${scrolledBy ? styles.fadeIn: ''}`} onClick={() => setIsPythonModalVisible(true)}>
                         <StackItem image='./py-logo.png' text='Python' hoverEffect={true} />
                     </button>
 
-                    <button className={`${styles.stackItem} ${styles.hoverEffect}`} onClick={() => setIsCSharpModalVisible(true)}>
+                    <button className={`${styles.stackItem} ${styles.hoverEffect} ${scrolledBy ? styles.fadeS: ''}`} onClick={() => setIsCSharpModalVisible(true)}>
                         <StackItem image='./cs-logo.png' text='C#' hoverEffect={true} />
                     </button>
                 </StackColumn>
                 <StackColumn >
-                    <StackItem image='./git-logo.png' text='git' />
-                    <StackItem image='./r-logo.png' text='R' />
-                    <button className={`${styles.stackItem} ${styles.hoverEffect}`} onClick={() => setIsAzFuncModalVisible(true)}>
+                    <StackItem addClass={scrolledBy ? styles.fadeNE: ''} image='./git-logo.png' text='git' />
+                    <StackItem addClass={scrolledBy ? styles.fadeE: ''} image='./r-logo.png' text='R' />
+                    <button className={`${styles.stackItem} ${styles.hoverEffect} ${scrolledBy ? styles.fadeSE: ''}`} onClick={() => setIsAzFuncModalVisible(true)}>
                         <StackItem image='./az-func-logo.png' text='Azure Functions' hoverEffect={true} />
                     </button>
                 </StackColumn>
