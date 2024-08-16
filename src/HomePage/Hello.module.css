@@ -7,7 +7,8 @@
     background-image: url('bg.jpg');
     /* change size of image */
     background-size: cover;
-    animation: fadeIn 1s ease-in;
+    --fade-start: 0;
+    animation: fade 1s ease-in;
 }
 .name {
     font-size: 3rem;
@@ -56,11 +57,27 @@
     user-select: none; 
 }
 
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-    
+.fadeRight {
+    --fade-start: -100%;
+    animation: fade 1.5s forwards ease-in;
 }
+
+.fadeLeft {
+    --fade-start: 100%;
+    animation: fade 1.5s forwards ease-in;
+}
+
+@keyframes fade{
+    from {
+        opacity: 0;
+        transform: translateX(var(--fade-start));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .description1 {
     color:  white;
     text-shadow: 2px 2px 4px #000000;

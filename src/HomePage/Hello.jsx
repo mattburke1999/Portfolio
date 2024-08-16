@@ -38,13 +38,13 @@ export default function HelloPage({ homeRef }) {
     return (
         <>
             <div className={styles.hello} ref={homeRef}>
-                <h1 className={styles.name}>
+                <h1 className={`${styles.name} ${styles.fadeLeft}`}>
                     <span className={styles.hoverEffect}>Hello,&nbsp;</span>
                     <span className={styles.hoverEffect}>I&apos;m&nbsp;</span>
                     <span className={`${styles.highlight1} ${styles.hoverEffect}`}>Matthew</span>
                     .
                 </h1>
-                <h1 className={styles.description}>
+                <h1 className={`${styles.description} ${styles.fadeRight}`}>
                     <span className={styles.hoverEffect}>I&apos;m&nbsp;</span>
                     <span className={styles.hoverEffect}>a&nbsp;</span>
                     <span className={`${styles.highlight2} ${styles.hoverEffect}`}>full-stack&nbsp;</span>
@@ -57,7 +57,7 @@ export default function HelloPage({ homeRef }) {
                 {!hingeDone ?
                     <h1
                         id='hingeRow'
-                        className={`${styles.description1} ${styles.hingeEffect} ${hingeActive ? styles.hingeEffectActive : ''}`}
+                        className={`${styles.description1}  ${styles.fadeLeft} ${styles.hingeEffect} ${hingeActive ? styles.hingeEffectActive : ''}`}
                         onMouseOver={handleMouseOver}
                     >
                         in <span className={styles.highlight3}>big-data</span> applications.
