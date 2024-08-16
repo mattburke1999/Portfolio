@@ -70,13 +70,28 @@ Square.propTypes = {
     width: PropTypes.number.isRequired
 }
 
+// Shuffle arrays using the Fisher-Yates algorithm for faster performance and uniform distribution
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 function create_squares() {
     let s = .002;
     let w = .0015;
+    let base = 0.1;
+    let num_squares = 75;
+    const speeds = Array.from({ length: num_squares }, (_, i) => i * s + base);
+    const widths = Array.from({ length: num_squares }, (_, i) => i * w + base);
+
+    shuffle(speeds);
+    shuffle(widths);
     const squares = [];
-    for (let i = 0; i < 75; i++){
-        let speed = i*s + .1;
-        let width = i*w + .1;
+    for (let i = 0; i < num_squares; i++){
+        let speed = speeds[i];
+        let width = widths[i];
         let angle = Math.random() * 2 * Math.PI;
         squares.push(<Square color="blue" speed={speed} angle={angle} width={width} key={`blue${i}`} />);
         squares.push(<Square color="green" speed={speed} angle={angle} width={width} key={`green${i}`} />);
