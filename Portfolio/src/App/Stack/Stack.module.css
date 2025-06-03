@@ -119,7 +119,12 @@
     .stackItem.hoverEffect:hover {
         margin: 0 -1vw;
         width: 11vh;
-
+    }
+    .modal {
+        width: 65vw;
+    }
+    .closeButton {
+        font-size: 1.25rem;
     }
 }
 .fadeIn {
