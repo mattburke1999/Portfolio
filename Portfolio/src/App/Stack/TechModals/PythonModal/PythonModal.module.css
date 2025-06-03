@@ -1,49 +1,9 @@
-.modalContent {
-    color: white;
+
+.listItem::marker {
+    color: var(--yellow-color) !important;
 }
 
-.modalContent h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--yellow-color);
-}
-
-.expert {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1rem;
-}
-
-.expert h3 {
-    margin: 0;
-    font-weight: 600;
-    color: var(--yellow-color);
-}
-
-p {
-    margin: 0.5rem 0;
-}
-
-.tools {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.75rem;
-    padding-left: 1rem;
-}
-
-.tools li {
-    list-style-type: circle;
-    color: white;
-    font-size: 0.95rem;
-}
-
-.tools li::marker {
-    color: var(--yellow-color);
-}
-
-.azFunc, .projRef {
+.azFunc {
     background: none;
     border: none;
     color: var(--link-color);
@@ -53,13 +13,6 @@ p {
     cursor: pointer;
 }
 
-.azFunc:hover, .projRef:hover {
+.azFunc:hover {
     color: var(--link-hover-color);
-}
-
-.proj {
-    margin-top: 1.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--yellow-color);
 }

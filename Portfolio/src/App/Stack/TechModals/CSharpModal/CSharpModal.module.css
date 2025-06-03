@@ -1,77 +1,16 @@
-.modalContent {
-    display: flex;
-    flex-direction: column;
-    padding: 2vh 3vw;
-    padding-left: .5vw;
-    align-items: flex-start;
-    color: white;
-    max-width: 800px;
-    margin: auto;
-}
-
 .modalContent h1 {
-    font-size: 2.25rem;
-    margin-bottom: 1rem;
-    color: var(--purple-color); /* warm yellow */
-}
-
-.expert {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-    justify-content: flex-start;
+    color: var(--purple-color);
 }
 
 .expert h3 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: white;
-}
-
-p {
-    margin: 0.5rem 0 1rem;
-    font-size: 1rem;
-}
-
-ul {
-    list-style-type: circle;
-    padding-left: 1.2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-}
-
-li {
-    color: white;
-    font-size: 0.95rem;
-}
-
-li::marker {
     color: var(--purple-color);
 }
 
-.proj {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--purple-color);
+.listItem::marker {
+    color: var(--purple-color) !important;
 }
 
-.projRef {
-    background: none;
-    border: none;
-    color: var(--link-color);
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: underline;
-    padding: 0;
-}
 
-.projRef:hover {
-    cursor: pointer;
-    color: var(--link-hover-color);
-}
+
+
+

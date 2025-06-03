@@ -1,0 +1,94 @@
+.modalContent {
+    color: white;
+}
+h3 {
+    margin: 0;
+}
+
+.modalContent h1 {
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.expert {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.expert h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: white;
+}
+
+p {
+    margin: 0.5rem 0;
+}
+
+.tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    padding-left: 1rem;
+}
+
+.tools li {
+    list-style-type: circle;
+    color: white;
+    font-size: 0.95rem;
+}
+
+.tools li::marker {
+    color: white;
+}
+
+.proj {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+}
+
+.projRef {
+    background: none;
+    border: none;
+    color: var(--link-color);
+    font-weight: 600;
+    font-size: .95rem;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.projRef:hover {
+    color: var(--link-hover-color);
+}
+
+.lineBreak {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin: 1rem 0;
+}
+
+@media screen and (max-width: 768px) {
+    .modalContent {
+        font-size: 0.9rem;
+        padding: 0;
+    }
+    .expert h3 {
+        font-size: 1rem;
+    }
+    .tools {
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+    }
+    .tools li {
+        font-size: 0.65rem;
+    }
+}
