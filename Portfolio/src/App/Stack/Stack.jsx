@@ -1,5 +1,7 @@
 import styles from './Stack.module.css';
-import PythonModal from './TechModals/PythonModal';
+
+import PythonModal from './TechModals/PythonModal/PythonModal';
+import CSharpModal from './TechModals/CSharpModal/CSharpModal';
 
 import { useState, useEffect } from 'react';
 
@@ -33,7 +35,7 @@ export default function Stack({ stackRef }) {
                     <StackItem scrollByClass={scrolledBy ? styles.fadeN : ''} image='./html-logo.png' text='HTML' />
                     <StackItem scrollByClass={scrolledBy ? styles.fadeIn : ''} image='./sql-logo.png' text='SQL' hoverEffect={true} />
                     <StackItem scrollByClass={scrolledBy ? styles.fadeIn : ''} image='./py-logo.png' text='Python' hoverEffect={true} onclick={() => setModalVisible('python')}/>
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeS : ''} image='./cs-logo.png' text='C#' hoverEffect={true} />
+                    <StackItem scrollByClass={scrolledBy ? styles.fadeS : ''} image='./cs-logo.png' text='C#' hoverEffect={true} onclick={() => setModalVisible('csharp')}/>
                 </div>
                 <div className={styles.stackColumn}>
                     <StackItem scrollByClass={scrolledBy ? styles.fadeNE : ''} image='./git-logo.png' text='git' />
@@ -41,7 +43,8 @@ export default function Stack({ stackRef }) {
                     <StackItem scrollByClass={scrolledBy ? styles.fadeSE : ''} image='./az-func-logo.png' text='Azure Functions' hoverEffect={true} />
                 </div>
             </div>
-            <TechModal isModalVisible={modalVisible === 'python'} setModalVisible={setModalVisible} modalName='pyModal' modalContent={<PythonModal setModalVisible={setModalVisible} />} />
+            {modalVisible === 'python'  && <TechModal setModalVisible={setModalVisible} color={'var(--blue-color)'} modalContent={<PythonModal setModalVisible={setModalVisible} />} />}
+            {modalVisible === 'csharp' && <TechModal setModalVisible={setModalVisible} color={'var(--purple-color)'} modalContent={<CSharpModal setModalVisible={setModalVisible} />} />}
         </div>
     );
 }
@@ -63,19 +66,15 @@ function StackItem({ image, text, scrollByClass, onclick = () => {}, hoverEffect
     );
 }
 
-function TechModal({ isModalVisible, setModalVisible, modalName, modalContent }) {
+function TechModal({ setModalVisible, modalContent, color }) {
     return (
         <>
-            {isModalVisible && (
-                <>
-                    <div className={styles[modalName]}>
-                        {modalContent}
-                        <button className={styles.closeButton} onClick={() => setModalVisible(null)}>X</button>
-                    </div>
-                    <div className={styles.modalBackground}>
-                    </div>
-                </>
-            )}
+            <div className={styles.modal} style={{ borderColor: color, boxShadow: `0px 0px 20px ${color}` }}>
+                {modalContent}
+                <button className={styles.closeButton} onClick={() => setModalVisible(null)}>X</button>
+            </div>
+            <div className={styles.modalBackdrop} onClick={() => setModalVisible(null)}>
+            </div>
         </>
     );
 }
