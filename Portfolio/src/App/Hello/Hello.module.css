@@ -1,0 +1,139 @@
+.hello {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 95vh;
+    background-image: url('hello-bg.jpg');
+    /* change size of image */
+    background-size: cover;
+    --fade-start: 0;
+    animation: fade 1s ease-in;
+    gap: 3rem;
+    padding-right: 3.5rem;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+.description, .name {
+    color:  white;
+    margin: 0;
+    text-shadow: 2px 2px 4px #000000;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+
+.name {
+    font-size: 4rem;
+    margin-top: 15%;
+}
+.descriptionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.description {
+    font-size: 2rem;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    letter-spacing: .15em;
+    text-align: end;
+}
+.description.typing {
+    border-right: .15em solid white;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+.description.typed {
+    border-right: .15em solid white;
+    width: 100%; 
+    animation: 
+        blink-caret .75s step-end infinite;
+}
+.description.typedNoCaret {
+    border-right: none;
+    width: 100%; 
+    animation: none;
+}
+ 
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100%; }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: white; }
+}  
+
+h1 span {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+h1 span:hover {
+    transform: scale(1.1);
+}
+
+
+@media screen and (max-width: 768px) {
+    .hello {
+        background-image: url('hello-bg-phone.jpg');
+        padding-right: 0.75rem;
+        gap: .25rem;
+    }
+    .name {
+        margin-top: 70%;
+        font-size: 2.1rem;
+    }
+    .description {
+        font-size: 1.1rem;
+    }    
+}
+
+.highlight3 {
+    color: #1180E8;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+.highlight2 {
+    color: #008000;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+.highlight1 {
+    color: #B53CD6;
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* Internet Explorer/Edge */
+    user-select: none; 
+}
+.fadeLeft {
+    --fade-start: 100%;
+    animation: fade 1.5s forwards ease-in;
+}
+
+@keyframes fade{
+    from {
+        opacity: 0;
+        transform: translateX(var(--fade-start));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,41 @@
+.navbar{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #595C6D;
+    height: 75px;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: black 0px 0px 20px;
+    gap: 2rem;
+    padding-right: 1rem;;
+}
+.navbar button {
+    font-size: 25px;
+    text-decoration: none;
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-family: montserrat, sans-serif;
+    cursor: pointer;
+}
+.navbar button:hover {
+    color: #1180E8;
+}
+.navbar button:nth-child(2):hover {
+    color: #008000;
+}
+.navbar button:nth-child(3):hover {
+    color: #B53CD6;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        padding-right: 0;
+    }
+    .navbar button {
+        font-size: 15px;
+    }
+    
+}

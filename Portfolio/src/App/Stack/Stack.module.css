@@ -1,0 +1,155 @@
+.stackPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;
+}
+.stackPage h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 3vh;
+    margin-bottom: 0;
+    color: white;
+}
+
+.stackContainer {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.stackColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stackItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 17.5vh;
+    border: none;
+    border-radius: 10px;
+    margin: 2.5vh 5.5vh;
+    background-color: #424242;
+    box-shadow: 0px 0px 10px black;
+    opacity: .8;
+}
+.stackItem img {
+    width: 5.5vh;
+    height: 5.5vh;
+    margin-top: 1vh;
+    margin-bottom: 0;
+    opacity: .9;
+}
+.stackItem h3 {
+    font-size: .95rem;
+    text-align: center;
+    color: white;
+}
+
+.stackItem.hoverEffect:hover {
+    border: 3px solid black;
+    margin: calc(2.5vh - 3px) calc(4vh - 3px);
+    width: 19vh;
+    opacity: 1;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .stackItem {
+        width: 10vh;
+        margin: 2vh 3vh;
+    }
+    .stackItem img {
+        width: 4vh;
+        height: 4vh;
+    }
+    .stackItem h3 {
+        font-size: 0.8rem;
+    }
+    .stackItem.hoverEffect:hover {
+        margin: calc(2vh - 3px) calc(2vh - 3px);
+        width: 11vh;
+    }
+}
+.fadeIn {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+/* start with element at 125% size and opacity 0 and go to normal size with opacity 1*/
+    from {
+        transform: scale(.25);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.fadeN {
+    /* fade from north */
+    --fade-startX: 0;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeNW {
+    /* fade from north-west angle */
+    --fade-startX: -100%;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeW {
+    --fade-startX: -100%;
+    --fade-startY: 0;
+    animation: fade 1s ease-in;
+}
+
+.fadeSW {
+    --fade-startX: -100%;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeS {
+    --fade-startX: 0;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeNE {
+    --fade-startX: 100%;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeE {
+    --fade-startX: 100%;
+    --fade-startY: 0;
+    animation: fade 1s ease-in;
+}
+
+.fadeSE {
+    --fade-startX: 100%;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translate(var(--fade-startX), var(--fade-startY));
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
