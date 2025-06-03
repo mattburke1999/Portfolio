@@ -19,13 +19,13 @@
     font-family: montserrat, sans-serif;
     cursor: pointer;
 }
-.navbar button:hover {
+.navbar button.blue:hover, .navbar button.blue.active {
     color: #1180E8;
 }
-.navbar button:nth-child(2):hover {
+.navbar button.green:hover, .navbar button.green.active {
     color: #008000;
 }
-.navbar button:nth-child(3):hover {
+.navbar button.pink:hover, .navbar button.pink.active {
     color: #B53CD6;
 }
 
