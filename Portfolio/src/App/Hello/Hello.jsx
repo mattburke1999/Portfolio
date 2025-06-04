@@ -30,6 +30,7 @@ export default function HelloPage({ homeRef }) {
             }, 3500);
         }, firstTimeout);
     }
+    
 
     useEffect(() => {
         setUpTimeouts(() => {
@@ -42,6 +43,7 @@ export default function HelloPage({ homeRef }) {
             }, 3500);
         }, 1500);
     }, []);
+
 
     return (
         <div className={styles.hello} ref={homeRef}>
