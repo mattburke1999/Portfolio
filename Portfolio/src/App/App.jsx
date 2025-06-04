@@ -4,6 +4,7 @@ import Background from './Background/Background';
 import NavBar from './NavBar/NavBar';
 import Hello from './Hello/Hello';
 import Stack from './Stack/Stack';
+import Experience from './Experience/Experience';
 
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
             <Hello homeRef={homeRef}/>
             <div className='line-break'></div>
             <Stack stackRef={stackRef} />
+            <div className='line-break'></div>
+            <Experience expRef={expRef} />
             <div className='line-break'></div>
         </>
     )
