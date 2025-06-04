@@ -1,13 +1,17 @@
 import modalStyles from './ModalStyles.module.css';
 
+import { calcExperienceYears } from '../../utils';
+
 export default function AzFuncModal({setModalVisible}) {
 
     const yellowStyle = { color: 'var(--yellow-color)' };
 
+    const experience = calcExperienceYears('2023-01-01');
+
     return (
         <div className={modalStyles.modalContent}>
             <h1 style={yellowStyle}>Azure Functions</h1>
-            <p><strong>Experience:</strong> 2 years</p>
+            <p><strong>Experience:</strong> {experience}</p>
             <div className={modalStyles.lineBreak}></div>
             <div className={modalStyles.expert}>
                 <h3>Web Development</h3>

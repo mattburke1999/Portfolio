@@ -1,22 +1,25 @@
 import modalStyles from './ModalStyles.module.css';
 
-export default function GitModal() {
+import { calcExperienceYears } from '../../utils';
+
+export default function RustModal() {
     
     const orangeStyle = { color: 'var(--orange-color)' };
 
+    const experience = calcExperienceYears('2024-01-01');
+
     return (
         <div className={modalStyles.modalContent}>
-            <h1 style={orangeStyle}>git</h1>
-            <p><strong>Experience:</strong> 2 years</p>
+            <h1 style={orangeStyle}>rust</h1>
+            <p><strong>Experience:</strong> {experience}</p>
             <div className={modalStyles.lineBreak}></div>
             <div className={modalStyles.expert}>
-                <h3>Version Control</h3>
-                <h3>Collaboration</h3>
+                <h3>Web Development</h3>
             </div>
             <h3 style={orangeStyle} className={modalStyles.underline}>Tools & Technologies:</h3>
             <ul className={modalStyles.tools}>
-                <li className={modalStyles.orangeMarker}>GitHub</li>
-                <li className={modalStyles.orangeMarker}>Azure Devops</li>
+                <li className={modalStyles.orangeMarker}>Tokio</li>
+                <li className={modalStyles.orangeMarker}>Warp framework</li>
             </ul>
         </div>
     )

@@ -7,6 +7,9 @@ import AzFuncModal from './TechModals/AzFuncModal';
 import SQLModal from './TechModals/SQLModal';
 import HtmlModal from './TechModals/HtmlModal';
 import GitModal from './TechModals/GitModal';
+import CSSModal from './TechModals/CSSModal';
+import JavaModal from './TechModals/JavaModal';
+import RustModal from './TechModals/RustModal';
 
 import { useState, useEffect } from 'react';
 
@@ -17,30 +20,30 @@ export default function Stack({ stackRef }) {
 
     const modals = [
         {
-            name: 'java',
-            title: 'Java',
-            img: './java-logo.png',
-            fadeStyle: styles.fadeNW,
-            modal: null,
-            color: 'red',
-            col: 0
-        },
-        {
             name: 'css',
             title: 'CSS',
             img: './css-logo.png',
             fadeStyle: styles.fadeW,
-            modal: null,
+            modal: <CSSModal />,
             color: 'blue',
             col: 0
         },
         {
-            name: 'js',
-            title: 'JavaScript',
-            img: './js-logo.png',
+            name: 'java',
+            title: 'Java',
+            img: './java-logo.png',
+            fadeStyle: styles.fadeNW,
+            modal: <JavaModal />,
+            color: 'red',
+            col: 0
+        },
+        {
+            name: 'python',
+            title: 'Python',
+            img: './py-logo.png',
             fadeStyle: styles.fadeIn,
-            modal: <JSModal />,
-            color: 'yellow',
+            modal: <PythonModal setModalVisible={setModalVisible} />,
+            color: 'blue',
             col: 0
         },
         {
@@ -53,21 +56,12 @@ export default function Stack({ stackRef }) {
             col: 1
         },
         {
-            name: 'sql',
-            title: 'SQL',
-            img: './sql-logo.png',
+            name: 'js',
+            title: 'JavaScript',
+            img: './js-logo.png',
             fadeStyle: styles.fadeIn,
-            modal: <SQLModal />,
-            color: 'blue',
-            col: 1
-        },
-        {
-            name: 'python',
-            title: 'Python',
-            img: './py-logo.png',
-            fadeStyle: styles.fadeIn,
-            modal: <PythonModal setModalVisible={setModalVisible} />,
-            color: 'blue',
+            modal: <JSModal />,
+            color: 'yellow',
             col: 1
         },
         {
@@ -78,7 +72,7 @@ export default function Stack({ stackRef }) {
             modal: <CSharpModal />,
             color: 'purple',
             col: 1
-        },       
+        },
         {
             name: 'git',
             title: 'Git',
@@ -86,6 +80,15 @@ export default function Stack({ stackRef }) {
             fadeStyle: styles.fadeNE,
             modal: <GitModal />,
             color: 'orange',
+            col: 1
+        },
+        {
+            name: 'sql',
+            title: 'SQL',
+            img: './sql-logo.png',
+            fadeStyle: styles.fadeIn,
+            modal: <SQLModal />,
+            color: 'blue',
             col: 2
         },
         {
@@ -93,7 +96,7 @@ export default function Stack({ stackRef }) {
             title: 'Rust',
             img: './rust-logo.png',
             fadeStyle: styles.fadeE,
-            modal: null,
+            modal: <RustModal />,
             color: 'orange',
             col: 2
         },

@@ -1,13 +1,17 @@
 import modalStyles from './ModalStyles.module.css';
 
+import { calcExperienceYears } from '../../utils';
+
 export default function HtmlModal() {
     
     const orangeStyle = { color: 'var(--orange-color)' };
 
+    const experience = calcExperienceYears('2022-06-01');
+
     return (
         <div className={modalStyles.modalContent}>
             <h1 style={orangeStyle}>HTML</h1>
-            <p><strong>Experience:</strong> 2 years</p>
+            <p><strong>Experience:</strong> {experience}</p>
             <div className={modalStyles.lineBreak}></div>
             <div className={modalStyles.expert}>
                 <h3>Web Development</h3>

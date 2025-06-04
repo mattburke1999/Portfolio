@@ -1,15 +1,17 @@
 import modalStyles from './ModalStyles.module.css';
 
+import { calcExperienceYears } from '../../utils';
 
 export default function PythonModal({ setModalVisible, }) {
 
     const yellowStyle = {color: 'var(--yellow-color)'};
+    const experience = calcExperienceYears('2017-09-01');
 
     return (
         <div className={modalStyles.modalContent}>
             <h1 style={yellowStyle}>Python</h1>
-            <p><strong>Experience:</strong> 4 years</p>
-            <p>This is my preferred programming language that I am most comfortable with.</p>
+            <p><strong>Experience:</strong> {experience}</p>
+            <p className={modalStyles.desc}>This is my preferred programming language that I am most comfortable with.</p>
             <div className={modalStyles.lineBreak}></div>
             <div className={modalStyles.expert}>
                 <h3>Web Development</h3>

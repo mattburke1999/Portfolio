@@ -1,12 +1,17 @@
 import modalStyles from './ModalStyles.module.css';
 
+import { calcExperienceYears } from '../../utils';
+
 export default function CSharpModal() {
 
     const purpleStyle = {color: 'var(--purple-color)'};
+
+    const experience = calcExperienceYears('2023-01-01');
+
     return (
         <div className={modalStyles.modalContent}>
             <h1 style={purpleStyle}>C#</h1>
-            <p><strong>Experience:</strong> 1 year</p>
+            <p><strong>Experience:</strong> {experience}</p>
             <div className={modalStyles.lineBreak}></div>
             <div className={modalStyles.expert}>
                 <h3>Web Development</h3>
