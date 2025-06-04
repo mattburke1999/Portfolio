@@ -20,13 +20,13 @@
     cursor: pointer;
 }
 .navbar button.blue:hover, .navbar button.blue.active {
-    color: #1180E8;
+    color: var(--app-blue);
 }
 .navbar button.green:hover, .navbar button.green.active {
-    color: #008000;
+    color: var(--app-green);
 }
 .navbar button.pink:hover, .navbar button.pink.active {
-    color: #B53CD6;
+    color: var(--app-pink);
 }
 
 @media screen and (max-width: 768px) {

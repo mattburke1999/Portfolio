@@ -39,7 +39,7 @@
     border: 3px solid transparent;
     border-radius: 10px;
     margin: 0;
-    background-color: #424242;
+    background-color: var(--app-gray);
     box-shadow: 0px 0px 10px black;
     opacity: .8;
     cursor: pointer;
