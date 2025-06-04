@@ -6,8 +6,9 @@
 /* The actual timeline (the vertical ruler) */
 .timeline {
     position: relative;
-    max-width: 1200px;
+    max-width: 90%;
     margin: 0 auto;
+    margin-bottom: 3vh;
 }
 
 /* The actual timeline (the vertical ruler) */
@@ -28,6 +29,16 @@
     position: relative;
     background-color: inherit;
     width: 50%;
+}
+h2, h3 {
+    margin: 0;
+}
+h3 {
+    text-decoration: underline;
+}
+.lineBreak {
+    width: 100%;
+    border: 1px dashed white;
 }
 
 /* The circles on the timeline */
@@ -100,6 +111,13 @@
 }
 
 /* The actual content */
+.content, .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
 .content {
     padding: 20px 20px;
     background-color: var(--app-gray);
@@ -107,6 +125,18 @@
     border-radius: 6px;
     color: white;
     box-shadow: 0px 0px 10px black;
+}
+.desc {
+    border: 1px dashed white;
+    border-radius: 6px;
+    padding: 10px;
+    width: 100%;
+}
+.dates {
+    background-color: white;
+    color: var(--app-gray);
+    padding: 5px 10px;
+    border-radius: 6px;
 }
 
 .title {
@@ -116,6 +146,7 @@
 
 li {
     color: white;
+    font-size: .95rem;
 }
 
 li::marker {
@@ -125,6 +156,7 @@ li::marker {
 ul {
     padding: 0;
     padding-left: 1rem;
+    margin: 0;
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
@@ -159,5 +191,14 @@ ul {
     /* Make all right containers behave like the left ones */
     .right {
         left: 0%;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+    li {
+        font-size: 0.8rem;
     }
 }
