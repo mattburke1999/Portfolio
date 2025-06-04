@@ -1,7 +1,12 @@
 import styles from './Stack.module.css';
 
-import PythonModal from './TechModals/PythonModal/PythonModal';
-import CSharpModal from './TechModals/CSharpModal/CSharpModal';
+import PythonModal from './TechModals/PythonModal';
+import CSharpModal from './TechModals/CSharpModal';
+import JSModal from './TechModals/JSModal';
+import AzFuncModal from './TechModals/AzFuncModal';
+import SQLModal from './TechModals/SQLModal';
+import HtmlModal from './TechModals/HtmlModal';
+import GitModal from './TechModals/GitModal';
 
 import { useState, useEffect } from 'react';
 
@@ -10,6 +15,99 @@ export default function Stack({ stackRef }) {
     const [scrolledBy, setScrolledBy] = useState(false);
     const [modalVisible, setModalVisible] = useState(null);
 
+    const modals = [
+        {
+            name: 'java',
+            title: 'Java',
+            img: './java-logo.png',
+            fadeStyle: styles.fadeNW,
+            modal: null,
+            color: 'red',
+            col: 0
+        },
+        {
+            name: 'css',
+            title: 'CSS',
+            img: './css-logo.png',
+            fadeStyle: styles.fadeW,
+            modal: null,
+            color: 'blue',
+            col: 0
+        },
+        {
+            name: 'js',
+            title: 'JavaScript',
+            img: './js-logo.png',
+            fadeStyle: styles.fadeIn,
+            modal: <JSModal />,
+            color: 'yellow',
+            col: 0
+        },
+        {
+            name: 'html',
+            title: 'HTML',
+            img: './html-logo.png',
+            fadeStyle: styles.fadeN,
+            modal: <HtmlModal />,
+            color: 'orange',
+            col: 1
+        },
+        {
+            name: 'sql',
+            title: 'SQL',
+            img: './sql-logo.png',
+            fadeStyle: styles.fadeIn,
+            modal: <SQLModal />,
+            color: 'blue',
+            col: 1
+        },
+        {
+            name: 'python',
+            title: 'Python',
+            img: './py-logo.png',
+            fadeStyle: styles.fadeIn,
+            modal: <PythonModal setModalVisible={setModalVisible} />,
+            color: 'blue',
+            col: 1
+        },
+        {
+            name: 'csharp',
+            title: 'C#',
+            img: './cs-logo.png',
+            fadeStyle: styles.fadeS,
+            modal: <CSharpModal />,
+            color: 'purple',
+            col: 1
+        },       
+        {
+            name: 'git',
+            title: 'Git',
+            img: './git-logo.png',
+            fadeStyle: styles.fadeNE,
+            modal: <GitModal />,
+            color: 'orange',
+            col: 2
+        },
+        {
+            name: 'rust',
+            title: 'Rust',
+            img: './rust-logo.png',
+            fadeStyle: styles.fadeE,
+            modal: null,
+            color: 'orange',
+            col: 2
+        },
+        {
+            name: 'azFunc',
+            title: 'Azure Functions',
+            img: './az-func-logo.png',
+            fadeStyle: styles.fadeSE,
+            modal: <AzFuncModal setModalVisible={setModalVisible} />,
+            color: 'blue',
+            col: 2
+        }
+    ];
+
     const scrollView = () => {
         setScrolledBy(true);
     }
@@ -17,7 +115,6 @@ export default function Stack({ stackRef }) {
     useEffect(() => {
         window.addEventListener('scroll', scrollView);
 
-        
         return () => {
             window.removeEventListener('scroll', scrollView);
         };
@@ -26,35 +123,39 @@ export default function Stack({ stackRef }) {
         <div className={styles.stackPage} ref={stackRef}>
             <h1>My Tech Stack</h1>
             <div className={styles.stackContainer}>
-                <div className={styles.stackColumn}>
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeNW : ''} image='./java-logo.png' text='Java' />
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeW : ''} image='./css-logo.png' text='CSS'/>
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeSW : ''} image='./js-logo.png' text='JavaScript' hoverEffect={true} />
-                </div>
-                <div className={styles.stackColumn}>
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeN : ''} image='./html-logo.png' text='HTML' />
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeIn : ''} image='./sql-logo.png' text='SQL' hoverEffect={true} />
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeIn : ''} image='./py-logo.png' text='Python' hoverEffect={true} onclick={() => setModalVisible('python')}/>
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeS : ''} image='./cs-logo.png' text='C#' hoverEffect={true} onclick={() => setModalVisible('csharp')}/>
-                </div>
-                <div className={styles.stackColumn}>
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeNE : ''} image='./git-logo.png' text='git' />
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeE : ''} image='./rust-logo.png' text='Rust' />
-                    <StackItem scrollByClass={scrolledBy ? styles.fadeSE : ''} image='./az-func-logo.png' text='Azure Functions' hoverEffect={true} />
-                </div>
+                {Array.from({ length: 3 }).map((_, index) => (
+                    <StackColumn key={index} modals={modals.filter(modal => modal.col === index)} setModalVisible={setModalVisible} scrolledBy={scrolledBy} />
+                ))}
             </div>
-            {modalVisible === 'python'  && <TechModal setModalVisible={setModalVisible} color={'var(--blue-color)'} modalContent={<PythonModal setModalVisible={setModalVisible} />} />}
-            {modalVisible === 'csharp' && <TechModal setModalVisible={setModalVisible} color={'var(--purple-color)'} modalContent={<CSharpModal setModalVisible={setModalVisible} />} />}
+            {modals.map((modal) => (
+                (modalVisible === modal.name) && (
+                    <TechModal key={modal.name} setModalVisible={setModalVisible} color={`var(--${modal.color}-color)`} modalContent={modal.modal} />
+                )
+            ))}
         </div>
     );
 }
 
-function StackItem({ image, text, scrollByClass, onclick = () => {}, hoverEffect = false }) {
+function StackColumn({ modals, setModalVisible, scrolledBy }) {
+    return (
+        <div className={styles.stackColumn}>
+            {modals.map((modal) => (
+                <StackItem
+                    key={modal.name}
+                    scrollByClass={scrolledBy ? modal.fadeStyle : ''}
+                    image={modal.img}
+                    text={modal.title}
+                    onclick={() => setModalVisible(modal.name)}
+                    color={modal.color}
+                />
+            ))}
+        </div>
+    );
+}
+
+function StackItem({ image, text, scrollByClass, onclick = () => {}, color='black'}) {
     // if hoverEffect is not true add stackItem class to div
-    let btnClassName = styles.stackItem;
-    if (hoverEffect) {
-        btnClassName += ` ${styles.hoverEffect}`;
-    }
+    let btnClassName = `${styles.stackItem} ${styles[`${color}`]}`;
     if (scrollByClass) {
         btnClassName += ` ${scrollByClass}`;
     }
