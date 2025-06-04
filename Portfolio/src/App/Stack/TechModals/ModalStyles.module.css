@@ -30,6 +30,9 @@ h3 {
 p {
     margin: 0.5rem 0;
 }
+.underline {
+    text-decoration: underline;
+}
 
 .tools {
     display: grid;
@@ -47,6 +50,18 @@ p {
 .tools li::marker {
     color: white;
 }
+.tools li.purpleMarker::marker {
+    color: var(--purple-color);
+}
+.tools li.yellowMarker::marker {
+    color: var(--yellow-color);
+}
+.tools li.blueMarker::marker {
+    color: var(--blue-color);
+}
+.tools li.orangeMarker::marker {
+    color: var(--orange-color);
+}
 
 .proj {
     margin-top: 1rem;
@@ -54,6 +69,7 @@ p {
     font-size: 1.25rem;
     font-weight: 600;
     color: white;
+    text-decoration: underline;
 }
 
 .projRef {
@@ -64,6 +80,7 @@ p {
     font-size: .95rem;
     text-decoration: underline;
     padding: 0;
+    cursor: pointer;
 }
 
 .projRef:hover {
