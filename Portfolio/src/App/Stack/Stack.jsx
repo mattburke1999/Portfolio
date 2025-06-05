@@ -11,6 +11,17 @@ import CSSModal from './TechModals/CSSModal';
 import JavaModal from './TechModals/JavaModal';
 import RustModal from './TechModals/RustModal';
 
+import cssLogo from '../assets/logos/css-logo.png';
+import javaLogo from '../assets/logos/java-logo.png';
+import pyLogo from '../assets/logos/py-logo.png';
+import htmlLogo from '../assets/logos/html-logo.png';
+import jsLogo from '../assets/logos/js-logo.png';
+import csLogo from '../assets/logos/cs-logo.png';
+import gitLogo from '../assets/logos/git-logo.png';
+import sqlLogo from '../assets/logos/sql-logo.png';
+import rustLogo from '../assets/logos/rust-logo.png';
+import azFuncLogo from '../assets/logos/az-func-logo.png';
+
 import { useState, useEffect } from 'react';
 
 export default function Stack({ stackRef }) {
@@ -22,8 +33,8 @@ export default function Stack({ stackRef }) {
         {
             name: 'css',
             title: 'CSS',
-            img: './css-logo.png',
-            fadeStyle: styles.fadeW,
+            img: cssLogo,
+            fadeStyle: styles.fadeNW,
             modal: <CSSModal />,
             color: 'blue',
             col: 0
@@ -31,8 +42,8 @@ export default function Stack({ stackRef }) {
         {
             name: 'java',
             title: 'Java',
-            img: './java-logo.png',
-            fadeStyle: styles.fadeNW,
+            img: javaLogo,
+            fadeStyle: styles.fadeW,
             modal: <JavaModal />,
             color: 'red',
             col: 0
@@ -40,8 +51,8 @@ export default function Stack({ stackRef }) {
         {
             name: 'python',
             title: 'Python',
-            img: './py-logo.png',
-            fadeStyle: styles.fadeIn,
+            img: pyLogo,
+            fadeStyle: styles.fadeSW,
             modal: <PythonModal setModalVisible={setModalVisible} />,
             color: 'blue',
             col: 0
@@ -49,7 +60,7 @@ export default function Stack({ stackRef }) {
         {
             name: 'html',
             title: 'HTML',
-            img: './html-logo.png',
+            img: htmlLogo,
             fadeStyle: styles.fadeN,
             modal: <HtmlModal />,
             color: 'orange',
@@ -58,7 +69,7 @@ export default function Stack({ stackRef }) {
         {
             name: 'js',
             title: 'JavaScript',
-            img: './js-logo.png',
+            img: jsLogo,
             fadeStyle: styles.fadeIn,
             modal: <JSModal />,
             color: 'yellow',
@@ -67,8 +78,8 @@ export default function Stack({ stackRef }) {
         {
             name: 'csharp',
             title: 'C#',
-            img: './cs-logo.png',
-            fadeStyle: styles.fadeS,
+            img: csLogo,
+            fadeStyle: styles.fadeIn,
             modal: <CSharpModal />,
             color: 'purple',
             col: 1
@@ -76,8 +87,8 @@ export default function Stack({ stackRef }) {
         {
             name: 'git',
             title: 'Git',
-            img: './git-logo.png',
-            fadeStyle: styles.fadeNE,
+            img: gitLogo,
+            fadeStyle: styles.fadeS,
             modal: <GitModal />,
             color: 'orange',
             col: 1
@@ -85,8 +96,8 @@ export default function Stack({ stackRef }) {
         {
             name: 'sql',
             title: 'SQL',
-            img: './sql-logo.png',
-            fadeStyle: styles.fadeIn,
+            img: sqlLogo,
+            fadeStyle: styles.fadeNE,
             modal: <SQLModal />,
             color: 'blue',
             col: 2
@@ -94,7 +105,7 @@ export default function Stack({ stackRef }) {
         {
             name: 'rust',
             title: 'Rust',
-            img: './rust-logo.png',
+            img: rustLogo,
             fadeStyle: styles.fadeE,
             modal: <RustModal />,
             color: 'orange',
@@ -103,7 +114,7 @@ export default function Stack({ stackRef }) {
         {
             name: 'azFunc',
             title: 'Azure Functions',
-            img: './az-func-logo.png',
+            img: azFuncLogo,
             fadeStyle: styles.fadeSE,
             modal: <AzFuncModal setModalVisible={setModalVisible} />,
             color: 'blue',
