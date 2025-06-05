@@ -30,11 +30,12 @@
     background-color: inherit;
     width: 50%;
 }
-h2, h3 {
+.content h2, h3 {
     margin: 0;
 }
-h3 {
+.desc h3 {
     text-decoration: underline;
+    color: var(--light-blue-color);
 }
 .lineBreak {
     width: 100%;
