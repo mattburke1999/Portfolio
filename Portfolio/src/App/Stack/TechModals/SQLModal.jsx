@@ -19,12 +19,13 @@ export default function SQLModal() {
                 <h3>Data Storage</h3>
                 <h3>Data Manipulation</h3>
             </div>
-            <h3 style={blueStyle}>Databases:</h3>
+            <h3 style={blueStyle} className={modalStyles.underline}>Databases:</h3>
             <ul className={modalStyles.tools}>
                 <li className={modalStyles.blueMarker}>PostgreSQL</li>
                 <li className={modalStyles.blueMarker}>SQL Server</li>
                 <li className={modalStyles.blueMarker}>MySQL</li>
                 <li className={modalStyles.blueMarker}>SQLite</li>
+                <li className={modalStyles.blueMarker}>Redis</li>
                 <li className={modalStyles.blueMarker}>MongoDB</li>
             </ul>
         </div>
