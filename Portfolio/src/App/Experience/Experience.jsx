@@ -52,6 +52,7 @@ export default function Experience({expRef}) {
         <div className={styles.timeline} ref={expRef}>
             {experiences.map((experience, index) => (
                 <ExperienceItem 
+                    key={index}
                     experience={experience}
                     side={index%2 === 0 ? 'left' : 'right'} 
                 />
