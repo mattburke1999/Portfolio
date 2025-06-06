@@ -8,7 +8,7 @@ function calcExperienceYears(startDate) {
 }
 
 function getProjImgs(imgClass) {
-    const imageModules = import.meta.glob('./assets/projects/*/*.{png,jpg,jpeg,webp}', { eager: true });
+    const imageModules = import.meta.glob('../assets/projects/*/*.{png,jpg,jpeg,webp}', { eager: true });
 
     // Organize into a map: { projectName: [img1, img2, ...] }
     const projectImages = {};

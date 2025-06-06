@@ -26,7 +26,7 @@ export default function Projects({ projRef }) {
         },
         {
             name: 'Garmin Mock',
-            images: projectImages['KeyBoardGames'] || [],
+            images: projectImages['GarminMock'] || [],
             description: [
                 'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
                 'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
@@ -36,7 +36,7 @@ export default function Projects({ projRef }) {
         },
         {
             name: 'Personal ToDo',
-            images: projectImages['KeyBoardGames'] || [],
+            images: projectImages['PersonalToDo'] || [],
             description: [
                 'Windows desktop app using React, pywebview, and SQLite; C# service handles task scheduling and alerts',
                 'Supports lists, sorting, filtering, searching, calendar page, and advanced scheduling options for repeated tasks'
@@ -49,6 +49,43 @@ export default function Projects({ projRef }) {
                 {name: 'React'}, {name: 'SQLite'}
             ]
         },
+        {
+            name: 'Code Cracker',
+            images: projectImages['CodeCracker'] || [],
+            description: [
+                'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
+                'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
+            ],
+            link: 'https://mattburke1999.github.io/CodeCracker/',
+            icons: [{name: 'JavaScript'}, {name: 'React'}]
+        },
+        {
+            name: 'Calculator',
+            images: projectImages['Calculator'] || [],
+            description: [
+                'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
+                'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
+            ],
+            link: 'https://example.com',
+            imageSize: 'small',
+            icons: [
+                {name: 'Python'}, {name: 'JavaScript'},
+                {name: 'PyWebView', link: 'https://pywebview.flowrl.com/logo-no-text.png'}, 
+                {name: 'React'}
+            ]
+        },
+        {
+            name: 'Password Manager',
+            images: projectImages['PasswordManager'] || [],
+            description: [
+                'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
+                'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
+            ],
+            link: 'https://example.com',
+            imageSize: 'medium',
+            icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'Next.js'}, {name: 'PostgreSQL'}]
+        },
+        
     ]
 
     return (
@@ -61,22 +98,26 @@ export default function Projects({ projRef }) {
             <div className={styles.projects} ref={projRef}>
                 <h1 className={styles.title}>Projects</h1>
                 {projects.map((project, i) => (
-                    <Project 
-                        key={project.name} 
-                        name={project.name} 
-                        images={project.images}
-                        side={i % 2 === 0 ? '' : '-reverse'}
-                        description={project.description}
-                        link={project.link}
-                        icons={project.icons}
-                    />
+                    <>
+                        <Project 
+                            key={project.name} 
+                            name={project.name} 
+                            images={project.images}
+                            side={i % 2 === 0 ? '' : '-reverse'}
+                            description={project.description}
+                            imageSize={project.imageSize || null}
+                            link={project.link}
+                            icons={project.icons}
+                        />
+                        <div className={styles.mobileLineBreak}></div>
+                    </>
                 )) }
             </div>
         </>
     );
 }
 
-function Project({ name, images, description, link, side, icons = []}) {
+function Project({ name, images, description, link, side, imageSize = null, icons = []}) {
     return (
         <div style={{flexDirection: `row${side}`}} className={styles.project}>
             <div className={styles.projectSummary}>
@@ -96,7 +137,7 @@ function Project({ name, images, description, link, side, icons = []}) {
                 </div>
                 {link && <a href={link} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>{name}</a>}
             </div>
-            <div className={styles.projectImages}>
+            <div className={`${styles.projectImages}${imageSize ? ` ${styles[imageSize]}` : ''}`}>
                 <ImageGallery items={images} autoPlay={true}/>
             </div>
         </div>

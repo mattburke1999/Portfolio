@@ -11,16 +11,16 @@ import CSSModal from './TechModals/CSSModal';
 import JavaModal from './TechModals/JavaModal';
 import RustModal from './TechModals/RustModal';
 
-import cssLogo from '../assets/logos/css-logo.png';
-import javaLogo from '../assets/logos/java-logo.png';
-import pyLogo from '../assets/logos/py-logo.png';
-import htmlLogo from '../assets/logos/html-logo.png';
-import jsLogo from '../assets/logos/js-logo.png';
-import csLogo from '../assets/logos/cs-logo.png';
-import gitLogo from '../assets/logos/git-logo.png';
-import sqlLogo from '../assets/logos/sql-logo.png';
-import rustLogo from '../assets/logos/rust-logo.png';
-import azFuncLogo from '../assets/logos/az-func-logo.png';
+import cssLogo from '../../assets/logos/css-logo.png';
+import javaLogo from '../../assets/logos/java-logo.png';
+import pyLogo from '../../assets/logos/py-logo.png';
+import htmlLogo from '../../assets/logos/html-logo.png';
+import jsLogo from '../../assets/logos/js-logo.png';
+import csLogo from '../../assets/logos/cs-logo.png';
+import gitLogo from '../../assets/logos/git-logo.png';
+import sqlLogo from '../../assets/logos/sql-logo.png';
+import rustLogo from '../../assets/logos/rust-logo.png';
+import azFuncLogo from '../../assets/logos/az-func-logo.png';
 
 import { useState, useEffect } from 'react';
 
