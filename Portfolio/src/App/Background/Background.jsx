@@ -5,7 +5,10 @@ export default function Background() {
     const squaresRef = useRef([]);
     const allSquares = useRef([]);
 
-    const numSquares = 100;
+    const backgroundHeight = 643;
+    const backgroundPixels = window.innerHeight * backgroundHeight / 100;
+
+    const numSquares = 125;
     useEffect(() => {
         
         const totalSquares = numSquares * 3;
@@ -13,7 +16,7 @@ export default function Background() {
         // Initialize square data
         allSquares.current = Array.from({ length: totalSquares }, () => ({
             x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight * 4 + window.innerHeight / 2,
+            y: Math.random() * backgroundPixels + window.innerHeight / 2,
             speed: 0.1 + Math.random() * 0.05,
             angle: Math.random() * 2 * Math.PI,
         }));
@@ -27,8 +30,8 @@ export default function Background() {
                 if (s.x > window.innerWidth) s.x = 0;
                 else if (s.x < 0) s.x = window.innerWidth;
 
-                if (s.y > window.innerHeight * 5) s.y = window.innerHeight + 55;
-                else if (s.y < window.innerHeight + 55) s.y = window.innerHeight * 5;
+                if (s.y > backgroundPixels) s.y = window.innerHeight + 55;
+                else if (s.y < window.innerHeight + 55) s.y = backgroundPixels;
 
                 const el = squaresRef.current[i];
                 if (el) {
@@ -61,7 +64,7 @@ export default function Background() {
     }
 
     return (
-        <svg className={styles.bg} width="100%" height="100%">
+        <svg className={styles.bg} width="100%" height="100%" style={{ height: `${backgroundHeight}vh` }}>
             <g id="bg-layer">
                 <rect
                     style={{
