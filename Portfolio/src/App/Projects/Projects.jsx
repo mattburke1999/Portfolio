@@ -1,5 +1,7 @@
 import styles from './Projects.module.css';
 
+import { useState, useEffect, useRef } from 'react';
+
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
@@ -98,29 +100,68 @@ export default function Projects({ projRef }) {
             <div className={styles.projects} ref={projRef}>
                 <h1 className={styles.title}>Projects</h1>
                 {projects.map((project, i) => (
-                    <>
+                    <div key={i} className={styles.projectContainer}>
                         <Project 
-                            key={project.name} 
                             name={project.name} 
                             images={project.images}
-                            side={i % 2 === 0 ? '' : '-reverse'}
                             description={project.description}
+                            side={i % 2 === 0 ? '' : '-reverse'}
                             imageSize={project.imageSize || null}
                             link={project.link}
                             icons={project.icons}
                         />
                         <div className={styles.mobileLineBreak}></div>
-                    </>
+                    </div>
                 )) }
             </div>
         </>
     );
 }
 
-function Project({ name, images, description, link, side, imageSize = null, icons = []}) {
+function Project({ name, images, description, side, link, imageSize = null, icons = []}) {
+    const [scrolledBy, setScrolledBy] = useState(false);
+    const projRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setScrolledBy(true);
+                    observer.disconnect(); // Stop observing after first intersection
+                }
+            },
+            {
+                threshold: 0.2, // Trigger when 20% of the element is visible
+            }
+        );
+
+        if (projRef.current) {
+            observer.observe(projRef.current);
+        }
+
+        return () => {
+            if (projRef.current) {
+                observer.unobserve(projRef.current);
+            }
+        };
+    }, []);
+
+    let projectStyle = {flexDirection: `row${side}`};
+    if (!scrolledBy) {
+        projectStyle = {...projectStyle, opacity: '0'};
+    }
+    let imageStyle = {}
+    if (imageSize) {
+        const percent = imageSize === 'small' ? '12.5%' : '7.5%'
+        if(side){
+            imageStyle = {marginRight: percent};
+        } else {
+            imageStyle = {marginLeft: percent};
+        }
+    }
     return (
-        <div style={{flexDirection: `row${side}`}} className={styles.project}>
-            <div className={styles.projectSummary}>
+        <div ref={projRef} style={projectStyle} className={`${styles.project}${scrolledBy ? (' ' + (side ? 'fadeE' : 'fadeW')) : ''}`}>
+            <div className={styles.projectSummary} >
                 <h2>{name}</h2>
                 <ul>
                     {description.map((line, index) => (
@@ -137,7 +178,7 @@ function Project({ name, images, description, link, side, imageSize = null, icon
                 </div>
                 {link && <a href={link} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>{name}</a>}
             </div>
-            <div className={`${styles.projectImages}${imageSize ? ` ${styles[imageSize]}` : ''}`}>
+            <div className={`${styles.projectImages}${imageSize ? ` ${styles[imageSize]}` : ''}`} style={imageStyle}>
                 <ImageGallery items={images} autoPlay={true}/>
             </div>
         </div>

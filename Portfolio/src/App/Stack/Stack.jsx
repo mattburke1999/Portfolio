@@ -34,7 +34,7 @@ export default function Stack({ stackRef }) {
             name: 'css',
             title: 'CSS',
             img: cssLogo,
-            fadeStyle: styles.fadeNW,
+            fadeStyle: 'fadeNW',
             modal: <CSSModal />,
             color: 'blue',
             col: 0
@@ -43,7 +43,7 @@ export default function Stack({ stackRef }) {
             name: 'java',
             title: 'Java',
             img: javaLogo,
-            fadeStyle: styles.fadeW,
+            fadeStyle: 'fadeW',
             modal: <JavaModal />,
             color: 'red',
             col: 0
@@ -52,7 +52,7 @@ export default function Stack({ stackRef }) {
             name: 'python',
             title: 'Python',
             img: pyLogo,
-            fadeStyle: styles.fadeSW,
+            fadeStyle: 'fadeSW',
             modal: <PythonModal setModalVisible={setModalVisible} />,
             color: 'blue',
             col: 0
@@ -61,7 +61,7 @@ export default function Stack({ stackRef }) {
             name: 'html',
             title: 'HTML',
             img: htmlLogo,
-            fadeStyle: styles.fadeN,
+            fadeStyle: 'fadeN',
             modal: <HtmlModal />,
             color: 'orange',
             col: 1
@@ -70,7 +70,7 @@ export default function Stack({ stackRef }) {
             name: 'js',
             title: 'JavaScript',
             img: jsLogo,
-            fadeStyle: styles.fadeIn,
+            fadeStyle: 'fadeIn',
             modal: <JSModal />,
             color: 'yellow',
             col: 1
@@ -79,7 +79,7 @@ export default function Stack({ stackRef }) {
             name: 'csharp',
             title: 'C#',
             img: csLogo,
-            fadeStyle: styles.fadeIn,
+            fadeStyle: 'fadeIn',
             modal: <CSharpModal />,
             color: 'purple',
             col: 1
@@ -88,7 +88,7 @@ export default function Stack({ stackRef }) {
             name: 'git',
             title: 'Git',
             img: gitLogo,
-            fadeStyle: styles.fadeS,
+            fadeStyle: 'fadeS',
             modal: <GitModal />,
             color: 'orange',
             col: 1
@@ -97,7 +97,7 @@ export default function Stack({ stackRef }) {
             name: 'sql',
             title: 'SQL',
             img: sqlLogo,
-            fadeStyle: styles.fadeNE,
+            fadeStyle: 'fadeNE',
             modal: <SQLModal />,
             color: 'blue',
             col: 2
@@ -106,7 +106,7 @@ export default function Stack({ stackRef }) {
             name: 'rust',
             title: 'Rust',
             img: rustLogo,
-            fadeStyle: styles.fadeE,
+            fadeStyle: 'fadeE',
             modal: <RustModal />,
             color: 'orange',
             col: 2
@@ -115,7 +115,7 @@ export default function Stack({ stackRef }) {
             name: 'azFunc',
             title: 'Azure Functions',
             img: azFuncLogo,
-            fadeStyle: styles.fadeSE,
+            fadeStyle: 'fadeSE',
             modal: <AzFuncModal setModalVisible={setModalVisible} />,
             color: 'blue',
             col: 2
@@ -123,7 +123,27 @@ export default function Stack({ stackRef }) {
     ];
 
     const scrollView = () => {
-        setScrolledBy(true);
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setScrolledBy(true);
+                    observer.disconnect(); // Stop observing after first intersection
+                }
+            },
+            {
+                threshold: 0.2, // Trigger when 20% of the element is visible
+            }
+        );
+
+        if (stackRef.current) {
+            observer.observe(stackRef.current);
+        }
+
+        return () => {
+            if (stackRef.current) {
+                observer.unobserve(stackRef.current);
+            }
+        };
     }
 
     useEffect(() => {

@@ -23,6 +23,8 @@ function App() {
         setCurrentSection(page);
     };
 
+    
+
     return (
         <>
             <Background />
