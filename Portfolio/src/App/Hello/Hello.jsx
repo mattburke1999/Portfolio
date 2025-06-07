@@ -46,7 +46,7 @@ export default function HelloPage({ homeRef }) {
 
 
     return (
-        <div className={styles.hello} ref={homeRef}>
+        <div className={styles.hello} ref={homeRef} id='home'>
             <h1 className={`${styles.name} ${styles.fadeLeft}`}>
                 <span>Hello,&nbsp;</span>
                 <span>I&apos;m&nbsp;</span>

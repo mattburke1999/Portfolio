@@ -154,7 +154,7 @@ export default function Stack({ stackRef }) {
         };
     }, []);
     return (
-        <div className={styles.stackPage} ref={stackRef}>
+        <div className={styles.stackPage} ref={stackRef} id='stack'>
             <h1>My Tech Stack</h1>
             <div className={styles.stackContainer}>
                 {Array.from({ length: 3 }).map((_, index) => (

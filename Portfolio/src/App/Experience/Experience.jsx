@@ -49,7 +49,7 @@ export default function Experience({expRef}) {
     return (
         <>
         <h1 className={styles.title}>Experience</h1>
-        <div className={styles.timeline} ref={expRef}>
+        <div className={styles.timeline} ref={expRef} id='exp'>
             {experiences.map((experience, index) => (
                 <ExperienceItem 
                     key={index}
