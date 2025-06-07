@@ -57,5 +57,15 @@
     .navbar button {
         font-size: 15px;
     }
+    .navBtns {
+        gap: .5rem;
+    }
+    .navbar h1 {
+        font-size: .75rem;
+    }
+    .navbar img {
+        height: 30px;
+    }
+
     
 }
