@@ -32,22 +32,34 @@ function App() {
                 }
             },
             {
-                threshold: 0.2, // Trigger when 20% of the element is visible
+                threshold: 0.4,
+            }
+        );
+        const observerLast = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setCurrentSection(entry.target.id);
+                }
+            },
+            {
+                threshold: 0.2,
             }
         );
         
-        refs.forEach(ref => {
+        refs.forEach((ref, index) => {
             if (ref.current) {
-                observer.observe(ref.current);
+                const observerInstance = index === refs.length - 1 ? observerLast : observer;                
+                observerInstance.observe(ref.current);
             }
         });
 
         return () => {
-            refs.forEach(ref => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
-            }
-        });
+            refs.forEach((ref, index) => {
+                if (ref.current) {
+                    const observerInstance = index === refs.length - 1 ? observerLast : observer;                
+                    observerInstance.unobserve(ref.current);
+                }
+            });
         };
     }, []);
 
