@@ -1,0 +1,102 @@
+:root {
+    --purple-color: #6d3f8b;
+    --yellow-color: #ffd738;
+    --blue-color: #2176a7;
+    --orange-color: #af4426;
+    --red-color: #ff3d3d;
+    --light-blue-color: #93c5fd;
+    --link-color:#3b82f6;
+    --link-hover-color: #60a5fa;
+    --app-blue: #1180E8;
+    --app-green: #008000;
+    --app-pink: #B53CD6;
+    --app-gray: #424242;
+}
+body {
+    font-family: montserrat, sans-serif;
+    z-index: -1000;
+    margin: 0;
+}
+.line-break {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.fadeIn {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+/* start with element at 125% size and opacity 0 and go to normal size with opacity 1*/
+    from {
+        transform: scale(.25);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.fadeN {
+    /* fade from north */
+    --fade-startX: 0;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeNW {
+    /* fade from north-west angle */
+    --fade-startX: -100%;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeW {
+    --fade-startX: -100%;
+    --fade-startY: 0;
+    animation: fade 1s ease-in;
+}
+
+.fadeSW {
+    --fade-startX: -100%;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeS {
+    --fade-startX: 0;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeNE {
+    --fade-startX: 100%;
+    --fade-startY: -100%;
+    animation: fade 1s ease-in;
+}
+
+.fadeE {
+    --fade-startX: 100%;
+    --fade-startY: 0;
+    animation: fade 1s ease-in;
+}
+
+.fadeSE {
+    --fade-startX: 100%;
+    --fade-startY: 100%;
+    animation: fade 1s ease-in;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translate(var(--fade-startX), var(--fade-startY));
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
