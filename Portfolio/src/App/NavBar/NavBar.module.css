@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #595C6D;
+    background-color: var(--nav-bar-color);
     height: 75px;
     position: sticky;
     top: 0;
@@ -30,7 +30,21 @@
     flex-direction: row;
     gap: 3rem;
 }
-.navbar button {
+
+.mobileNavBtns {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 75px;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--nav-bar-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -1;
+}
+.navbar button, .mobileNavBtns button {
     font-size: 25px;
     text-decoration: none;
     background-color: inherit;
@@ -39,33 +53,56 @@
     font-family: montserrat, sans-serif;
     cursor: pointer;
 }
-.navbar button.blue:hover, .navbar button.blue.active {
+.mobileNavBtns button {
+    width: 98%;
+    color: var(--nav-bar-color);
+    background-color: white;
+    padding: 1rem;
+    border-bottom: .5rem solid var(--nav-bar-color);
+}
+.mobileNavBtns button.active, .mobileNavBtns button:hover {
+    background-color: black;
+}
+.mobileNavBtns .closeBtn {
+    position: absolute;
+    top: 7.5px;
+    right: 5px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: white;
+}
+.navbar button.blue:hover, .navbar button.blue.active, .mobileNavBtns button.blue:hover, .mobileNavBtns button.blue.active {
     color: var(--app-blue);
 }
-.navbar button.green:hover, .navbar button.green.active {
+.navbar button.green:hover, .navbar button.green.active, .mobileNavBtns button.green:hover, .mobileNavBtns button.green.active {
     color: var(--app-green);
 }
-.navbar button.pink:hover, .navbar button.pink.active {
+.navbar button.pink:hover, .navbar button.pink.active, .mobileNavBtns button.pink:hover, .mobileNavBtns button.pink.active {
     color: var(--app-pink);
+}
+
+
+.navbar i {
+    font-size: 1.85rem;
+    color: white;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
     .navbar {
-        justify-content: center;
-        padding-right: 0;
+        padding-left: .5rem;
     }
     .navbar button {
         font-size: 15px;
     }
-    .navBtns {
-        gap: .5rem;
+    .navLogo {
+        gap: .35rem;
     }
     .navbar h1 {
-        font-size: .75rem;
+        font-size: 1.65rem;
     }
     .navbar img {
-        height: 30px;
+        height: 40px;
     }
-
     
 }
