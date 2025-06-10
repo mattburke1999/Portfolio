@@ -108,7 +108,7 @@
     .tools {
         grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
     }
-    .tools li {
+    .tools li, .projRef {
         font-size: 0.65rem;
     }
 }
