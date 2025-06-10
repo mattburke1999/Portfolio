@@ -26,7 +26,7 @@
     padding-bottom: 2rem;
 }
 .projectSummary {
-    width: 29.5%;
+    max-width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -47,7 +47,7 @@
 .projectSummary ul {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: .85rem;
 }
 
 .projectImages {
@@ -87,7 +87,7 @@
     width: fit-content;
     max-width: 150px;
     background-color: white;
-    padding: 0.35rem 0.5rem;
+    padding: 0.25rem 0.4rem;
     border-radius: 0.5rem;
     color: #93c5fd;
     width: fit-content;
