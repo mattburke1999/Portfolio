@@ -13,11 +13,33 @@ export default function Projects({ projRef }) {
     
     const projects = [
         {
+            name: 'Personal ToDo',
+            images: projectImages['PersonalToDo'] || [],
+            description: [
+                'Designed as a personalized, feature-rich alternative to the Windows To Do app, with full offline support.',
+                'Built a Windows desktop task manager using Python, React, pywebview, and SQLite, packaged into a single executable with PyInstaller.',
+                'The React frontend (bundled as a single HTML file) communicates with Python backend services via pywebview’s API bridge.',
+                'Developed a C# background service that monitors upcoming tasks, listens for database changes, and triggers native Windows toast notifications.',
+                'Task system supports sorting, filtering, search, a calendar view, and flexible scheduling options.',
+                'Tasks can repeat at custom intervals or on specific days of the week, month, or year.'
+
+            ],
+            link: 'https://example.com',
+            icons: [
+                {name: 'Python'}, {name: 'JavaScript'}, {name: 'C#'}, 
+                {name: 'PyWebView', link: 'https://pywebview.flowrl.com/logo-no-text.png'}, 
+                {name: 'React'}, {name: 'SQLite'}
+            ]
+        },
+        {
             name: 'KeyBoard Games',
             images: projectImages['KeyBoardGames'] || [],
             description: [
-                'Web game suite with Flask backend, vanilla JS frontend, and Rust websocket server using warp for low-latency play',
-                'Tracks scores and cosmetics; supports skins, keyboard controls, real-time updates, and game result validation'
+                'Built a lightweight, custom JavaScript game engine to power ~10 reaction-based games, handling shared logic like game lifecycle, input, point tracking, socket interaction, and target generation.',
+                'Each game defines its own config and optional overrides to customize behavior (e.g. moving targets, disappearing elements, restricted movement).',
+                'Full-stack Flask app serves all HTML, JavaScript, and game pages, and manages user auth, score tracking, leaderboards, and skin purchases.',
+                'Rust WebSocket server using Tokio + Warp for low-latency game-play and point validation.',
+                'Redis shares session state between Flask and the WebSocket server; PostgreSQL stores user data, scores, and skin purchases.'
             ],
             link: 'https://keyboardgames.com',
             icons: [
@@ -30,33 +52,38 @@ export default function Projects({ projRef }) {
             name: 'Garmin Mock',
             images: projectImages['GarminMock'] || [],
             description: [
-                'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
-                'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
+                'Developed a Flask web app as a personal mockup of Garmin Connect to visualize fitness data from .fit files.',
+                'Parsed GPS, heart rate, elevation, and lap data using the fitparse Python library and stored it in PostgreSQL.',
+                'Displayed workout details with interactive Folium maps and custom stat breakdowns.',
+                'Implemented multi-user authentication with registration, login, session handling, and password hashing.',
+                'Frontend built with Jinja templates, custom CSS, and minimal vanilla JavaScript.'
             ],
             link: 'https://example.com',
-            icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'PostgreSQL'}, {name: 'Redis'}]
+            icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'PostgreSQL'}]
         },
         {
-            name: 'Personal ToDo',
-            images: projectImages['PersonalToDo'] || [],
+            name: 'Password Manager',
+            images: projectImages['PasswordManager'] || [],
             description: [
-                'Windows desktop app using React, pywebview, and SQLite; C# service handles task scheduling and alerts',
-                'Supports lists, sorting, filtering, searching, calendar page, and advanced scheduling options for repeated tasks'
-
+                'Developed a personal Chrome extension for managing encrypted passwords locally, with support for adding, editing, and viewing credentials.',
+                'Used PBKDF2 and AES-GCM encryption; encrypted passwords (with salt and IV) are stored securely in PostgreSQL.',
+                'Flask backend serves as the password API, spun up on-demand by a lightweight Next.js API that authenticates local access, applies rate limits, and logs all interactions.',
+                'Passwords are decrypted client-side via a WebSocket for smooth, low-latency viewing (with initial masking and reveal-on-click UX).',
+                'Everything runs locally, with no external communication, designed for privacy and control.'
             ],
             link: 'https://example.com',
-            icons: [
-                {name: 'Python'}, {name: 'JavaScript'}, {name: 'C#'}, 
-                {name: 'PyWebView', link: 'https://pywebview.flowrl.com/logo-no-text.png'}, 
-                {name: 'React'}, {name: 'SQLite'}
+            imageSize: 'medium',
+            icons: [{name: 'Chrome Ext.', link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREHWmJqswjeSOHOsd8u_zIK6Fe8_rBiJDqsQ&s'}, {name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'Next.js'}, {name: 'PostgreSQL'},
             ]
         },
         {
             name: 'Code Cracker',
             images: projectImages['CodeCracker'] || [],
             description: [
-                'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
-                'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
+                'Built a static logic puzzle game with React where users guess a randomly generated 3-digit code.',
+                'Game provides 5 logic-based hints (e.g. “One correct digit, wrong place”) to guide each round.',
+                'Includes difficulty toggle (easy/medium/hard) to vary hint complexity and tracks guess count.',
+                'Created as a personal mini-project inspired by similar styled logic games seen on social-media.'
             ],
             link: 'https://mattburke1999.github.io/CodeCracker/',
             icons: [{name: 'JavaScript'}, {name: 'React'}]
@@ -65,8 +92,9 @@ export default function Projects({ projRef }) {
             name: 'Calculator',
             images: projectImages['Calculator'] || [],
             description: [
-                'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
-                'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
+                'Created a basic desktop calculator app using React, packaged as a desktop app with pywebview.',
+                'React handles all UI and logic; pywebview provides a lightweight Python wrapper for desktop deployment.',
+                'Built as a simple personal project to experiment with React and desktop app delivery.'
             ],
             link: 'https://example.com',
             imageSize: 'small',
@@ -75,17 +103,6 @@ export default function Projects({ projRef }) {
                 {name: 'PyWebView', link: 'https://pywebview.flowrl.com/logo-no-text.png'}, 
                 {name: 'React'}
             ]
-        },
-        {
-            name: 'Password Manager',
-            images: projectImages['PasswordManager'] || [],
-            description: [
-                'Built a Flask web app mimicking GarminConnect; parsed .fit files and stored GPS/activity data in PostgreSQL',
-                'Displays workouts with Folium maps, detailed stats (HR, elevation, laps), and multi-user auth with session control'
-            ],
-            link: 'https://example.com',
-            imageSize: 'medium',
-            icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'Next.js'}, {name: 'PostgreSQL'}]
         },
         
     ]
@@ -131,7 +148,7 @@ function Project({ name, images, description, side, link, imageSize = null, icon
                 }
             },
             {
-                threshold: 0.2, // Trigger when 20% of the element is visible
+                threshold: 0.4, // Trigger when 20% of the element is visible
             }
         );
 
@@ -151,13 +168,14 @@ function Project({ name, images, description, side, link, imageSize = null, icon
         projectStyle = {...projectStyle, opacity: '0'};
     }
     let imageStyle = {}
+    let percent = '1%';
     if (imageSize) {
-        const percent = imageSize === 'small' ? '12.5%' : '7.5%'
-        if(side){
-            imageStyle = {marginRight: percent};
-        } else {
-            imageStyle = {marginLeft: percent};
-        }
+        percent = imageSize === 'small' ? '5%' : '2.5%'
+    }
+    if(side){
+        imageStyle = {marginRight: percent};
+    } else {
+        imageStyle = {marginLeft: percent};
     }
     return (
         <div ref={projRef} style={projectStyle} className={`${styles.project}${scrolledBy ? (' ' + (side ? 'fadeE' : 'fadeW')) : ''}`}>
