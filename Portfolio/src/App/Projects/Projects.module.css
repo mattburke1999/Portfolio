@@ -115,6 +115,7 @@
     }
     .projectSummary {
         width: 90%;
+        max-width: 90%;
         gap: .75rem;
         padding: 0.5rem;
     }

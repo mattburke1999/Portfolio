@@ -44,7 +44,7 @@ export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSect
 function NavBtns({homeRef, stackRef, expRef, projRef, sectionClick, currentSection, isMobile, setIsNavOpen}) {
     return (
         <div className={isMobile ? styles.mobileNavBtns : styles.navBtns}>
-            {isMobile && <div className='line-break' style={{marginBottom: '1rem'}}></div>}
+            {isMobile && <div className={'line-break' + ' ' + styles.lineBreak}></div>}
             <button className={currentSection === 'home' ? `${styles.blue} ${styles.active}` : styles.blue} onClick={() => sectionClick(homeRef)}>Home</button> 
             <button className={currentSection === 'stack' ? `${styles.green} ${styles.active}` : styles.green} onClick={() => sectionClick(stackRef)}>Tech Stack</button>
             <button className={currentSection === 'exp' ? `${styles.pink} ${styles.active}` : styles.pink} onClick={() => sectionClick(expRef)}>Experience</button>

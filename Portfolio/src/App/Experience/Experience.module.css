@@ -162,7 +162,9 @@ ul {
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
 @media screen and (max-width: 768px) {
-
+    .timeline {
+        max-width: 100%;
+    }
     /* Place the timelime to the left */
     .timeline::after {
         left: 31px;
