@@ -6,6 +6,7 @@ export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSect
     const isMobile = window.innerWidth <= 768;
     console.log(`isMobile: ${isMobile}`);
     const [isNavOpen, setIsNavOpen] = useState(!isMobile);
+    const [showBtns, setShowBtns] = useState(!isMobile);
     console.log(`isNavOpen: ${isNavOpen}`);
 
     const sectionClick = (sectionRef) => {
@@ -13,6 +14,17 @@ export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSect
             setIsNavOpen(false);
         }
         scrollToSection(sectionRef);
+    }
+    const openNav = () => {
+        setIsNavOpen(true);
+        setTimeout(() => {
+            setShowBtns(true);
+        }, 200);
+    }
+
+    const closeNav = () => {
+        setShowBtns(false);
+        setIsNavOpen(false);
     }
 
     return (
@@ -23,33 +35,55 @@ export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSect
                     <h1>Matthew Burke Dev</h1>
                 </div>
                 {isNavOpen ? 
-                    <NavBtns 
-                        homeRef={homeRef} 
-                        stackRef={stackRef} 
-                        expRef={expRef} 
-                        projRef={projRef} 
-                        sectionClick={sectionClick} 
-                        currentSection={currentSection} 
-                        isMobile={isMobile}
-                        setIsNavOpen={setIsNavOpen}
-                    />
+                <>
+                        <NavBtns 
+                            homeRef={homeRef} 
+                            stackRef={stackRef} 
+                            expRef={expRef} 
+                            projRef={projRef} 
+                            sectionClick={sectionClick} 
+                            currentSection={currentSection} 
+                            isMobile={isMobile}
+                            showBtns={showBtns}
+                        />
+                        {isMobile && <span className={styles.closeBtn} onClick={closeNav}>X</span>}
+                </>
                 :
-                ! isNavOpen && <i class="fa-solid fa-bars" onClick={() => setIsNavOpen(true)}></i>
+                    <i class="fa-solid fa-bars" onClick={openNav}></i>
                 }
             </nav>
         </>
     );
 }
 
-function NavBtns({homeRef, stackRef, expRef, projRef, sectionClick, currentSection, isMobile, setIsNavOpen}) {
+function NavBtns({homeRef, stackRef, expRef, projRef, sectionClick, currentSection, isMobile, showBtns}) {
+    const navs = [
+        { ref: homeRef, label: 'Home', section: 'home', style: styles.blue },
+        { ref: stackRef, label: 'Tech Stack', section: 'stack', style: styles.green },
+        { ref: expRef, label: 'Experience', section: 'exp', style: styles.pink },
+        { ref: projRef, label: 'Projects', section: 'proj', style: styles.blue }
+    ]
+    navs.forEach(nav => {
+        if (currentSection === nav.section) {
+            nav.style += ` ${styles.active}`;
+        }
+        if (isMobile && showBtns) {
+            nav.style += ` ${styles.show}`;
+        }
+    });
+
     return (
         <div className={isMobile ? styles.mobileNavBtns : styles.navBtns}>
             {isMobile && <div className={'line-break' + ' ' + styles.lineBreak}></div>}
-            <button className={currentSection === 'home' ? `${styles.blue} ${styles.active}` : styles.blue} onClick={() => sectionClick(homeRef)}>Home</button> 
-            <button className={currentSection === 'stack' ? `${styles.green} ${styles.active}` : styles.green} onClick={() => sectionClick(stackRef)}>Tech Stack</button>
-            <button className={currentSection === 'exp' ? `${styles.pink} ${styles.active}` : styles.pink} onClick={() => sectionClick(expRef)}>Experience</button>
-            <button className={currentSection === 'proj' ? `${styles.blue} ${styles.active}` : styles.blue} onClick={() => sectionClick(projRef)}>Projects</button>
-            {isMobile && <span className={styles.closeBtn} onClick={() => setIsNavOpen(false)}>X</span>}
+            {navs.map(nav => (
+                <button 
+                    key={nav.section} 
+                    className={nav.style} 
+                    onClick={() => sectionClick(nav.ref)}
+                >
+                    {nav.label}
+                </button>
+            ))}
         </div>
     )
 }

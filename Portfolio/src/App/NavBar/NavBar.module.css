@@ -43,6 +43,16 @@
     align-items: center;
     z-index: -2;
     gap: .75rem;
+    animation: rollDown 0.3s ease-in-out;
+}
+
+@keyframes rollDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 .navbar button, .mobileNavBtns button {
     font-size: 25px;
@@ -60,6 +70,11 @@
     background-color: white;
     padding: 1rem;
     box-shadow: black 0px 1px 5px 1px;
+    z-index: -1;
+    display: none;
+}
+.mobileNavBtns button.show {
+    display: block;
 }
 .lineBreak {
     margin-bottom: .5rem;
@@ -70,13 +85,14 @@
 .mobileNavBtns button.active, .mobileNavBtns button:hover {
     background-color: black;
 }
-.mobileNavBtns .closeBtn {
+ .closeBtn {
     position: absolute;
-    top: -65px;
+    top: 7.5px;
     right: 5px;
     padding: 1rem;
     font-size: 1.5rem;
     color: white;
+    cursor: pointer;
 }
 .navbar button.blue:hover, .navbar button.blue.active, .mobileNavBtns button.blue:hover, .mobileNavBtns button.blue.active {
     color: var(--app-blue);
