@@ -19,7 +19,7 @@ function App() {
 
     const scrollToSection = (sectionRef) => {
         window.scrollTo({
-            top: sectionRef.current.offsetTop,
+            top: sectionRef.current.offsetTop - 75,
             behavior: 'smooth', // Smooth scroll
         });
     };
