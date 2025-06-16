@@ -16,7 +16,7 @@ export default function Background() {
         allSquares.current = Array.from({ length: totalSquares }, () => ({
             x: Math.random() * window.innerWidth,
             y: Math.random() * backgroundPixels,
-            speed: 0.1 + Math.random() * 0.05,
+            speed: (isMobile ? 0.15 : 0.12) + Math.random() * 0.05,
             angle: Math.random() * 2 * Math.PI,
         }));
 
