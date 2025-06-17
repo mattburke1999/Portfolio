@@ -10,6 +10,12 @@ import { getProjImgs } from '../utils';
 export default function Projects({ projRef }) {
 
     const projectImages = getProjImgs(styles.projImgs);
+
+    const extraLinks = {
+        pywebview: 'https://pywebview.flowrl.com/logo-no-text.png',
+        tokio: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Tokio_logo.svg/1200px-Tokio_logo.svg.png',
+        chromeExt: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREHWmJqswjeSOHOsd8u_zIK6Fe8_rBiJDqsQ&s'
+    }
     
     const projects = [
         {
@@ -24,10 +30,10 @@ export default function Projects({ projRef }) {
                 'Tasks can repeat at custom intervals or on specific days of the week, month, or year.'
 
             ],
-            link: 'https://example.com',
+            githubLink: 'https://github.com/mattburke1999/PersonalToDo',
             icons: [
                 {name: 'Python'}, {name: 'JavaScript'}, {name: 'C#'}, 
-                {name: 'PyWebView', link: 'https://pywebview.flowrl.com/logo-no-text.png'}, 
+                {name: 'PyWebView', link: extraLinks.pywebview}, 
                 {name: 'React'}, {name: 'SQLite'}
             ]
         },
@@ -41,10 +47,10 @@ export default function Projects({ projRef }) {
                 'Rust WebSocket server using Tokio + Warp for low-latency game-play and point validation.',
                 'Redis shares session state between Flask and the WebSocket server; PostgreSQL stores user data, scores, and skin purchases.'
             ],
-            link: 'https://keyboardgames.com',
+            githubLink: 'https://github.com/mattburke1999/KeyboardGames',
             icons: [
                 {name: 'Python'}, {name: 'Rust'}, {name: 'JavaScript'}, {name: 'Flask'}, 
-                {name: 'Tokio', link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Tokio_logo.svg/1200px-Tokio_logo.svg.png'}, 
+                {name: 'Tokio', link: extraLinks.tokio}, 
                 {name: 'Warp'}, {name: 'PostgreSQL'}, {name: 'Redis'}
             ]
         },
@@ -58,7 +64,7 @@ export default function Projects({ projRef }) {
                 'Implemented multi-user authentication with registration, login, session handling, and password hashing.',
                 'Frontend built with Jinja templates, custom CSS, and minimal vanilla JavaScript.'
             ],
-            link: 'https://example.com',
+            githubLink: 'https://github.com/mattburke1999/GarminMock',
             icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'PostgreSQL'}]
         },
         {
@@ -73,7 +79,7 @@ export default function Projects({ projRef }) {
             ],
             link: 'https://example.com',
             imageSize: 'medium',
-            icons: [{name: 'Chrome Ext.', link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREHWmJqswjeSOHOsd8u_zIK6Fe8_rBiJDqsQ&s'}, {name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'Next.js'}, {name: 'PostgreSQL'},
+            icons: [{name: 'Chrome Ext.', link: extraLinks.chromeExt}, {name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'React'}, {name: 'PostgreSQL'},
             ]
         },
         {
@@ -86,6 +92,7 @@ export default function Projects({ projRef }) {
                 'Created as a personal mini-project inspired by similar styled logic games seen on social-media.'
             ],
             link: 'https://mattburke1999.github.io/CodeCracker/',
+            githubLink: 'https://github.com/mattburke1999/CodeCracker',
             icons: [{name: 'JavaScript'}, {name: 'React'}]
         },
         {
@@ -100,7 +107,7 @@ export default function Projects({ projRef }) {
             imageSize: 'small',
             icons: [
                 {name: 'Python'}, {name: 'JavaScript'},
-                {name: 'PyWebView', link: 'https://pywebview.flowrl.com/logo-no-text.png'}, 
+                {name: 'PyWebView', link: extraLinks.pywebview}, 
                 {name: 'React'}
             ]
         },
@@ -125,6 +132,7 @@ export default function Projects({ projRef }) {
                             side={i % 2 === 0 ? '' : '-reverse'}
                             imageSize={project.imageSize || null}
                             link={project.link}
+                            githubLink={project.githubLink}
                             icons={project.icons}
                         />
                         <div className={styles.mobileLineBreak}></div>
@@ -135,9 +143,11 @@ export default function Projects({ projRef }) {
     );
 }
 
-function Project({ name, images, description, side, link, imageSize = null, icons = []}) {
+function Project({ name, images, description, side, link, githubLink, imageSize = null, icons = []}) {
     const [scrolledBy, setScrolledBy] = useState(false);
     const projRef = useRef(null);
+
+    const simpleIconsLink = 'https://cdn.simpleicons.org'
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -189,12 +199,23 @@ function Project({ name, images, description, side, link, imageSize = null, icon
                 <div className={styles.projectIcons}>
                     {icons.map((icon) => (
                         <div className={styles.icon} key={icon.name}>
-                            <img src={icon.link ? icon.link : `https://cdn.simpleicons.org/${icon.name}`} color={'white'} size={24} />
+                            <img src={icon.link ? icon.link : `${simpleIconsLink}/${icon.name}`} color={'white'} size={24} />
                             <p>{icon.name}</p>
                         </div>
                     ))}
                 </div>
-                {link && <a href={link} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>{name}</a>}
+                <div className={styles.links}>                    
+                    {githubLink && <a href={githubLink} target="_blank" rel="noopener noreferrer" className={styles.projectLink} title='View on GitHub'>
+                            <img src={`${simpleIconsLink}/github`} alt='GitHub' width={18} height={18} />
+                            <span>View Code</span>
+                        </a>
+                    }
+                    {link && <a href={link} target="_blank" rel="noopener noreferrer" className={styles.projectLink} title='View Site'>
+                            <i class="fa-solid fa-link"></i>
+                            <span>View Site</span>
+                        </a>
+                    }
+                </div>
             </div>
             <div className={`${styles.projectImages}${imageSize ? ` ${styles[imageSize]}` : ''}`} style={imageStyle}>
                 <ImageGallery items={images} autoPlay={true}/>
