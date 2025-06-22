@@ -74,7 +74,7 @@ export default function Projects({ projRef }) {
                 'Developed a personal Chrome extension for managing encrypted passwords locally, with support for adding, editing, and viewing credentials.',
                 'Used PBKDF2 and AES-GCM encryption; encrypted passwords (with salt and IV) are stored securely in PostgreSQL.',
                 'Flask backend serves as the password API, spun up on-demand by a lightweight Next.js API that authenticates local access, applies rate limits, and logs all interactions.',
-                'Passwords are decrypted client-side via a WebSocket for smooth, low-latency viewing (with initial masking and reveal-on-click UX).',
+                'Passwords are retrieved via a WebSocket and decrypted client-side for smooth, low-latency viewing (with initial masking and reveal-on-click UX).',
                 'Everything runs locally, with no external communication, designed for privacy and control.'
             ],
             link: 'https://example.com',

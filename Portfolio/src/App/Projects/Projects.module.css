@@ -80,12 +80,14 @@
 }
 .projectLink {
     width: fit-content;
+    min-width: 7.5rem;
     padding: 0.25rem 0.5rem;
     background-color: white;
     border-radius: 0.5rem;
     color: var(--app-gray);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: .25rem;
     text-decoration: none;
 }
