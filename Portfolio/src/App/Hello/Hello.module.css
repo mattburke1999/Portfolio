@@ -57,18 +57,26 @@
 .description.typed {
     border-right: .15em solid white;
     width: 100%; 
-    animation: 
+    animation:
         blink-caret .75s step-end infinite;
 }
-.description.typedNoCaret {
-    border-right: none;
+
+.description.backTyping {
+    border-right: .15em solid white;
     width: 100%; 
-    animation: none;
+    animation:
+        backTyping 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
 }
  
 @keyframes typing {
   from { width: 0 }
   to { width: 100%; }
+}
+
+@keyframes backTyping {
+  from { width: 100%; }
+  to { width: 0; }
 }
 
 /* The typewriter cursor effect */

@@ -4,43 +4,73 @@ import styles from './Hello.module.css';
 
 export default function HelloPage({ homeRef }) {
     const [fadedIn, setFadedIn] = useState(0);
-    const [typed, setTyped] = useState(0);
-    const isMobile = window.innerWidth <= 768;
+    const [phraseNum, setPhraseNum] = useState(0);
 
     let descClass = styles.description;
     if (fadedIn === 1) {
         descClass += ` ${styles.typing}`;
-    } else if (fadedIn === 2 && isMobile) {
-        descClass += ` ${styles.typedNoCaret}`;
     } else if (fadedIn === 2) {
         descClass += ` ${styles.typed}`;
-    }
-    let descClass1 = styles.description;
-    if (typed === 1) {
-        descClass1 += ` ${styles.typing}`;
-    } else if (typed === 2) {
-        descClass1 += ` ${styles.typed}`;
+    } else if (fadedIn === 3) {
+        descClass += ` ${styles.backTyping}`;
     }
 
-    const setUpTimeouts = (firstCallback, secondCallback, firstTimeout) => {
+    const phrases = [
+        [
+            {text: "full-stack&nbsp;", class: styles.highlight2},
+            {text: "web&nbsp;", class: null},
+            {text: "developer", class: styles.highlight3},
+            {text: ".", class: null}
+        ],
+        [
+            {text: "curious&nbsp;", class: styles.highlight2},
+            {text: "problem&nbsp;", class: null},
+            {text: "solver", class: styles.highlight3},
+            {text: ".", class: null}
+        ],
+        [
+            {text: "detail-oriented&nbsp;", class: styles.highlight2},
+            {text: "data&nbsp;", class: null},
+            {text: "analyst", class: styles.highlight3},
+            {text: ".", class: null}
+        ],
+        [
+            {text: "creative&nbsp;", class: styles.highlight2},
+            {text: "software&nbsp;", class: null},
+            {text: "engineer", class: styles.highlight3},
+            {text: ".", class: null}
+        ],
+        [
+            {text: "reliable&nbsp;", class: styles.highlight2},
+            {text: "team&nbsp;", class: null},
+            {text: "player", class: styles.highlight3},
+            {text: ".", class: null}
+        ]
+    ];
+
+    const intervalFunction = (firstTime = false) => {
         setTimeout(() => {
-            firstCallback();
+            console.log(`Faded in: 2`);
             setTimeout(() => {
-                secondCallback();
+                setFadedIn(2);
             }, 3500);
-        }, firstTimeout);
+            setTimeout(() => {
+                console.log(`Faded in: 3`);
+                setFadedIn(3);
+            }, 4500);
+            setTimeout(() => {
+                console.log(`Faded in: 1`);
+                setFadedIn(1);
+                setPhraseNum(prev => (prev + 1) % phrases.length);
+            }, 8000);
+            intervalFunction();
+        }, firstTime ? 0 : 8000);
     }
-    
 
     useEffect(() => {
-        setUpTimeouts(() => {
+        setTimeout(() => {
             setFadedIn(1);
-        }, () => {
-            setFadedIn(2);
-            setTyped(1);
-            setTimeout(() => {
-                setTyped(2);
-            }, 3500);
+            intervalFunction(true);
         }, 1500);
     }, []);
 
@@ -54,38 +84,13 @@ export default function HelloPage({ homeRef }) {
                 .
             </h1>
             <div className={styles.descriptionContainer}>
-                {isMobile 
-                ?  <>
-                    <h1 className={descClass}>
-                        <span>I&apos;m&nbsp;</span>
-                        <span>a&nbsp;</span>
-                        <span className={styles.highlight2}>full-stack&nbsp;</span>
-                        <span>web&nbsp;</span>
-                        <span>developer&nbsp;</span>
-                        <span>with&nbsp;</span>
-                    </h1>
-                    <h1 className={descClass1}>
-                        <span>a&nbsp;</span>
-                        <span>focus&nbsp;</span>
-                        <span>in&nbsp;</span>
-                        <span className={styles.highlight3}>big-data&nbsp;</span> 
-                        <span>applications.</span>
-                    </h1>
-                </> 
-                : <h1 className={descClass}>
+                <h1 className={descClass}>
                     <span>I&apos;m&nbsp;</span>
                     <span>a&nbsp;</span>
-                    <span className={styles.highlight2}>full-stack&nbsp;</span>
-                    <span>web&nbsp;</span>
-                    <span>developer&nbsp;</span>
-                    <span>with&nbsp;</span>
-                    <span>a&nbsp;</span>
-                    <span>focus&nbsp;</span>
-                    <span>in&nbsp;</span>
-                    <span className={styles.highlight3}>big-data&nbsp;</span> 
-                    <span>applications.</span>
+                    {phrases[phraseNum].map((phrase, index) => (
+                        <span key={index} className={phrase.class} dangerouslySetInnerHTML={{__html: phrase.text}}></span>
+                    ))}
                 </h1>
-                }
             </div>
         </div>
     ) 
