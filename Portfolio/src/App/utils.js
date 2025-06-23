@@ -24,4 +24,32 @@ function getProjImgs(imgClass) {
     return projectImages;
 }
 
-export { calcExperienceYears, getProjImgs };
+function getThemeStorage() {
+    const theme = localStorage.getItem('mb-portfolio-theme');
+    if (!theme) {
+        localStorage.setItem('mb-portfolio-theme', 'dark');
+        return 'dark';
+    }
+    return theme;
+}
+
+function setTheme(theme) {
+    console.log(`Setting theme to: ${theme}`);
+    localStorage.setItem('mb-portfolio-theme', theme);
+    const root = document.documentElement;
+    const computedStyles = getComputedStyle(root);
+    const bgColor = computedStyles.getPropertyValue(`--bg-color-${theme}`);
+    const textColor = computedStyles.getPropertyValue(`--text-color-${theme}`);
+    const appGray = computedStyles.getPropertyValue(`--app-gray-${theme}`);
+    const tagBgColor = computedStyles.getPropertyValue(`--tag-background-color-${theme}`);
+    const tagTextColor = computedStyles.getPropertyValue(`--tag-text-color-${theme}`);
+    const lightBlueColor = computedStyles.getPropertyValue(`--light-blue-color-${theme}`);
+    root.style.setProperty('--bg-color', bgColor);
+    root.style.setProperty('--text-color', textColor);
+    root.style.setProperty('--app-gray', appGray);
+    root.style.setProperty('--tag-background-color', tagBgColor);
+    root.style.setProperty('--tag-text-color', tagTextColor);
+    root.style.setProperty('--light-blue-color', lightBlueColor);
+}
+
+export { calcExperienceYears, getProjImgs, getThemeStorage, setTheme };

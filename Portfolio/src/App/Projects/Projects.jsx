@@ -122,7 +122,7 @@ export default function Projects({ projRef }) {
                     }`}
             </style>
             <div className={styles.projects} ref={projRef} id='proj'>
-                <h1 className={styles.title}>Projects</h1>
+                <h1>Projects</h1>
                 {projects.map((project, i) => (
                     <div key={i} className={styles.projectContainer}>
                         <Project 

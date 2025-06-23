@@ -2,6 +2,9 @@ import styles from './NavBar.module.css'
 
 import { useState } from 'react';
 
+import ThemeSwitch from './ThemeSwitch/ThemeSwitch';
+
+
 export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSection, currentSection}) {
     const isMobile = window.innerWidth <= 768;
     console.log(`isMobile: ${isMobile}`);
@@ -49,7 +52,10 @@ export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSect
                         {isMobile && <span className={styles.closeBtn} onClick={closeNav}>X</span>}
                 </>
                 :
-                    <i class="fa-solid fa-bars" onClick={openNav}></i>
+                    <>
+                        <ThemeSwitch/>
+                        <i className="fa-solid fa-bars" onClick={openNav}></i>
+                    </>
                 }
             </nav>
         </>
@@ -84,6 +90,7 @@ function NavBtns({homeRef, stackRef, expRef, projRef, sectionClick, currentSecti
                     {nav.label}
                 </button>
             ))}
+            {!isMobile && <ThemeSwitch/>}
         </div>
     )
 }

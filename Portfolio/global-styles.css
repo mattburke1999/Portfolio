@@ -10,8 +10,27 @@
     --app-blue: #1180E8;
     --app-green: #008000;
     --app-pink: #B53CD6;
-    --app-gray: #424242;
     --nav-bar-color: #595C6D;
+
+    /* Colors for theme */
+    --bg-color: #1c1c1c;
+    --bg-color-dark: #1c1c1c;
+    --bg-color-light: #f5f5f5;
+    --text-color: white;
+    --text-color-dark: white;
+    --text-color-light: black;
+    --app-gray: #424242;
+    --app-gray-dark: #424242;
+    --app-gray-light: #b4b4b4;
+    --tag-background-color: white;
+    --tag-background-color-dark: white;
+    --tag-background-color-light: #424242;
+    --tag-text-color: #424242;
+    --tag-text-color-dark: #424242;
+    --tag-text-color-light: white;
+    --light-blue-color: #93c5fd;
+    --light-blue-color-dark: #93c5fd;
+    --light-blue-color-light: #4c9cff;
 }
 body {
     font-family: montserrat, sans-serif;

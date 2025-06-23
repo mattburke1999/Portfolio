@@ -124,34 +124,34 @@
     background-color: var(--app-gray);
     position: relative;
     border-radius: 6px;
-    color: white;
+    color: var(--text-color);
     box-shadow: 0px 0px 10px black;
 }
 .desc {
-    border: 1px dashed white;
+    border: 1px dashed var(--text-color);
     border-radius: 6px;
     padding: 10px;
     width: 100%;
 }
 .dates {
-    background-color: white;
-    color: var(--app-gray);
+    background-color: var(--tag-background-color-dark);
+    color: var(--tag-text-color-dark);
     padding: 5px 10px;
     border-radius: 6px;
 }
 
 .title {
-    color: white;
+    color: var(--text-color);
     margin-left: 1rem;
 }
 
 li {
-    color: white;
+    color: var(--text-color);
     font-size: .95rem;
 }
 
 li::marker {
-    color: white;
+    color: var(--text-color);
 }
 
 ul {

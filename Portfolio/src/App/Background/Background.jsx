@@ -67,7 +67,7 @@ export default function Background() {
             <g id="bg-layer">
                 <rect
                     style={{
-                        fill: "#1c1c1c",
+                        fill: "var(--bg-color)",
                         stroke: '#4d4d4d',
                         strokeWidth: 0.264583
                     }}

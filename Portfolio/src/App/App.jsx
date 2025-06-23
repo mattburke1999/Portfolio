@@ -7,6 +7,8 @@ import Stack from './Stack/Stack';
 import Experience from './Experience/Experience';
 import Projects from './Projects/Projects';
 
+import { getThemeStorage, setTheme } from './utils';
+
 
 function App() {
     const [currentSection, setCurrentSection] = useState('home');
@@ -52,6 +54,9 @@ function App() {
                 observerInstance.observe(ref.current);
             }
         });
+
+        const theme = getThemeStorage();
+        setTheme(theme);
 
         return () => {
             refs.forEach((ref, index) => {
