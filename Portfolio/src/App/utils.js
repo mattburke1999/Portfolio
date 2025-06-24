@@ -44,12 +44,14 @@ function setTheme(theme) {
     const tagBgColor = computedStyles.getPropertyValue(`--tag-background-color-${theme}`);
     const tagTextColor = computedStyles.getPropertyValue(`--tag-text-color-${theme}`);
     const lightBlueColor = computedStyles.getPropertyValue(`--light-blue-color-${theme}`);
+    const yellowColor = computedStyles.getPropertyValue(`--yellow-color-${theme}`);
     root.style.setProperty('--bg-color', bgColor);
     root.style.setProperty('--text-color', textColor);
     root.style.setProperty('--app-gray', appGray);
     root.style.setProperty('--tag-background-color', tagBgColor);
     root.style.setProperty('--tag-text-color', tagTextColor);
     root.style.setProperty('--light-blue-color', lightBlueColor);
+    root.style.setProperty('--yellow-color', yellowColor);
 }
 
 export { calcExperienceYears, getProjImgs, getThemeStorage, setTheme };

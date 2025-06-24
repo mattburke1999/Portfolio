@@ -21,7 +21,7 @@
     --text-color-light: black;
     --app-gray: #424242;
     --app-gray-dark: #424242;
-    --app-gray-light: #b4b4b4;
+    --app-gray-light: #c5c5c5;
     --tag-background-color: white;
     --tag-background-color-dark: white;
     --tag-background-color-light: #424242;
@@ -31,6 +31,9 @@
     --light-blue-color: #93c5fd;
     --light-blue-color-dark: #93c5fd;
     --light-blue-color-light: #4c9cff;
+    --yellow-color: #ffd738;
+    --yellow-color-dark: #ffd738;
+    --yellow-color-light: #f5e05d;
 }
 body {
     font-family: montserrat, sans-serif;
