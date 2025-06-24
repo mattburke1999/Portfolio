@@ -12,7 +12,7 @@ export default function ThemeSwitch() {
     }, [darkMode]);
 
     return (
-        <label className={styles.switch}>
+        <label className={styles.switch} title="Toggle Theme">
             <input type="checkbox" checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
             <span className={styles.sliderRound}>
                 <i className={`fa-solid fa-sun ${styles.lightIcon}`}></i>
