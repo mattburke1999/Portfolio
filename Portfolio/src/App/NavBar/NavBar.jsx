@@ -34,7 +34,7 @@ export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSect
         <>
             <nav className={styles.navbar}>
                 <div className={styles.navLogo}>
-                    <img src='/name-logo.png' alt='Name Logo'/>
+                    <img src='/Portfolio/images/name-logo.png' alt='Name Logo'/>
                     <h1>Burke Dev</h1>
                 </div>
                 {isNavOpen ? 
