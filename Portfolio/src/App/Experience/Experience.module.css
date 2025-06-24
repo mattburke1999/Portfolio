@@ -102,7 +102,7 @@
     z-index: 1;
     left: 30px;
     border: medium solid var(--app-gray);
-    border-width: 10px 10px 10px 0;
+    border-width: 10px 11px 10px 0;
     border-color: transparent var(--app-gray) transparent transparent;
 }
 
