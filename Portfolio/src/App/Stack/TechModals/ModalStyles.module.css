@@ -1,5 +1,5 @@
 .modalContent {
-    color: white;
+    color: var(--text-color);
 }
 .modalContent h3 {
     margin: 0;
@@ -9,7 +9,7 @@
     font-size: 2rem;
     margin: 0;
     margin-bottom: 1rem;
-    color: white;
+    color: var(--text-color);
 }
 
 .expert {
@@ -24,7 +24,7 @@
     margin: 0;
     font-weight: 600;
     font-size: 1.2rem;
-    color: white;
+    color: var(--text-color);
 }
 
 .modalContent p {
@@ -46,12 +46,12 @@
 
 .tools li {
     list-style-type: circle;
-    color: white;
+    color: var(--text-color);
     font-size: 0.95rem;
 }
 
 .tools li::marker {
-    color: white;
+    color: var(--text-color);
 }
 .tools li.purpleMarker::marker {
     color: var(--purple-color);
@@ -71,7 +71,7 @@
     margin-bottom: 0.5rem;
     font-size: 1.25rem;
     font-weight: 600;
-    color: white;
+    color: var(--text-color);
     text-decoration: underline;
 }
 
@@ -93,7 +93,7 @@
 .lineBreak {
     width: 100%;
     height: 1px;
-    background-color: white;
+    background-color: var(--app-gray);
     margin: 1rem 0;
 }
 
