@@ -90,9 +90,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #1e1e1e;
+    background-color: var(--app-gray);
     border-radius: 10px;
-    border: 1px solid #1e1e1e;
+    border: 1px solid var(--app-gray);
     padding: 4vh;
     box-shadow: 0px 0px 20px black;
     z-index: 5;
