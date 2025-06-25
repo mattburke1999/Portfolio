@@ -84,6 +84,22 @@ body {
     }
 }
 
+.fadeOutModal {
+    animation: fadeOutModal 1s ease-in;
+}
+
+@keyframes fadeOutModal {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(0.25);
+        opacity: 0;
+    }
+    
+}
+
 .fadeOut {
     animation: fadeOut 1s ease-in;
 }

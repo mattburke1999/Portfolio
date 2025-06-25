@@ -141,8 +141,12 @@ export default function Stack({ stackRef }) {
     }
 
     const closeModal = () => {
-        setModalVisible(null);
+        setModalVisible(prev => prev + '-1');
         setShowStackItems(true);
+        setScrolledBy(true);
+        setTimeout(() => {
+            setModalVisible(null);
+        }, 1000);
     }
 
     const scrollView = () => {
@@ -185,7 +189,7 @@ export default function Stack({ stackRef }) {
                 ))}
             </div>
             {modals.map((modal) => (
-                (modalVisible === modal.name) && (
+                (modalVisible!==null && (modalVisible === modal.name || modalVisible.replace('-1', '') === modal.name)) && (
                     <TechModal key={modal.name} closeModal={closeModal} color={`var(--${modal.color}-color)`} modalContent={modal.modal} />
                 )
             ))}
@@ -199,7 +203,7 @@ function StackColumn({ modals, setModalVisible, scrolledBy, modalVisible }) {
             {modals.map((modal) => (
                 <StackItem
                     key={modal.name}
-                    scrollByClass={(modalVisible!==null) ? modal.fadeOutStyle : scrolledBy ? modal.fadeInStyle : ''}
+                    scrollByClass={(modalVisible!==null && !modalVisible.includes('-1')) ? modal.fadeOutStyle : scrolledBy ? modal.fadeInStyle : ''}
                     image={modal.img}
                     text={modal.title}
                     onclick={() => setModalVisible(modal.name)}
@@ -225,13 +229,27 @@ function StackItem({ image, text, scrollByClass, onclick = () => {}, color='blac
 }
 
 function TechModal({ closeModal, modalContent, color }) {
+    const [closed, setClosed] = useState(false);
+
+    let modalClass = styles.modal;
+    if (closed) {
+        modalClass += ' fadeOutModal';
+    } else {
+        modalClass += ' fadeInModal';
+    }
+
+    const handleClose = () => {
+        setClosed(true);
+        closeModal();
+    };
+
     return (
         <>
-            <div className={`${styles.modal} fadeInModal`} style={{ borderColor: color, boxShadow: `0px 0px 20px ${color}` }}>
+            <div className={modalClass} style={{ borderColor: color, boxShadow: `0px 0px 20px ${color}` }}>
                 {modalContent}
-                <button className={styles.closeButton} onClick={closeModal}>X</button>
+                <button className={styles.closeButton} onClick={handleClose}>X</button>
             </div>
-            <div className={styles.modalBackdrop} onClick={closeModal}></div>
+            <div className={styles.modalBackdrop} onClick={handleClose}></div>
         </>
     );
 }
