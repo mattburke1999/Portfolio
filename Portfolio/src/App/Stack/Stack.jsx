@@ -28,13 +28,15 @@ export default function Stack({ stackRef }) {
 
     const [scrolledBy, setScrolledBy] = useState(false);
     const [modalVisible, setModalVisible] = useState(null);
+    const [showStackItems, setShowStackItems] = useState(true);
 
     const modals = [
         {
             name: 'css',
             title: 'CSS',
             img: cssLogo,
-            fadeStyle: 'fadeNW',
+            fadeInStyle: 'fadeInNW',
+            fadeOutStyle: showStackItems ? 'fadeOutSE' : 'fadeGone',
             modal: <CSSModal />,
             color: 'blue',
             col: 0
@@ -43,7 +45,8 @@ export default function Stack({ stackRef }) {
             name: 'java',
             title: 'Java',
             img: javaLogo,
-            fadeStyle: 'fadeW',
+            fadeInStyle: 'fadeInW',
+            fadeOutStyle: showStackItems ? 'fadeOutE' : 'fadeGone',
             modal: <JavaModal />,
             color: 'red',
             col: 0
@@ -52,7 +55,8 @@ export default function Stack({ stackRef }) {
             name: 'python',
             title: 'Python',
             img: pyLogo,
-            fadeStyle: 'fadeSW',
+            fadeInStyle: 'fadeInSW',
+            fadeOutStyle: showStackItems ? 'fadeOutNE' : 'fadeGone',
             modal: <PythonModal setModalVisible={setModalVisible} />,
             color: 'blue',
             col: 0
@@ -61,7 +65,8 @@ export default function Stack({ stackRef }) {
             name: 'html',
             title: 'HTML',
             img: htmlLogo,
-            fadeStyle: 'fadeN',
+            fadeInStyle: 'fadeInN',
+            fadeOutStyle: showStackItems ? 'fadeOutS' : 'fadeGone',
             modal: <HtmlModal />,
             color: 'orange',
             col: 1
@@ -70,7 +75,8 @@ export default function Stack({ stackRef }) {
             name: 'js',
             title: 'JavaScript',
             img: jsLogo,
-            fadeStyle: 'fadeIn',
+            fadeInStyle: 'fadeIn',
+            fadeOutStyle: showStackItems ? 'fadeOut' : 'fadeGone',
             modal: <JSModal />,
             color: 'yellow',
             col: 1
@@ -79,7 +85,8 @@ export default function Stack({ stackRef }) {
             name: 'csharp',
             title: 'C#',
             img: csLogo,
-            fadeStyle: 'fadeIn',
+            fadeInStyle: 'fadeIn',
+            fadeOutStyle: showStackItems ? 'fadeOut' : 'fadeGone',
             modal: <CSharpModal />,
             color: 'purple',
             col: 1
@@ -88,7 +95,8 @@ export default function Stack({ stackRef }) {
             name: 'git',
             title: 'Git',
             img: gitLogo,
-            fadeStyle: 'fadeS',
+            fadeInStyle: 'fadeInS',
+            fadeOutStyle: showStackItems ? 'fadeOutN' : 'fadeGone',
             modal: <GitModal />,
             color: 'orange',
             col: 1
@@ -97,7 +105,8 @@ export default function Stack({ stackRef }) {
             name: 'sql',
             title: 'SQL',
             img: sqlLogo,
-            fadeStyle: 'fadeNE',
+            fadeInStyle: 'fadeInNE',
+            fadeOutStyle: showStackItems ? 'fadeOutSW' : 'fadeGone',
             modal: <SQLModal />,
             color: 'blue',
             col: 2
@@ -106,7 +115,8 @@ export default function Stack({ stackRef }) {
             name: 'rust',
             title: 'Rust',
             img: rustLogo,
-            fadeStyle: 'fadeE',
+            fadeInStyle: 'fadeInE',
+            fadeOutStyle: showStackItems ? 'fadeOutW' : 'fadeGone',
             modal: <RustModal />,
             color: 'orange',
             col: 2
@@ -115,12 +125,25 @@ export default function Stack({ stackRef }) {
             name: 'azFunc',
             title: 'Azure Functions',
             img: azFuncLogo,
-            fadeStyle: 'fadeSE',
+            fadeInStyle: 'fadeInSE',
+            fadeOutStyle: showStackItems ? 'fadeOutNW' : 'fadeGone',
             modal: <AzFuncModal setModalVisible={setModalVisible} />,
             color: 'blue',
             col: 2
         }
     ];
+
+    const itemClick = (name) => {
+        setModalVisible(name);
+        setTimeout(() => {
+            setShowStackItems(false);
+        }, 1000);
+    }
+
+    const closeModal = () => {
+        setModalVisible(null);
+        setShowStackItems(true);
+    }
 
     const scrollView = () => {
         const observer = new IntersectionObserver(
@@ -154,29 +177,29 @@ export default function Stack({ stackRef }) {
         };
     }, []);
     return (
-        <div className={styles.stackPage} ref={stackRef} id='stack'>
+        <div className={styles.stackPage} ref={stackRef}>
             <h1>My Tech Stack</h1>
             <div className={styles.stackContainer}>
                 {Array.from({ length: 3 }).map((_, index) => (
-                    <StackColumn key={index} modals={modals.filter(modal => modal.col === index)} setModalVisible={setModalVisible} scrolledBy={scrolledBy} />
+                    <StackColumn key={index} modals={modals.filter(modal => modal.col === index)} setModalVisible={itemClick} scrolledBy={scrolledBy} modalVisible={modalVisible}/>
                 ))}
             </div>
             {modals.map((modal) => (
                 (modalVisible === modal.name) && (
-                    <TechModal key={modal.name} setModalVisible={setModalVisible} color={`var(--${modal.color}-color)`} modalContent={modal.modal} />
+                    <TechModal key={modal.name} closeModal={closeModal} color={`var(--${modal.color}-color)`} modalContent={modal.modal} />
                 )
             ))}
         </div>
     );
 }
 
-function StackColumn({ modals, setModalVisible, scrolledBy }) {
+function StackColumn({ modals, setModalVisible, scrolledBy, modalVisible }) {
     return (
         <div className={styles.stackColumn}>
             {modals.map((modal) => (
                 <StackItem
                     key={modal.name}
-                    scrollByClass={scrolledBy ? modal.fadeStyle : ''}
+                    scrollByClass={(modalVisible!==null) ? modal.fadeOutStyle : scrolledBy ? modal.fadeInStyle : ''}
                     image={modal.img}
                     text={modal.title}
                     onclick={() => setModalVisible(modal.name)}
@@ -201,15 +224,14 @@ function StackItem({ image, text, scrollByClass, onclick = () => {}, color='blac
     );
 }
 
-function TechModal({ setModalVisible, modalContent, color }) {
+function TechModal({ closeModal, modalContent, color }) {
     return (
         <>
-            <div className={styles.modal} style={{ borderColor: color, boxShadow: `0px 0px 20px ${color}` }}>
+            <div className={`${styles.modal} fadeInModal`} style={{ borderColor: color, boxShadow: `0px 0px 20px ${color}` }}>
                 {modalContent}
-                <button className={styles.closeButton} onClick={() => setModalVisible(null)}>X</button>
+                <button className={styles.closeButton} onClick={closeModal}>X</button>
             </div>
-            <div className={styles.modalBackdrop} onClick={() => setModalVisible(null)}>
-            </div>
+            <div className={styles.modalBackdrop} onClick={closeModal}></div>
         </>
     );
 }

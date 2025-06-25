@@ -49,6 +49,10 @@ body {
     background-color: black;
 }
 
+.fadeGone {
+    opacity: 0 !important;
+}
+
 .fadeIn {
     animation: fadeIn 1s ease-in;
 }
@@ -65,64 +69,103 @@ body {
     }
 }
 
-.fadeN {
+.fadeInModal {
+    animation: fadeInModal 1s ease-in;
+}
+
+@keyframes fadeInModal {
+    from {
+        transform: translate(-50%, -50%) scale(0.25);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.fadeOut {
+    animation: fadeOut 1s ease-in;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(.25);
+    }
+}
+.fadeInN, .fadeInNW, .fadeInW, .fadeInSW, .fadeInS, .fadeInSE, .fadeInE, .fadeInNE {
+    animation: fadeInAngle 1s ease-in;
+}
+
+.fadeOutN, .fadeOutNW, .fadeOutW, .fadeOutSW, .fadeOutS, .fadeOutSE, .fadeOutE, .fadeOutNE {
+    animation: fadeOutAngle 1s ease-in;
+}
+
+.fadeInN, .fadeOutS {
     /* fade from north */
     --fade-startX: 0;
     --fade-startY: -100%;
-    animation: fade 1s ease-in;
 }
 
-.fadeNW {
+.fadeInNW, .fadeOutSE {
     /* fade from north-west angle */
     --fade-startX: -100%;
     --fade-startY: -100%;
-    animation: fade 1s ease-in;
 }
 
-.fadeW {
+.fadeInW, .fadeOutE {
     --fade-startX: -100%;
     --fade-startY: 0;
-    animation: fade 1s ease-in;
 }
 
-.fadeSW {
+.fadeInSW, .fadeOutNE {
     --fade-startX: -100%;
     --fade-startY: 100%;
-    animation: fade 1s ease-in;
 }
 
-.fadeS {
+.fadeInS, .fadeOutN {
     --fade-startX: 0;
     --fade-startY: 100%;
-    animation: fade 1s ease-in;
 }
 
-.fadeNE {
+.fadeInNE, .fadeOutSW {
     --fade-startX: 100%;
     --fade-startY: -100%;
-    animation: fade 1s ease-in;
 }
 
-.fadeE {
+.fadeInE, .fadeOutW {
     --fade-startX: 100%;
     --fade-startY: 0;
-    animation: fade 1s ease-in;
 }
 
-.fadeSE {
+.fadeInSE, .fadeOutNW {
     --fade-startX: 100%;
     --fade-startY: 100%;
-    animation: fade 1s ease-in;
 }
 
-@keyframes fade {
+@keyframes fadeInAngle {
     from {
         opacity: 0;
         transform: translate(var(--fade-startX), var(--fade-startY));
     }
-
     to {
         opacity: 1;
         transform: translate(0, 0);
+    }
+}
+
+@keyframes fadeOutAngle {
+    from {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate(var(--fade-startX), var(--fade-startY));
     }
 }
