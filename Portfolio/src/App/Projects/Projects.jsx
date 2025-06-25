@@ -188,7 +188,7 @@ function Project({ name, images, description, side, link, githubLink, imageSize 
         imageStyle = {marginLeft: percent};
     }
     return (
-        <div ref={projRef} style={projectStyle} className={`${styles.project}${scrolledBy ? (' ' + (side ? 'fadeE' : 'fadeW')) : ''}`}>
+        <div ref={projRef} style={projectStyle} className={`${styles.project}${scrolledBy ? (' ' + (side ? 'fadeInE' : 'fadeInW')) : ''}`}>
             <div className={styles.projectSummary} >
                 <h2>{name}</h2>
                 <ul>
