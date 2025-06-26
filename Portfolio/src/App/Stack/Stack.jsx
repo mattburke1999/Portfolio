@@ -141,7 +141,7 @@ export default function Stack({ stackRef }) {
     }
 
     const closeModal = () => {
-        setModalVisible(prev => prev + '-1');
+        setModalVisible(prev => prev + '-closing');
         setShowStackItems(true);
         setScrolledBy(true);
         setTimeout(() => {
@@ -189,7 +189,7 @@ export default function Stack({ stackRef }) {
                 ))}
             </div>
             {modals.map((modal) => (
-                (modalVisible!==null && (modalVisible === modal.name || modalVisible.replace('-1', '') === modal.name)) && (
+                (modalVisible!==null && (modalVisible.replace('-closing', '') === modal.name)) && (
                     <TechModal key={modal.name} closeModal={closeModal} color={`var(--${modal.color}-color)`} modalContent={modal.modal} />
                 )
             ))}
@@ -203,7 +203,7 @@ function StackColumn({ modals, setModalVisible, scrolledBy, modalVisible }) {
             {modals.map((modal) => (
                 <StackItem
                     key={modal.name}
-                    scrollByClass={(modalVisible!==null && !modalVisible.includes('-1')) ? modal.fadeOutStyle : scrolledBy ? modal.fadeInStyle : ''}
+                    scrollByClass={(modalVisible!==null && !modalVisible.includes('-closing')) ? modal.fadeOutStyle : scrolledBy ? modal.fadeInStyle : ''}
                     image={modal.img}
                     text={modal.title}
                     onclick={() => setModalVisible(modal.name)}
