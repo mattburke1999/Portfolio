@@ -118,6 +118,10 @@ body {
     animation: fadeInAngle 1s ease-in;
 }
 
+.fadeW, .fadeE {
+    animation: fadeInAngle 1s ease-out;
+}
+
 .fadeOutN, .fadeOutNW, .fadeOutW, .fadeOutSW, .fadeOutS, .fadeOutSE, .fadeOutE, .fadeOutNE {
     animation: fadeOutAngle 1s ease-in;
 }
@@ -134,7 +138,7 @@ body {
     --fade-startY: -100%;
 }
 
-.fadeInW, .fadeOutE {
+.fadeInW, .fadeW, .fadeOutE {
     --fade-startX: -100%;
     --fade-startY: 0;
 }
@@ -154,7 +158,7 @@ body {
     --fade-startY: -100%;
 }
 
-.fadeInE, .fadeOutW {
+.fadeInE, .fadeE, .fadeOutW {
     --fade-startX: 100%;
     --fade-startY: 0;
 }
