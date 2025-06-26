@@ -48,16 +48,21 @@ export default function Experience({expRef}) {
 
     return (
         <>
-        <h1 className={styles.title}>Experience</h1>
-        <div className={styles.timeline} ref={expRef} id='exp'>
-            {experiences.map((experience, index) => (
-                <ExperienceItem 
-                    key={index}
-                    experience={experience}
-                    side={index%2 === 0 ? 'left' : 'right'} 
-                />
-            ))}
-        </div>
+            <div className={styles.header}>
+                <h1 className={styles.title}>Experience</h1>
+                <a href='/Portfolio/files/Burke, Matthew Resume 2025.pdf' target='_blank' rel='noopener noreferrer' className={styles.resumeBtn}>
+                    View Resume
+                </a>
+            </div>
+            <div className={styles.timeline} ref={expRef} id='exp'>
+                {experiences.map((experience, index) => (
+                    <ExperienceItem 
+                        key={index}
+                        experience={experience}
+                        side={index%2 === 0 ? 'left' : 'right'} 
+                    />
+                ))}
+            </div>
         </>
     );
 }
