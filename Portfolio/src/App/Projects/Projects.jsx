@@ -47,6 +47,7 @@ export default function Projects({ projRef }) {
                 'Rust WebSocket server using Tokio + Warp for low-latency game-play and point validation.',
                 'Redis shares session state between Flask and the WebSocket server; PostgreSQL stores user data, scores, and skin purchases.'
             ],
+            demoLink: '/Portfolio/demos/KeyboardGames/Demo.html',
             githubLink: 'https://github.com/mattburke1999/KeyboardGames',
             icons: [
                 {name: 'Python'}, {name: 'Rust'}, {name: 'JavaScript'}, {name: 'Flask'}, 
@@ -132,6 +133,7 @@ export default function Projects({ projRef }) {
                             side={i % 2 === 0 ? '' : '-reverse'}
                             imageSize={project.imageSize || null}
                             link={project.link}
+                            demoLink={project.demoLink}
                             githubLink={project.githubLink}
                             icons={project.icons}
                         />
@@ -143,7 +145,7 @@ export default function Projects({ projRef }) {
     );
 }
 
-function Project({ name, images, description, side, link, githubLink, imageSize = null, icons = []}) {
+function Project({ name, images, description, side, link, demoLink, githubLink, imageSize = null, icons = []}) {
     const [scrolledBy, setScrolledBy] = useState(false);
     const projRef = useRef(null);
 
@@ -213,6 +215,11 @@ function Project({ name, images, description, side, link, githubLink, imageSize 
                     {link && <a href={link} target="_blank" rel="noopener noreferrer" className={styles.projectLink} title='View Site'>
                             <i class="fa-solid fa-link"></i>
                             <span>View Site</span>
+                        </a>
+                    }
+                    {demoLink && <a href={demoLink} target="_blank" className={styles.projectLink} title='View Demo'>
+                            <i class="fa-solid fa-link"></i>
+                            <span>View Demo</span>
                         </a>
                     }
                 </div>
