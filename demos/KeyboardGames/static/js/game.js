@@ -21,6 +21,26 @@ function onPageLoad() {
     setArrowKeys();
 }
 
+function bindTouchKey(buttonId, keyName) {
+    const btn = $(`#${buttonId}`).get(0);
+    if (!btn) return;
+
+    btn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        pressedKeys[keyName] = true;
+    });
+
+    btn.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        pressedKeys[keyName] = false;
+    });
+
+    btn.addEventListener('touchcancel', function(e) {
+        e.preventDefault();
+        pressedKeys[keyName] = false;
+    });
+}
+
 function setArrowKeys() {
     const mobileControls = `
         <div class="mobile-controls">
@@ -44,19 +64,11 @@ function setArrowKeys() {
     const inputType = localStorage.getItem('keyboardGamesInput');
     if (inputType === 'touch'){
         $('body').append(mobileControls);
-        $('#arrow-up').on('click', function() {
-            mover('ArrowUp');
-        });
-        $('#arrow-down').on('click', function() {
-            mover('ArrowDown');
-        });
-        $('#arrow-left').on('click', function() {
-            mover('ArrowLeft');
-        });
-        $('#arrow-right').on('click', function() {
-            mover('ArrowRight');
-        });
-        
+
+        bindTouchKey('arrow-up', 'ArrowUp');
+        bindTouchKey('arrow-down', 'ArrowDown');
+        bindTouchKey('arrow-left', 'ArrowLeft');
+        bindTouchKey('arrow-right', 'ArrowRight');
     }
 }
 
@@ -384,7 +396,7 @@ function clone_circle({timeout, extra_actions}) {
     }
     const $spaceKey = $('#space-key');
     if($spaceKey.get(0)) {
-        $spaceKey.on('click', function() {
+        $spaceKey.on('touchstart', function() {
             if ($circle.get(0) && $circle.data('done') !== 'true') {
                 checkDotInsideCircle('', $circle);
             }
