@@ -27,12 +27,12 @@ function bindTouchKey(buttonId, keyName) {
 
     btn.addEventListener('touchstart', function(e) {
         e.preventDefault();
-        pressedKeys[keyName] = true;
+        mover(keyName);
     });
 
     btn.addEventListener('touchend', function(e) {
         e.preventDefault();
-        pressedKeys[keyName] = false;
+        mover(keyName);
     });
 
     btn.addEventListener('touchcancel', function(e) {
