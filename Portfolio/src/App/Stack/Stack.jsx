@@ -29,6 +29,7 @@ export default function Stack({ stackRef }) {
     const [scrolledBy, setScrolledBy] = useState(false);
     const [modalVisible, setModalVisible] = useState(null);
     const [showStackItems, setShowStackItems] = useState(true);
+    const [modalClickMeInterval, setModalClickMeInterval] = useState(0);
 
     const modals = [
         {
@@ -132,12 +133,18 @@ export default function Stack({ stackRef }) {
             col: 2
         }
     ];
+    const randomModalIndex = Math.floor(Math.random() * modals.length);
+    const [modalIndex, setModalIndex] = useState(randomModalIndex);
+    if (modalIndex > 0)
+        modals[modalIndex].useClickMe = true;
 
     const itemClick = (name) => {
         setModalVisible(name);
         setTimeout(() => {
             setShowStackItems(false);
         }, 1000);
+        clearInterval(modalClickMeInterval);
+        setModalIndex(-1);
     }
 
     const closeModal = () => {
@@ -175,9 +182,18 @@ export default function Stack({ stackRef }) {
 
     useEffect(() => {
         window.addEventListener('scroll', scrollView);
+        const randomModalIndexInterval = setInterval(() => {
+            let newIndex = Math.floor(Math.random() * modals.length);
+            while (newIndex === modalIndex) {
+                newIndex = Math.floor(Math.random() * modals.length);
+            }
+            setModalIndex(newIndex);
+        }, 5000);
+        setModalClickMeInterval(randomModalIndexInterval);
 
         return () => {
             window.removeEventListener('scroll', scrollView);
+            clearInterval(randomModalIndexInterval);
         };
     }, []);
     return (
@@ -206,6 +222,7 @@ function StackColumn({ modals, setModalVisible, scrolledBy, modalVisible }) {
                     scrollByClass={(modalVisible!==null && !modalVisible.includes('-closing')) ? modal.fadeOutStyle : scrolledBy ? modal.fadeInStyle : ''}
                     image={modal.img}
                     text={modal.title}
+                    useClickMe={modal.useClickMe}
                     onclick={() => setModalVisible(modal.name)}
                     color={modal.color}
                 />
@@ -214,7 +231,7 @@ function StackColumn({ modals, setModalVisible, scrolledBy, modalVisible }) {
     );
 }
 
-function StackItem({ image, text, scrollByClass, onclick = () => {}, color='black'}) {
+function StackItem({ image, text, scrollByClass, useClickMe=false, onclick = () => {}, color='black'}) {
     // if hoverEffect is not true add stackItem class to div
     let btnClassName = `${styles.stackItem} ${styles[`${color}`]}`;
     if (scrollByClass) {
@@ -224,6 +241,14 @@ function StackItem({ image, text, scrollByClass, onclick = () => {}, color='blac
         <button className={btnClassName} onClick={onclick}>
             <img draggable={false} src={image} alt={text} />
             <h3>{text}</h3>
+            {useClickMe &&
+            <>
+                <span className={`${styles.click} ${styles.c1}`}>Click Me!</span>
+                <span className={`${styles.click} ${styles.c2}`}>Click Me!</span>
+                <span className={`${styles.click} ${styles.c3}`}>Click Me!</span>
+                <span className={`${styles.click} ${styles.c4}`}>Click Me!</span>
+            </>
+            }
         </button>
     );
 }

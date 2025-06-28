@@ -43,6 +43,7 @@
     box-shadow: 0px 0px 10px black;
     opacity: .8;
     cursor: pointer;
+    position: relative;
 }
 .stackItem img {
     width: 5.5vh;
@@ -55,6 +56,30 @@
     font-size: .95rem;
     text-align: center;
     color: var(--text-color);
+}
+.stackItem .click {
+    position: absolute;
+    font-size: .65rem;
+    color: var(--text-color);
+}
+.click.c1 {
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.click.c2 {
+    top: 50%;
+    left: -12%;
+    transform: rotate(90deg) translateY(-50%);
+}
+.click.c3 {
+    transform: rotate(180deg);
+    top: 2px;
+}
+.click.c4 {
+    top: 50%;
+    right: -12%;
+    transform: rotate(-90deg) translateY(-50%);
 }
 
 .stackItem:hover {
