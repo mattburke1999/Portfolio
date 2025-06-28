@@ -499,6 +499,7 @@ h3 {
     border: 2px solid white;
     border-radius: 10px;
     background-color: #33A5FF;
+    cursor: pointer;
 }
 .menuBar a.logout {
     margin-right: 1%;
