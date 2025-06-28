@@ -32,12 +32,12 @@ function bindTouchKey(buttonId, keyName) {
 
     btn.addEventListener('touchend', function(e) {
         e.preventDefault();
-        mover(keyName);
+        stopMovement(keyName);
     });
 
     btn.addEventListener('touchcancel', function(e) {
         e.preventDefault();
-        pressedKeys[keyName] = false;
+        stopMovement(keyName);
     });
 }
 
@@ -123,18 +123,22 @@ function mover(eventKey) {
     }
 }
 
-document.addEventListener('keydown', (event) => {
-    mover(event.key);
-});
-
-document.addEventListener('keyup', (event) => {
-    pressedKeys[event.key] = false;
+function stopMovement(eventKey) {
+    pressedKeys[eventKey] = false;
 
     // If no keys are pressed, stop the animation frame
     if (!Object.values(pressedKeys).some((value) => value)) {
         cancelAnimationFrame(animationFrame);
         animationFrame = null;
     }
+}
+
+document.addEventListener('keydown', (event) => {
+    mover(event.key);
+});
+
+document.addEventListener('keyup', (event) => {
+    stopMovement(event.key);
 });
 
 function startTimer() {
