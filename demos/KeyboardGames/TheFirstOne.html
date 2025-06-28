@@ -87,7 +87,11 @@
     const gameId = 1;
     const GAME_DURATION = 60.0;
     const storageName = 'dotGame-highScore-firstCircle';
-
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        onPageLoad();
+    });
+    
     function gameStarter() {
         startGame({
             intervalFunction: {

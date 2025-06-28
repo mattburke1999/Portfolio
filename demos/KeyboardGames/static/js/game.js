@@ -14,7 +14,7 @@ let loggedIn = false;
 let enteredGameRoom = false;
 let loadingInterval;
 const defaultSkin = `<div id="dot" style="background-color: #000000"></div>`;
-onPageLoad();
+
 
 function onPageLoad() {
     setSkin();
@@ -43,7 +43,7 @@ function setArrowKeys() {
     `
     const inputType = localStorage.getItem('keyboardGamesInput');
     $('#start-game-btn').text(`Start Game (${inputType})`);
-    if (inputType !== 'touch'){
+    if (inputType === 'touch'){
         $('body').append(mobileControls);
         $('#arrow-up').on('click', function() {
             pressedKeys['ArrowUp'] = true;
