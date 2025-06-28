@@ -1,7 +1,7 @@
 const pressedKeys = {};
 let animationFrame;
 const dbVersion = 1;
-const $dot = $('#dot');
+let $dot = $('#dot');
 const dotWidth = parseInt($dot.outerWidth());
 const dotHeight = parseInt($dot.outerHeight());
 const pathTolerance = 10;
@@ -13,6 +13,18 @@ let circleInterval;
 let loggedIn = false;
 let enteredGameRoom = false;
 let loadingInterval;
+const defaultSkin = `<div id="dot" style="background-color: #000000"></div>`;
+setSkin();
+
+function setSkin() {
+    let skin = localStorage.getItem('keyboardGameSkin') || null;
+    if(!skin) {
+        localStorage.setItem('keyboardGameSkin', defaultSkin);
+        skin = defaultSkin;
+    }
+    $dot.replaceWith(skin);
+    $dot = $('#dot');
+}
 
 function getDotPosition() {
     return {top: parseInt($dot.css('top')), left: parseInt($dot.css('left'))};
