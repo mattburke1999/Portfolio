@@ -100,7 +100,7 @@
             </div>
             <h1 class='site-name'>Keyboard Games</h1>
             <div class="pages">
-                <a href="./TheFirstOne.html">
+                <div class='circle-page-btn' data-href="./TheFirstOne.html">
                     <div class="circle-page">
                         <div class='img-wrapper'>
                             <img src="./imgs/first_one.png">
@@ -108,8 +108,8 @@
                         </div>
                         <h2>The First One</h2>
                     </div>
-                </a>
-                <a href="./DisappearingCircles.html">
+                </div>
+                <div class='circle-page-btn' data-href="./DisappearingCircles.html">
                     <div class="circle-page">
                         <div class='img-wrapper'>
                             <img src="./imgs/disappearing_circles.png">
@@ -117,8 +117,8 @@
                         </div>
                         <h2>Disappearing Circles</h2>
                     </div>
-                </a>
-                <a href="./DisappearingDot.html">
+                </div>
+                <div class='circle-page-btn' data-href="./DisappearingDot.html">
                     <div class="circle-page">
                         <div class='img-wrapper'>
                             <img src="./imgs/disappearing_dot.png">
@@ -126,8 +126,8 @@
                         </div>
                         <h2>Disappearing Dot</h2>
                     </div>
-                </a>
-                <a href="./ShrinkingCircles.html">
+                </div>
+                <div class='circle-page-btn' data-href="./ShrinkingCircles.html">
                     <div class="circle-page">
                         <div class='img-wrapper'>
                             <img src="./imgs/shrinking_circles.png">
@@ -135,8 +135,8 @@
                         </div>
                         <h2>Shrinking Circles</h2>
                     </div>
-                </a>
-                <a href="./MovingCircles.html">
+                </div>
+                <div class='circle-page-btn' data-href="./MovingCircles.html">
                     <div class="circle-page">
                         <div class='img-wrapper'>
                             <img src="./imgs/moving_circles.png">
@@ -144,8 +144,25 @@
                         </div>
                         <h2>Moving Circles</h2>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </body>
+    <script>
+        $('.circle-page-btn').each(function() {
+            let inputSet = false;
+
+            const setInputAndNavigate = (type) => {
+                if (inputSet) return;
+                inputSet = true;
+                console.log('Setting input type to: ', type);
+                localStorage.setItem('keyboardGamesInput', type);
+                const href = this.getAttribute('data-href');
+                window.location.href = href;
+            };
+
+            this.addEventListener('touchstart', () => setInputAndNavigate('touch'));
+            this.addEventListener('click', () => setInputAndNavigate('mouse'));
+        })
+    </script>
 </html>

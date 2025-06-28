@@ -87,7 +87,12 @@
     const gameId = 3;
     const GAME_DURATION = 60.0;
     const storageName = 'dotGame-highScore-disappearingCircle';
-
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        onPageLoad();
+        $('.game-title').css('font-size', '2.5rem');
+    });
+    
     function gameStarter() {
         startGame({
             intervalFunction: {

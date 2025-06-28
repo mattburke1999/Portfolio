@@ -87,6 +87,11 @@
     const gameId = 4;
     const GAME_DURATION = 60.0;
     const storageName = 'dotGame-highScore-disappearingDot';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        onPageLoad();
+    });
+    
     let dotInterval;
     function gameStarter() {
         setTimeout(function() {
