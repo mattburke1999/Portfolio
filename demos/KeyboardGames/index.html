@@ -155,6 +155,7 @@
             const setInputAndNavigate = (type) => {
                 if (inputSet) return;
                 inputSet = true;
+                console.log('Setting input type to: ', type);
                 localStorage.setItem('keyboardGamesInput', type);
                 const href = this.getAttribute('data-href');
                 $('.site-name').textContent = 'Keyboard Games - ' + type;
