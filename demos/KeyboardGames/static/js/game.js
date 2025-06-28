@@ -42,20 +42,19 @@ function setArrowKeys() {
         </div>    
     `
     const inputType = localStorage.getItem('keyboardGamesInput');
-    $('#start-game-btn').text(`Start Game (${inputType})`);
     if (inputType === 'touch'){
         $('body').append(mobileControls);
         $('#arrow-up').on('click', function() {
-            pressedKeys['ArrowUp'] = true;
+            mover('ArrowUp');
         });
         $('#arrow-down').on('click', function() {
-            pressedKeys['ArrowDown'] = true;
+            mover('ArrowDown');
         });
         $('#arrow-left').on('click', function() {
-            pressedKeys['ArrowLeft'] = true;
+            mover('ArrowLeft');
         });
         $('#arrow-right').on('click', function() {
-            pressedKeys['ArrowRight'] = true;
+            mover('ArrowRight');
         });
         $('#space-key').on('click', function() {
             if ($dot.get(0) && $dot.data('done') !== 'true') {
@@ -104,15 +103,20 @@ function handleMovement() {
     animationFrame = requestAnimationFrame(handleMovement);
 }
 
-document.addEventListener('keydown', (event) => {
-    if (!pressedKeys[event.key]) {
-        pressedKeys[event.key] = true;
+
+function mover(eventKey) {
+    if (!pressedKeys[eventKey]) {
+        pressedKeys[eventKey] = true;
     }
 
     // Start movement loop if not already running
     if (!animationFrame) {
         animationFrame = requestAnimationFrame(handleMovement);
     }
+}
+
+document.addEventListener('keydown', (event) => {
+    mover(event.key);
 });
 
 document.addEventListener('keyup', (event) => {
