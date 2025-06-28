@@ -49,7 +49,7 @@ export default function Projects({ projRef, todoRef, keyboardGamesRef, garminMoc
                 'Redis shares session state between Flask and the WebSocket server; PostgreSQL stores user data, scores, and skin purchases.'
             ],
             reference: keyboardGamesRef,
-            demoLink: '/demos/KeyboardGames/Demo.html',
+            demoLink: '/demos/KeyboardGames/',
             githubLink: 'https://github.com/mattburke1999/KeyboardGames',
             icons: [
                 {name: 'Python'}, {name: 'Rust'}, {name: 'JavaScript'}, {name: 'Flask'}, 
@@ -68,7 +68,7 @@ export default function Projects({ projRef, todoRef, keyboardGamesRef, garminMoc
                 'Frontend built with Jinja templates, custom CSS, and minimal vanilla JavaScript.'
             ],
             reference: garminMockRef,
-            demoLink: '/demos/GarminMock/Demo.html',
+            demoLink: '/demos/GarminMock/',
             githubLink: 'https://github.com/mattburke1999/GarminMock',
             icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'PostgreSQL'}]
         },
