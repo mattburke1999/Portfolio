@@ -16,35 +16,34 @@ let loadingInterval;
 const defaultSkin = `<div id="dot" style="background-color: #000000"></div>`;
 onPageLoad();
 
-const mobileControls = `
-    <div class="mobile-controls">
-        <div class="keys">
-            <div>
-                <button class="arrow-key blank">↑</button>
-                <button class="arrow-key up" id="arrow-up">↑</button>
-                <button class="arrow-key blank">↑</button>
-            </div>
-            <div>
-                <button class="arrow-key left" id="arrow-left">←</button>
-                <button class="arrow-key down" id="arrow-down">↓</button>
-                <button class="arrow-key right" id="arrow-right">→</button>
-            </div>
-        </div>
-        <div class="keys">
-            <button class="space-key" id="space-key">Space</button>
-        </div>
-    </div>    
-`
-
 function onPageLoad() {
     setSkin();
     setArrowKeys();
 }
 
 function setArrowKeys() {
+    const mobileControls = `
+        <div class="mobile-controls">
+            <div class="keys">
+                <div>
+                    <button class="arrow-key blank">↑</button>
+                    <button class="arrow-key up" id="arrow-up">↑</button>
+                    <button class="arrow-key blank">↑</button>
+                </div>
+                <div>
+                    <button class="arrow-key left" id="arrow-left">←</button>
+                    <button class="arrow-key down" id="arrow-down">↓</button>
+                    <button class="arrow-key right" id="arrow-right">→</button>
+                </div>
+            </div>
+            <div class="keys">
+                <button class="space-key" id="space-key">Space</button>
+            </div>
+        </div>    
+    `
     const inputType = localStorage.getItem('keyboardGamesInput');
     $('#start-game-btn').text(`Start Game (${inputType})`);
-    if (inputType === 'touch'){
+    if (inputType !== 'touch'){
         $('body').append(mobileControls);
         $('#arrow-up').on('click', function() {
             pressedKeys['ArrowUp'] = true;
