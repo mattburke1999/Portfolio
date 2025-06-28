@@ -4,7 +4,7 @@
     justify-content: flex-start;
     align-items: flex-end;
     height: 95vh;
-    background-image: url('/Portfolio/images/hello-bg.jpg');
+    background-image: url('/images/hello-bg.jpg');
     /* change size of image */
     background-size: cover;
     --fade-start: 0;
@@ -96,7 +96,7 @@ h1 span:hover {
 
 @media screen and (max-width: 768px) {
     .hello {
-        background-image: url('/Portfolio/images/hello-bg-phone.jpg');
+        background-image: url('/images/hello-bg-phone.jpg');
         padding-right: 0.75rem;
         gap: .25rem;
     }
