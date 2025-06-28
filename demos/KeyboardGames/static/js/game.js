@@ -43,7 +43,7 @@ function setArrowKeys() {
     `
     const inputType = localStorage.getItem('keyboardGamesInput');
     $('#start-game-btn').text(`Start Game (${inputType})`);
-    if (inputType === 'touch'){
+    if (inputType !== 'touch'){
         $('body').append(mobileControls);
         $('#arrow-up').on('click', function() {
             pressedKeys['ArrowUp'] = true;
