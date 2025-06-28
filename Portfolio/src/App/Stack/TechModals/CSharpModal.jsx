@@ -2,7 +2,7 @@ import modalStyles from './ModalStyles.module.css';
 
 import { calcExperienceYears } from '../../utils';
 
-export default function CSharpModal() {
+export default function CSharpModal({ setModalVisible, scrollToProject, todoRef, garminMockRef }) {
 
     const purpleStyle = {color: 'var(--purple-color)'};
 
@@ -25,11 +25,14 @@ export default function CSharpModal() {
                 <li className={modalStyles.purpleMarker}>Entity Framework Core</li>
                 <li className={modalStyles.purpleMarker}>LINQ</li>
                 <li className={modalStyles.purpleMarker}>ASP.NET Web API</li>
-                <li className={modalStyles.purpleMarker}>Azure Functions</li>
+                <li className={modalStyles.purpleMarker}><button className={modalStyles.projRef} onClick={() => setModalVisible('azFunc')}>Azure Functions</button></li>
                 <li className={modalStyles.purpleMarker}>and more . . .</li>
             </ul>
             <h3 style={purpleStyle} className={modalStyles.proj}>Projects</h3>
-            <button className={modalStyles.projRef}>GarminMock .NET Website</button>
+            <div className={modalStyles.projects}>
+                <button className={modalStyles.projRef} onClick={() => scrollToProject(garminMockRef)}>GarminMock .NET Website</button>
+                <button className={modalStyles.projRef} onClick={() => scrollToProject(todoRef)}>Personal ToDo App</button>
+            </div>
         </div>
     )
 }

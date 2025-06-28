@@ -17,11 +17,18 @@ function App() {
     const expRef = useRef(null);
     const projRef = useRef(null);
 
+    const todoRef = useRef(null);
+    const keyboardGamesRef = useRef(null);
+    const garminMockRef = useRef(null);
+    const passwordManagerRef = useRef(null);
+    const codeCrackerRef = useRef(null);
+    const calculatorRef = useRef(null);
+
     const refs = [homeRef, stackRef, expRef, projRef];
 
-    const scrollToSection = (sectionRef) => {
+    const scrollToSection = (sectionRef, moreOffset = false) => {
         window.scrollTo({
-            top: sectionRef.current.offsetTop - 75,
+            top: sectionRef.current.offsetTop - (moreOffset ? 125 : 75),
             behavior: 'smooth', // Smooth scroll
         });
     };
@@ -80,11 +87,29 @@ function App() {
                 scrollToSection={scrollToSection} />
             <Hello homeRef={homeRef}/>
             <div className='line-break'></div>
-            <Stack stackRef={stackRef} />
+            <Stack 
+                scrollToSection={scrollToSection}
+                stackRef={stackRef}
+                keyboardGamesRef={keyboardGamesRef}
+                todoRef={todoRef}
+                garminMockRef={garminMockRef}
+                passwordManagerRef={passwordManagerRef}
+                codeCrackerRef={codeCrackerRef}
+                calculatorRef={calculatorRef}
+            />
             <div className='line-break'></div>
             <Experience expRef={expRef} />
             <div className='line-break'></div>
-            <Projects projRef={projRef} />
+            <Projects 
+                scrollToSection={scrollToSection}
+                projRef={projRef}
+                keyboardGamesRef={keyboardGamesRef}
+                todoRef={todoRef}
+                garminMockRef={garminMockRef}
+                passwordManagerRef={passwordManagerRef}
+                codeCrackerRef={codeCrackerRef}
+                calculatorRef={calculatorRef}
+            />
             <div className='line-break'></div>
         </>
     )

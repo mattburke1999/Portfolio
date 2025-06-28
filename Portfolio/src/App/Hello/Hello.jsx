@@ -50,16 +50,13 @@ export default function HelloPage({ homeRef }) {
 
     const intervalFunction = (firstTime = false) => {
         setTimeout(() => {
-            console.log(`Faded in: 2`);
             setTimeout(() => {
                 setFadedIn(2);
             }, 3500);
             setTimeout(() => {
-                console.log(`Faded in: 3`);
                 setFadedIn(3);
             }, 4500);
             setTimeout(() => {
-                console.log(`Faded in: 1`);
                 setFadedIn(1);
                 setPhraseNum(prev => (prev + 1) % phrases.length);
             }, 8000);

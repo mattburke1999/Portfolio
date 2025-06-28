@@ -2,7 +2,7 @@ import modalStyles from './ModalStyles.module.css';
 
 import { calcExperienceYears } from '../../utils';
 
-export default function PythonModal({ setModalVisible, }) {
+export default function PythonModal({ setModalVisible, scrollToProject, keyboardGamesRef, todoRef, garminMockRef, passwordManagerRef }) {
 
     const yellowStyle = {color: 'var(--yellow-color)'};
     const experience = calcExperienceYears('2017-09-01');
@@ -35,7 +35,12 @@ export default function PythonModal({ setModalVisible, }) {
                 <li className={modalStyles.yellowMarker}>and more . . .</li>
             </ul>
             <h3 style={yellowStyle} className={modalStyles.proj}>Projects</h3>
-            <button className={modalStyles.projRef}>GarminMock Flask Website</button>
+            <div className={modalStyles.projects}>
+                <button className={modalStyles.projRef} onClick={() => scrollToProject(garminMockRef)}>GarminMock Flask Website</button>
+                <button className={modalStyles.projRef} onClick={() => scrollToProject(todoRef)}>Personal ToDo App</button>
+                <button className={modalStyles.projRef} onClick={() => scrollToProject(keyboardGamesRef)}>Keyboard Games</button>
+                <button className={modalStyles.projRef} onClick={() => scrollToProject(passwordManagerRef)}>Password Manager</button>
+            </div>
         </div>
     );
 }

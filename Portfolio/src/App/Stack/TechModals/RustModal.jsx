@@ -2,7 +2,7 @@ import modalStyles from './ModalStyles.module.css';
 
 import { calcExperienceYears } from '../../utils';
 
-export default function RustModal() {
+export default function RustModal({scrollToProject, keyboardGamesRef}) {
     
     const orangeStyle = { color: 'var(--orange-color)' };
 
@@ -21,6 +21,10 @@ export default function RustModal() {
                 <li className={modalStyles.orangeMarker}>Tokio</li>
                 <li className={modalStyles.orangeMarker}>Warp framework</li>
             </ul>
+            <h3 style={orangeStyle} className={modalStyles.proj}>Projects</h3>
+            <div className={modalStyles.projects}>
+                <button className={modalStyles.projRef} onClick={() => scrollToProject(keyboardGamesRef)}>Keyboard Games</button>
+            </div>
         </div>
     )
 }

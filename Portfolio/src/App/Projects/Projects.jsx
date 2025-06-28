@@ -7,7 +7,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 import { getProjImgs } from '../utils';
 
-export default function Projects({ projRef }) {
+export default function Projects({ projRef, todoRef, keyboardGamesRef, garminMockRef, passwordManagerRef, codeCrackerRef, calculatorRef }) {
 
     const projectImages = getProjImgs(styles.projImgs);
 
@@ -30,6 +30,7 @@ export default function Projects({ projRef }) {
                 'Tasks can repeat at custom intervals or on specific days of the week, month, or year.'
 
             ],
+            reference: todoRef,
             githubLink: 'https://github.com/mattburke1999/PersonalToDo',
             icons: [
                 {name: 'Python'}, {name: 'JavaScript'}, {name: 'C#'}, 
@@ -47,6 +48,7 @@ export default function Projects({ projRef }) {
                 'Rust WebSocket server using Tokio + Warp for low-latency game-play and point validation.',
                 'Redis shares session state between Flask and the WebSocket server; PostgreSQL stores user data, scores, and skin purchases.'
             ],
+            reference: keyboardGamesRef,
             demoLink: '/Portfolio/demos/KeyboardGames/Demo.html',
             githubLink: 'https://github.com/mattburke1999/KeyboardGames',
             icons: [
@@ -65,6 +67,7 @@ export default function Projects({ projRef }) {
                 'Implemented multi-user authentication with registration, login, session handling, and password hashing.',
                 'Frontend built with Jinja templates, custom CSS, and minimal vanilla JavaScript.'
             ],
+            reference: garminMockRef,
             demoLink: '/Portfolio/demos/GarminMock/Demo.html',
             githubLink: 'https://github.com/mattburke1999/GarminMock',
             icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'PostgreSQL'}]
@@ -79,6 +82,7 @@ export default function Projects({ projRef }) {
                 'Passwords are retrieved via a WebSocket and decrypted client-side for smooth, low-latency viewing (with initial masking and reveal-on-click UX).',
                 'Everything runs locally, with no external communication, designed for privacy and control.'
             ],
+            reference: passwordManagerRef,
             imageSize: 'medium',
             icons: [{name: 'Chrome Ext.', link: extraLinks.chromeExt}, {name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'React'}, {name: 'PostgreSQL'},
             ]
@@ -92,6 +96,7 @@ export default function Projects({ projRef }) {
                 'Includes difficulty toggle (easy/medium/hard) to vary hint complexity and tracks guess count.',
                 'Created as a personal mini-project inspired by similar styled logic games seen on social-media.'
             ],
+            reference: codeCrackerRef,
             link: 'https://mattburke1999.github.io/CodeCracker/',
             githubLink: 'https://github.com/mattburke1999/CodeCracker',
             icons: [{name: 'JavaScript'}, {name: 'React'}]
@@ -104,6 +109,7 @@ export default function Projects({ projRef }) {
                 'React handles all UI and logic; pywebview provides a lightweight Python wrapper for desktop deployment.',
                 'Built as a simple personal project to experiment with React and desktop app delivery.'
             ],
+            reference: calculatorRef,
             imageSize: 'small',
             icons: [
                 {name: 'Python'}, {name: 'JavaScript'},
@@ -129,6 +135,7 @@ export default function Projects({ projRef }) {
                             name={project.name} 
                             images={project.images}
                             description={project.description}
+                            reference={project.reference}
                             side={i % 2 === 0 ? '' : '-reverse'}
                             imageSize={project.imageSize || null}
                             link={project.link}
@@ -144,7 +151,7 @@ export default function Projects({ projRef }) {
     );
 }
 
-function Project({ name, images, description, side, link, demoLink, githubLink, imageSize = null, icons = []}) {
+function Project({ name, images, description, reference, side, link, demoLink, githubLink, imageSize = null, icons = []}) {
     const [scrolledBy, setScrolledBy] = useState(false);
     const projRef = useRef(null);
 
@@ -191,7 +198,7 @@ function Project({ name, images, description, side, link, demoLink, githubLink, 
     return (
         <div ref={projRef} style={projectStyle} className={`${styles.project}${scrolledBy ? (' ' + (side ? 'fadeE' : 'fadeW')) : ''}`}>
             <div className={styles.projectSummary} >
-                <h2>{name}</h2>
+                <h2 ref={reference}>{name}</h2>
                 <ul>
                     {description.map((line, index) => (
                         <li key={index}>{line}</li>

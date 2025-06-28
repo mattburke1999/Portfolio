@@ -24,12 +24,18 @@ import azFuncLogo from '../../assets/logos/az-func-logo.png';
 
 import { useState, useEffect } from 'react';
 
-export default function Stack({ stackRef }) {
+export default function Stack({ stackRef, scrollToSection, keyboardGamesRef, todoRef, garminMockRef, passwordManagerRef, codeCrackerRef, calculatorRef }) {
 
     const [scrolledBy, setScrolledBy] = useState(false);
     const [modalVisible, setModalVisible] = useState(null);
     const [showStackItems, setShowStackItems] = useState(true);
     const [modalClickMeInterval, setModalClickMeInterval] = useState(0);
+
+    const scrollToProject = (ref) => {
+        setModalVisible(null);
+        setShowStackItems(true);
+        scrollToSection(ref, true);
+    }
 
     const modals = [
         {
@@ -58,7 +64,12 @@ export default function Stack({ stackRef }) {
             img: pyLogo,
             fadeInStyle: 'fadeInSW',
             fadeOutStyle: showStackItems ? 'fadeOutNE' : 'fadeGone',
-            modal: <PythonModal setModalVisible={setModalVisible} />,
+            modal: 
+                <PythonModal 
+                    setModalVisible={setModalVisible} scrollToProject={scrollToProject} 
+                    keyboardGamesRef={keyboardGamesRef} todoRef={todoRef} 
+                    garminMockRef={garminMockRef} passwordManagerRef={passwordManagerRef}
+                />,
             color: 'blue',
             col: 0
         },
@@ -78,7 +89,13 @@ export default function Stack({ stackRef }) {
             img: jsLogo,
             fadeInStyle: 'fadeIn',
             fadeOutStyle: showStackItems ? 'fadeOut' : 'fadeGone',
-            modal: <JSModal />,
+            modal: 
+                <JSModal 
+                    scrollToProject={scrollToProject} 
+                    keyboardGamesRef={keyboardGamesRef} todoRef={todoRef} 
+                    passwordManagerRef={passwordManagerRef} codeCrackerRef={codeCrackerRef} 
+                    calculatorRef={calculatorRef}
+                />,
             color: 'yellow',
             col: 1
         },
@@ -88,7 +105,8 @@ export default function Stack({ stackRef }) {
             img: csLogo,
             fadeInStyle: 'fadeIn',
             fadeOutStyle: showStackItems ? 'fadeOut' : 'fadeGone',
-            modal: <CSharpModal />,
+            modal: 
+                <CSharpModal setModalVisible={setModalVisible} todoRef={todoRef} garminMockRef={garminMockRef} scrollToProject={scrollToProject}/>,
             color: 'purple',
             col: 1
         },
@@ -118,7 +136,8 @@ export default function Stack({ stackRef }) {
             img: rustLogo,
             fadeInStyle: 'fadeInE',
             fadeOutStyle: showStackItems ? 'fadeOutW' : 'fadeGone',
-            modal: <RustModal />,
+            modal: 
+                <RustModal scrollToProject={scrollToProject} keyboardGamesRef={keyboardGamesRef} />,
             color: 'orange',
             col: 2
         },

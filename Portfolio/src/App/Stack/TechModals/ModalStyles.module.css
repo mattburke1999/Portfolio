@@ -65,6 +65,12 @@
 .tools li.orangeMarker::marker {
     color: var(--orange-color);
 }
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 0.1rem;
+}
 
 .proj {
     margin-top: 1rem;
@@ -84,6 +90,7 @@
     text-decoration: underline;
     padding: 0;
     cursor: pointer;
+    width: fit-content;
 }
 
 .projRef:hover {
