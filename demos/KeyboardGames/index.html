@@ -157,7 +157,11 @@
                 inputSet = true;
                 localStorage.setItem('keyboardGamesInput', type);
                 const href = this.getAttribute('data-href');
-                window.location.href = href;
+                $('.site-name').textContent = 'Keyboard Games - ' + type;
+                setTimeout(() => {
+                    $('.site-name').textContent = 'Keyboard Games';
+                    window.location.href = href;
+                }, 7000);
             };
 
             this.addEventListener('touchstart', () => setInputAndNavigate('touch'));
