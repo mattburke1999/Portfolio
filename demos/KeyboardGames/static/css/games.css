@@ -13,7 +13,7 @@ html {
 }
 @media screen and (max-width: 768px) {
     #instructions {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
 }
 
@@ -249,7 +249,7 @@ h1, p, h2 {
     color: transparent;
 }
 
-.mobile-controls .keys .arrow-key {
-    font-size: 2rem;
-    padding: 1rem;
+.mobile-controls .keys .arrow-key, .mobile-controls .keys .space-key {
+    font-size: 2.5rem;
+    padding: 1rem 1.5rem;
 }

@@ -34,7 +34,7 @@
     <a class='home-btn' href="/demos/KeyboardGames/"><button>Home</button></a>
     <div id='dot' style='background-color: #000000'></div>
     <div id="instructions">
-        <h1 class='game-title' style="font-size: 2.55rem;">Disappearing Circles</h1>
+        <h1 class='game-title'>Disappearing Circles</h1>
         <h2>Instructions</h2>
             <ol>
                 <li>
@@ -90,6 +90,7 @@
     
     document.addEventListener('DOMContentLoaded', function() {
         onPageLoad();
+        $('.gam-title').css('font-size', '2.5rem');
     });
     
     function gameStarter() {
