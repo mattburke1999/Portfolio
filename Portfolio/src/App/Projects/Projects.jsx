@@ -97,7 +97,7 @@ export default function Projects({ projRef, todoRef, keyboardGamesRef, garminMoc
                 'Created as a personal mini-project inspired by similar styled logic games seen on social-media.'
             ],
             reference: codeCrackerRef,
-            link: 'https://mattburke1999.github.io/CodeCracker/',
+            link: '/CodeCracker/',
             githubLink: 'https://github.com/mattburke1999/CodeCracker',
             icons: [{name: 'JavaScript'}, {name: 'React'}]
         },
