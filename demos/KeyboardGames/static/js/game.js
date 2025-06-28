@@ -14,7 +14,56 @@ let loggedIn = false;
 let enteredGameRoom = false;
 let loadingInterval;
 const defaultSkin = `<div id="dot" style="background-color: #000000"></div>`;
-setSkin();
+onPageLoad();
+
+const mobileControls = `
+    <div class="mobile-controls">
+        <div class="keys">
+            <div>
+                <button class="arrow-key blank">↑</button>
+                <button class="arrow-key up" id="arrow-up">↑</button>
+                <button class="arrow-key blank">↑</button>
+            </div>
+            <div>
+                <button class="arrow-key left" id="arrow-left">←</button>
+                <button class="arrow-key down" id="arrow-down">↓</button>
+                <button class="arrow-key right" id="arrow-right">→</button>
+            </div>
+        </div>
+        <div class="keys">
+            <button class="space-key" id="space-key">Space</button>
+        </div>
+    </div>    
+`
+
+function onPageLoad() {
+    setSkin();
+    setArrowKeys();
+}
+
+function setArrowKeys() {
+    const inputType = localStorage.getItem('keyboardGamesInput');
+    if (inputType === 'touch'){
+        $('body').append(mobileControls);
+        $('#arrow-up').on('click', function() {
+            pressedKeys['ArrowUp'] = true;
+        });
+        $('#arrow-down').on('click', function() {
+            pressedKeys['ArrowDown'] = true;
+        });
+        $('#arrow-left').on('click', function() {
+            pressedKeys['ArrowLeft'] = true;
+        });
+        $('#arrow-right').on('click', function() {
+            pressedKeys['ArrowRight'] = true;
+        });
+        $('#space-key').on('click', function() {
+            if ($dot.get(0) && $dot.data('done') !== 'true') {
+                checkDotInsideCircle(event, $dot);
+            }
+        });
+    }
+}
 
 function setSkin() {
     let skin = localStorage.getItem('keyboardGameSkin') || null;
@@ -53,42 +102,6 @@ function handleMovement() {
         }
     }
     animationFrame = requestAnimationFrame(handleMovement);
-}
-
-function handleMovementCrossPath() {
-    let dotPosition = getDotPosition();
-    // Get the center positions of the screen
-    if (!(dotPosition.left < centerXRange[1] && dotPosition.left > centerXRange[0]) && !(dotPosition.top < centerYRange[1] && dotPosition.top > centerYRange[0])) {
-        // reset the dot to the center of the screen
-        $dot.css('left', centerX + 'px');
-        $dot.css('top', centerY + 'px');
-    }
-
-    if (pressedKeys['ArrowUp']) {
-        // Only allow vertical movement if the dot is aligned horizontally at the center
-        if (dotPosition.left < centerXRange[1] && dotPosition.left > centerXRange[0] && dotPosition.top > dotHeight) {
-            $dot.css('top', dotPosition.top - 10 + 'px');
-        }
-    }
-    if (pressedKeys['ArrowDown']) {
-        // Only allow vertical movement if the dot is aligned horizontally at the center
-        if (dotPosition.left < centerXRange[1] && dotPosition.left > centerXRange[0] && dotPosition.top < window.innerHeight - dotHeight) {
-            $dot.css('top', dotPosition.top + 10 + 'px');
-        }
-    }
-    if (pressedKeys['ArrowLeft']) {
-        // Only allow horizontal movement if the dot is aligned vertically at the center
-        if (dotPosition.top < centerYRange[1] && dotPosition.top > centerYRange[0] && dotPosition.left > dotWidth) {
-            $dot.css('left', dotPosition.left - 10 + 'px');
-        }
-    }
-    if (pressedKeys['ArrowRight']) {
-        // Only allow horizontal movement if the dot is aligned vertically at the center
-        if (dotPosition.top < centerYRange[1] && dotPosition.top > centerYRange[0] && dotPosition.left < window.innerWidth - dotWidth) {
-            $dot.css('left', dotPosition.left + 10 + 'px');
-        }
-    }
-    animationFrame = requestAnimationFrame(handleMovementCrossPath);
 }
 
 document.addEventListener('keydown', (event) => {
