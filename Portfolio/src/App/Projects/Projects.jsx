@@ -65,6 +65,7 @@ export default function Projects({ projRef }) {
                 'Implemented multi-user authentication with registration, login, session handling, and password hashing.',
                 'Frontend built with Jinja templates, custom CSS, and minimal vanilla JavaScript.'
             ],
+            demoLink: '/Portfolio/demos/GarminMock/Demo.html',
             githubLink: 'https://github.com/mattburke1999/GarminMock',
             icons: [{name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'PostgreSQL'}]
         },
@@ -74,11 +75,10 @@ export default function Projects({ projRef }) {
             description: [
                 'Developed a personal Chrome extension for managing encrypted passwords locally, with support for adding, editing, and viewing credentials.',
                 'Used PBKDF2 and AES-GCM encryption; encrypted passwords (with salt and IV) are stored securely in PostgreSQL.',
-                'Flask backend serves as the password API, spun up on-demand by a lightweight Next.js API that authenticates local access, applies rate limits, and logs all interactions.',
+                'Flask backend serves as the password API, handling secure authentication, retrieval, creation, updating, and deletion of credentials.',
                 'Passwords are retrieved via a WebSocket and decrypted client-side for smooth, low-latency viewing (with initial masking and reveal-on-click UX).',
                 'Everything runs locally, with no external communication, designed for privacy and control.'
             ],
-            link: 'https://example.com',
             imageSize: 'medium',
             icons: [{name: 'Chrome Ext.', link: extraLinks.chromeExt}, {name: 'Python'}, {name: 'JavaScript'}, {name: 'Flask'}, {name: 'React'}, {name: 'PostgreSQL'},
             ]
@@ -104,7 +104,6 @@ export default function Projects({ projRef }) {
                 'React handles all UI and logic; pywebview provides a lightweight Python wrapper for desktop deployment.',
                 'Built as a simple personal project to experiment with React and desktop app delivery.'
             ],
-            link: 'https://example.com',
             imageSize: 'small',
             icons: [
                 {name: 'Python'}, {name: 'JavaScript'},
