@@ -158,9 +158,9 @@
                 console.log('Setting input type to: ', type);
                 localStorage.setItem('keyboardGamesInput', type);
                 const href = this.getAttribute('data-href');
-                $('.site-name').textContent = 'Keyboard Games - ' + type;
+                $('.site-name').text('Keyboard Games - ' + type);
                 setTimeout(() => {
-                    $('.site-name').textContent = 'Keyboard Games';
+                    $('.site-name').text('Keyboard Games');
                     window.location.href = href;
                 }, 7000);
             };
