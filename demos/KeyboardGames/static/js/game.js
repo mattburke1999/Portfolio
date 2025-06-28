@@ -56,11 +56,7 @@ function setArrowKeys() {
         $('#arrow-right').on('click', function() {
             mover('ArrowRight');
         });
-        $('#space-key').on('click', function() {
-            if ($dot.get(0) && $dot.data('done') !== 'true') {
-                checkDotInsideCircle(event, $dot);
-            }
-        });
+        
     }
 }
 
@@ -269,7 +265,9 @@ function startGame({intervalFunction}) {
 }
 
 function checkDotInsideCircle(event, $circle) {
-    event.stopPropagation();
+    if (event) {
+        event.stopPropagation();
+    }
     const circleRect = $circle.get(0).getBoundingClientRect();
     const radius = circleRect.width / 2;
     const centerX = circleRect.left + radius;
@@ -383,6 +381,14 @@ function clone_circle({timeout, extra_actions}) {
     const $circle = clone_circle_base();
     if (extra_actions) {
         extra_actions($circle);
+    }
+    const $spaceKey = $('#space-key');
+    if($spaceKey.get(0)) {
+        $spaceKey.on('click', function() {
+            if ($circle.get(0) && $circle.data('done') !== 'true') {
+                checkDotInsideCircle('', $circle);
+            }
+        });
     }
     
     document.addEventListener('keydown', function(event) {
