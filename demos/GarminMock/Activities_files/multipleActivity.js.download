@@ -1,0 +1,72 @@
+let sportFilter = undefined;
+
+function toggleCollapse(className, button, buttonText) {
+    var container = button.parentElement;
+    var elements = container.querySelectorAll('.' + className);
+    for (var i = 0; i < elements.length; i++) {
+        if (elements[i].style.display === "none") {
+            if (buttonText === ' Stats') {
+                elements[i].style.display = "grid";
+            } else {
+                elements[i].style.display = "block";
+            }
+            button.innerHTML = "Hide";
+            button.style.marginBottom = "10px"
+        } else {
+            elements[i].style.display = "none";
+            button.innerHTML = "View " + buttonText;
+            button.style.marginBottom = "0px"
+        }
+    }
+}
+let offset = 15;
+        
+$(window).scroll(function() {
+    if (loadMoreEnabled) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+                loadMoreItems();
+                return;
+        }
+    }
+});
+
+function setHighlightButton(sport) {
+    let filterContainer = document.getElementById('filter-button-container');
+    let buttons = Array.from(filterContainer.getElementsByTagName('button'));
+    // remove s from class name of button if it exists
+    buttons.forEach(b => {
+        b.className = b.className.replace(' s', '');
+    });
+    if(sport) {
+        let button = document.getElementById(`${sport}_filter`);
+        button.className += ' s';
+    }
+    return;
+    
+}
+
+function filterPosts(sport) {
+    if (sport === sportFilter) {
+        sportFilter = undefined;
+    }
+    else {
+        sportFilter = sport;
+    }
+    console.log('showing ', sport)
+    const $posts = $('.containerMult');
+    $posts.each(function() {
+        const sportName = $(this).find('.sport-name').text();
+        if(sport === undefined || sport === sportName){
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    })
+    $('.filter-button').each(function(){
+        $(this).removeClass('s');
+    })
+    if (sport){
+        $(`#${sport}_filter`).addClass('s');
+    }
+}
+
