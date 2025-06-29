@@ -219,12 +219,12 @@ function Project({ name, images, description, reference, side, link, demoLink, g
                         </a>
                     }
                     {link && <a href={link} target="_blank" rel="noopener noreferrer" className={styles.projectLink} title='View Site'>
-                            <i class="fa-solid fa-link"></i>
+                            <i className="fa-solid fa-link"></i>
                             <span>View Site</span>
                         </a>
                     }
                     {demoLink && <a href={demoLink} target="_blank" className={styles.projectLink} title='View Demo'>
-                            <i class="fa-solid fa-link"></i>
+                            <i className="fa-solid fa-link"></i>
                             <span>View Demo</span>
                         </a>
                     }
