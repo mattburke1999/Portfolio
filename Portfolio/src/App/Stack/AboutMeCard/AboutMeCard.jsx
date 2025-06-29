@@ -3,7 +3,7 @@ import styles from './AboutMeCard.module.css';
 export default function AboutMeCard({fadeClass}) {
     return (
         <div className={`${styles.aboutMeCard} ${fadeClass}`}>
-            <h1 >About Me</h1>
+            <h1>About Me</h1>
             <div className={styles.profile}>
                 <img src="/images/me-pic.jpg" alt="Profile Picture" />
             </div>
@@ -22,7 +22,7 @@ export default function AboutMeCard({fadeClass}) {
                     <span>View Resume</span>
                 </a>
                 <a href='https://github.com/mattburke1999/' target='_blank' rel='noopener noreferrer'>
-                    <img src={`https://cdn.simpleicons.org/github`} alt='GitHub' width={18} height={18} />
+                    <i className="fa-brands fa-github"></i>
                     <span>View GitHub</span>
                 </a>
             </div>

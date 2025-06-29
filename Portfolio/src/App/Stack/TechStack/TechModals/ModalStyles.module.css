@@ -106,16 +106,25 @@
 
 @media screen and (max-width: 768px) {
     .modalContent {
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         padding: 0;
     }
+    .modalContent h1 {
+        font-size: 1.5rem;
+    }
+    .modalContent p {
+        font-size: 0.8rem;
+    }
     .expert h3 {
-        font-size: 1rem;
+        font-size: .9rem;
     }
     .tools {
         grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
     }
     .tools li, .projRef {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
+    }
+    .proj {
+        font-size: 1rem;
     }
 }
