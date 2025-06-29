@@ -150,12 +150,13 @@ export default function Projects({ projRef, todoRef, keyboardGamesRef, garminMoc
         </>
     );
 }
+const simpleIconsLink = 'https://cdn.simpleicons.org'
 
 function Project({ name, images, description, reference, side, link, demoLink, githubLink, imageSize = null, icons = []}) {
     const [scrolledBy, setScrolledBy] = useState(false);
     const projRef = useRef(null);
 
-    const simpleIconsLink = 'https://cdn.simpleicons.org'
+    
 
     useEffect(() => {
         const observer = new IntersectionObserver(
