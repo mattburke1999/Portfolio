@@ -50,10 +50,6 @@ export default function Experience({expRef}) {
         <>
             <div className={styles.header}>
                 <h1 className={styles.title}>Experience</h1>
-                <a href='/files/Burke, Matthew Resume 2025.pdf' target='_blank' rel='noopener noreferrer' className={styles.resumeBtn}>
-                    <i class="fa-solid fa-file-pdf"></i>
-                    <span>View Resume</span>
-                </a>
             </div>
             <div className={styles.timeline} ref={expRef} id='exp'>
                 {experiences.map((experience, index) => (
