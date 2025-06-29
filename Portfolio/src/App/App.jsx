@@ -7,6 +7,8 @@ import Stack from './Stack/Stack';
 import Experience from './Experience/Experience';
 import Projects from './Projects/Projects';
 
+import NewStack from './NewStack/Stack';
+
 import { getThemeStorage, setTheme } from './utils';
 
 
@@ -86,6 +88,8 @@ function App() {
                 currentSection={currentSection}
                 scrollToSection={scrollToSection} />
             <Hello homeRef={homeRef}/>
+            <div className='line-break'></div>
+            <NewStack />
             <div className='line-break'></div>
             <Stack 
                 scrollToSection={scrollToSection}
