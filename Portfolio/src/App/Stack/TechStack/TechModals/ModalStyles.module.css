@@ -1,0 +1,121 @@
+.modalContent {
+    color: var(--text-color);
+}
+.modalContent h3 {
+    margin: 0;
+}
+
+.modalContent h1 {
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.expert {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.expert h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.modalContent p {
+    margin: 0.5rem 0;
+}
+.desc {
+    font-size: 0.9rem;
+}
+.underline {
+    text-decoration: underline;
+}
+
+.tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    gap: 0.5rem;
+    padding-left: 1rem;
+}
+
+.tools li {
+    list-style-type: circle;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.tools li::marker {
+    color: var(--text-color);
+}
+.tools li.purpleMarker::marker {
+    color: var(--purple-color);
+}
+.tools li.yellowMarker::marker {
+    color: var(--yellow-color);
+}
+.tools li.blueMarker::marker {
+    color: var(--blue-color);
+}
+.tools li.orangeMarker::marker {
+    color: var(--orange-color);
+}
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 0.1rem;
+}
+
+.proj {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.projRef {
+    background: none;
+    border: none;
+    color: var(--link-color);
+    font-weight: 600;
+    font-size: .95rem;
+    text-decoration: underline;
+    padding: 0;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.projRef:hover {
+    color: var(--link-hover-color);
+}
+
+.lineBreak {
+    width: 100%;
+    height: 1px;
+    background-color: var(--app-gray);
+    margin: 1rem 0;
+}
+
+@media screen and (max-width: 768px) {
+    .modalContent {
+        font-size: 0.9rem;
+        padding: 0;
+    }
+    .expert h3 {
+        font-size: 1rem;
+    }
+    .tools {
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+    }
+    .tools li, .projRef {
+        font-size: 0.65rem;
+    }
+}

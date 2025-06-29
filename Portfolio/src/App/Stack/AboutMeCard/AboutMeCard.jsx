@@ -1,8 +1,9 @@
 import styles from './AboutMeCard.module.css';
 
-export default function AboutMeCard() {
+export default function AboutMeCard({fadeClass}) {
     return (
-        <div className={`${styles.aboutMeCard} fadeInModal`}>
+        <div className={`${styles.aboutMeCard} ${fadeClass}`}>
+            <h1 >About Me</h1>
             <div className={styles.profile}>
                 <img src="/images/me-pic.jpg" alt="Profile Picture" />
             </div>
@@ -16,9 +17,13 @@ export default function AboutMeCard() {
                 </p>
             </div>
             <div className={styles.buttons}>
-                <a href='/files/Burke, Matthew Resume 2025.pdf' target='_blank' rel='noopener noreferrer' className={styles.resumeBtn}>
+                <a href='/files/Burke, Matthew Resume 2025.pdf' target='_blank' rel='noopener noreferrer' >
                     <i className="fa-solid fa-file-pdf"></i>
                     <span>View Resume</span>
+                </a>
+                <a href='https://github.com/mattburke1999/' target='_blank' rel='noopener noreferrer'>
+                    <img src={`https://cdn.simpleicons.org/github`} alt='GitHub' width={18} height={18} />
+                    <span>View GitHub</span>
                 </a>
             </div>
         </div>

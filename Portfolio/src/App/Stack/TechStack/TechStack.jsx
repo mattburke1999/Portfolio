@@ -1,17 +1,28 @@
 import styles from './TechStack.module.css';
 
 import javaLogo from '../../../assets/logos/java-logo.png';
+import JavaModal from './TechModals/JavaModal';
 import pyLogo from '../../../assets/logos/py-logo.png';
+import PythonModal from './TechModals/PythonModal';
 import htmlCSSLogo from '../../../assets/logos/html-css-logo.png';
+import HtmlModal from './TechModals/HtmlModal';
 import jsLogo from '../../../assets/logos/js-logo.png';
+import JSModal from './TechModals/JSModal';
 import csLogo from '../../../assets/logos/cs-logo.png';
+import CSharpModal from './TechModals/CSharpModal';
 import sqlLogo from '../../../assets/logos/sql-logo.png';
+import SQLModal from './TechModals/SQLModal';
 import rustLogo from '../../../assets/logos/rust-logo.png';
+import RustModal from './TechModals/RustModal';
 import azFuncLogo from '../../../assets/logos/az-func-logo.png';
+import AzFuncModal from './TechModals/AzFuncModal';
 
 import { useRef, useEffect } from 'react';
 
-export default function TechStack() {
+export default function TechStack({ 
+    modalVisible, openModal, closeModal, modalFadeClass, useFadeInClass, scrollToProject, keyboardGamesRef, 
+    todoRef, garminMockRef, passwordManagerRef, codeCrackerRef, calculatorRef  
+}) {
 
     const modals = [
         {
@@ -21,6 +32,7 @@ export default function TechStack() {
             posStyle: styles.NW,
             fadeInStyle: 'fadeInNW',
             color: 'red',
+            modal: <JavaModal/>
         },
         {
             name: 'python',
@@ -29,6 +41,11 @@ export default function TechStack() {
             posStyle: styles.N,
             fadeInStyle: 'fadeInN',
             color: 'blue',
+            modal: <PythonModal 
+                setModalVisible={openModal}
+                scrollToProject={scrollToProject} keyboardGamesRef={keyboardGamesRef} 
+                todoRef={todoRef} garminMockRef={garminMockRef} passwordManagerRef={passwordManagerRef} 
+            />
         },
         {
             name: 'html_css',
@@ -36,7 +53,8 @@ export default function TechStack() {
             img: htmlCSSLogo,
             posStyle: styles.NE,
             fadeInStyle: 'fadeInNE',
-            color: 'orange',
+            color: 'blue',
+            modal: <HtmlModal />
         },
         {
             name: 'js',
@@ -45,6 +63,10 @@ export default function TechStack() {
             posStyle: styles.E,
             fadeInStyle: 'fadeInE',
             color: 'yellow',
+            modal: <JSModal 
+                scrollToProject={scrollToProject} keyboardGamesRef={keyboardGamesRef} 
+                todoRef={todoRef} codeCrackerRef={codeCrackerRef} calculatorRef={calculatorRef}
+            />
         },
         {
             name: 'csharp',
@@ -53,6 +75,10 @@ export default function TechStack() {
             posStyle: styles.SE,
             fadeInStyle: 'fadeInSE',
             color: 'purple',
+            modal: <CSharpModal 
+                setModalVisible={openModal} 
+                scrollToProject={scrollToProject} todoRef={todoRef} garminMockRef={garminMockRef}
+            />,
         },
         {
             name: 'sql',
@@ -61,6 +87,7 @@ export default function TechStack() {
             posStyle: styles.S,
             fadeInStyle: 'fadeInS',
             color: 'blue',
+            modal: <SQLModal />
         },
         {
             name: 'rust',
@@ -69,6 +96,7 @@ export default function TechStack() {
             posStyle: styles.SW,
             fadeInStyle: 'fadeInSW',
             color: 'orange',
+            modal: <RustModal scrollToProject={scrollToProject} keyboardGamesRef={keyboardGamesRef} />
         },
         {
             name: 'azFunc',
@@ -77,8 +105,10 @@ export default function TechStack() {
             posStyle: styles.W,
             fadeInStyle: 'fadeInW',
             color: 'blue',
+            modal: <AzFuncModal setModalVisible={openModal } />
         }
     ];
+    
 
     const containerRef = useRef(null);
 
@@ -86,14 +116,24 @@ export default function TechStack() {
         <div className={styles.techStack}>
             <div className={styles.stackContainer} ref={containerRef}>
                 {modals.map((modal, index) => (
-                    <StackItem key={index} modal={modal} containerRef={containerRef} />
+                    <>
+                        <StackItem key={index} modal={modal} containerRef={containerRef} openModal={openModal} useFadeInClass={useFadeInClass} />
+                        {modalVisible === modal.name && 
+                            <TechModal 
+                                closeModal={closeModal}
+                                content={modal.modal} 
+                                color={modal.color} 
+                                modalClass={`${styles.modal} ${modalFadeClass}`} 
+                            />
+                        }
+                    </>
                 ))}
             </div>
         </div>
     );
 }
 
-function StackItem({ modal, containerRef }) {
+function StackItem({ modal, containerRef, openModal, useFadeInClass }) {
 
     const itemRef = useRef(null);
     const speed = .5;
@@ -148,11 +188,23 @@ function StackItem({ modal, containerRef }) {
 
 
     return (
-        <div className={`${styles.stackItemWrapper} ${modal.posStyle}`} ref={itemRef} >
-            <div className={`${styles.stackItem} ${styles[modal.color]} ${modal.fadeInStyle}`}>
+        <div className={`${styles.stackItemWrapper} ${modal.posStyle}`} ref={itemRef} onClick={() => openModal(modal.name)}>
+            <div className={`${styles.stackItem} ${styles[modal.color]} ${useFadeInClass ? modal.fadeInStyle : ''}`}>
                 <img draggable={false} src={modal.img} alt={modal.title}/>
                 <h3>{modal.title}</h3>
             </div>
         </div>
+    );
+}
+
+function TechModal({ closeModal, content, color, modalClass }) {
+    return (
+        <>
+            <div className={modalClass} style={{ borderColor: color, boxShadow: `0px 0px 20px ${color}` }}>
+                {content}
+                <button className={styles.closeButton} onClick={closeModal}>X</button>
+            </div>
+            <div className={styles.modalBackdrop} onClick={closeModal}></div>
+        </>
     );
 }

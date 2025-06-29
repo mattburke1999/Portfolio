@@ -65,7 +65,7 @@ export default function NavBar({homeRef, stackRef, expRef, projRef, scrollToSect
 function NavBtns({homeRef, stackRef, expRef, projRef, sectionClick, currentSection, isMobile, showBtns}) {
     const navs = [
         { ref: homeRef, label: 'Home', section: 'home', style: styles.blue },
-        { ref: stackRef, label: 'Tech Stack', section: 'stack', style: styles.green },
+        { ref: stackRef, label: 'About Me', section: 'stack', style: styles.green },
         { ref: expRef, label: 'Experience', section: 'exp', style: styles.pink },
         { ref: projRef, label: 'Projects', section: 'proj', style: styles.blue }
     ]

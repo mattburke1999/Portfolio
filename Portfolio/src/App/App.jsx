@@ -3,11 +3,9 @@ import { useRef, useState, useEffect } from 'react';
 import Background from './Background/Background';
 import NavBar from './NavBar/NavBar';
 import Hello from './Hello/Hello';
-import Stack from './Stack/Stack';
 import Experience from './Experience/Experience';
 import Projects from './Projects/Projects';
-
-import NewStack from './NewStack/Stack';
+import Stack from './Stack/Stack';
 
 import { getThemeStorage, setTheme } from './utils';
 
@@ -88,8 +86,6 @@ function App() {
                 currentSection={currentSection}
                 scrollToSection={scrollToSection} />
             <Hello homeRef={homeRef}/>
-            <div className='line-break'></div>
-            <NewStack />
             <div className='line-break'></div>
             <Stack 
                 scrollToSection={scrollToSection}
