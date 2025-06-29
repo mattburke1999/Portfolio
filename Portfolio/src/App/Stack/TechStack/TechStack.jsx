@@ -100,7 +100,7 @@ export default function TechStack({
         },
         {
             name: 'azFunc',
-            title: 'Azure Functions',
+            title: 'Azure',
             img: azFuncLogo,
             posStyle: styles.W,
             fadeInStyle: 'fadeInW',
@@ -132,40 +132,43 @@ export default function TechStack({
         </div>
     );
 }
+const speed = .5;
+function moveItem(itemRef, containerRect) {
+    const item = itemRef.current;
+    const innerItem = item.querySelector(`.${styles.stackItem}`);
+    const innerItemComputed = window.getComputedStyle(innerItem);
+    const itemWidth = parseFloat(innerItemComputed.width);
+    const itemHeight = parseFloat(innerItemComputed.height);
+    const itemRect = item.getBoundingClientRect();
+
+    const computedStyle = window.getComputedStyle(item);
+
+    let top = parseFloat(computedStyle.top) || 0;
+    let left = parseFloat(computedStyle.left) || 0;
+
+    // Determine which edge the item is touching (allow 1px wiggle room)
+    const touchingTop = Math.abs(itemRect.top - containerRect.top) < 1;
+    const touchingRight = Math.abs((itemRect.left + itemWidth) - containerRect.right) < 1;
+    const touchingBottom = Math.abs((itemRect.top + itemHeight) - containerRect.bottom) < 1;
+    const touchingLeft = Math.abs(itemRect.left - containerRect.left) < 1;
+    if (touchingTop && !touchingRight) {
+        left += speed; // Move right
+    } else if (touchingRight && !touchingBottom) {
+        top += speed; // Move down
+    } else if (touchingBottom && !touchingLeft) {
+        left -= speed; // Move left
+    } else if (touchingLeft) {
+        top -= speed; // Move up
+    }
+
+    item.style.top = top + 'px';
+    item.style.left = left + 'px';
+}
 
 function StackItem({ modal, containerRef, openModal, useFadeInClass }) {
 
     const itemRef = useRef(null);
-    const speed = .5;
     
-    const itemWidth = itemRef.current ? itemRef.current.offsetWidth : 96;
-    const itemHeight = itemRef.current ? itemRef.current.offsetHeight : 96;
-
-    function moveItem(itemRef, containerRect) {
-        const item = itemRef.current;
-        const itemRect = item.getBoundingClientRect();
-
-        let top = parseFloat(item.style.top) || 0;
-        let left = parseFloat(item.style.left) || 0;
-
-        // Determine which edge the item is touching (allow 1px wiggle room)
-        const touchingTop = Math.abs(itemRect.top - containerRect.top) < 1;
-        const touchingRight = Math.abs((itemRect.left + itemWidth) - containerRect.right) < 1;
-        const touchingBottom = Math.abs((itemRect.top + itemHeight) - containerRect.bottom) < 1;
-        const touchingLeft = Math.abs(itemRect.left - containerRect.left) < 1;
-        if (touchingTop && !touchingRight) {
-            left += speed; // Move right
-        } else if (touchingRight && !touchingBottom) {
-            top += speed; // Move down
-        } else if (touchingBottom && !touchingLeft) {
-            left -= speed; // Move left
-        } else if (touchingLeft) {
-            top -= speed; // Move up
-        }
-
-        item.style.top = top + 'px';
-        item.style.left = left + 'px';
-    }
 
     useEffect(() => {
         // Initialize positions from CSS to inline style
@@ -188,8 +191,8 @@ function StackItem({ modal, containerRef, openModal, useFadeInClass }) {
 
 
     return (
-        <div className={`${styles.stackItemWrapper} ${modal.posStyle}`} ref={itemRef} onClick={() => openModal(modal.name)}>
-            <div className={`${styles.stackItem} ${styles[modal.color]} ${useFadeInClass ? modal.fadeInStyle : ''}`}>
+        <div className={`${styles.stackItemWrapper} ${modal.posStyle}`} ref={itemRef} >
+            <div className={`${styles.stackItem} ${styles[modal.color]} ${useFadeInClass ? modal.fadeInStyle : ''}`} onClick={() => openModal(modal.name)}>
                 <img draggable={false} src={modal.img} alt={modal.title}/>
                 <h3>{modal.title}</h3>
             </div>
