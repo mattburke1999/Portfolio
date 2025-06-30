@@ -106,23 +106,24 @@ export default function TechStack({
     const containerRef = useRef(null);
 
     return (
-        <div className={styles.techStack}>
-            <div className={styles.stackContainer} ref={containerRef}>
-                {modals.map((modal, index) => (
-                    <>
-                        {modalVisible === null && <StackItem key={index} modal={modal} containerRef={containerRef} openModal={openModal} stackItemFadeClass={stackItemFadeClass} />}
-                        {modalVisible === modal.name && 
-                            <TechModal 
-                                closeModal={closeModal}
-                                content={modal.modal} 
-                                color={modal.color} 
-                                modalClass={`${styles.modal} ${modalFadeClass}`} 
-                            />
-                        }
-                    </>
-                ))}
+        <>
+            <div className={styles.techStack}>
+                <div className={styles.stackContainer} ref={containerRef}>
+                    {modals.map((modal, index) => (
+                        modalVisible === null && <StackItem key={index} modal={modal} containerRef={containerRef} openModal={openModal} stackItemFadeClass={stackItemFadeClass} />
+                    ))}
+                </div>
             </div>
-        </div>
+            {modals.map((modal) => (
+            modalVisible === modal.name && 
+                <TechModal 
+                    closeModal={closeModal}
+                    content={modal.modal} 
+                    color={modal.color} 
+                    modalClass={`${styles.modal} ${modalFadeClass}`} 
+                />
+            ))}
+        </>
     );
 }
 

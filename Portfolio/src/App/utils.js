@@ -86,14 +86,4 @@ function moveItem(item, containerRef) {
     item.dataset.y = currentY;
 }
 
-const isChildOfModal = (targetElement, modalClass) => {
-    // check if any class in targetElement's classList matches any class in stackClasses
-    if (targetElement.classList.contains(modalClass)) {
-        return true;
-    } else if (targetElement.parentElement) {
-        return isChildOfModal(targetElement.parentElement, modalClass);
-    }
-    return false;
-}
-
-export { calcExperienceYears, getProjImgs, getThemeStorage, setTheme, moveItem, isChildOfModal };
+export { calcExperienceYears, getProjImgs, getThemeStorage, setTheme, moveItem };
