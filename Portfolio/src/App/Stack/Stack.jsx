@@ -7,23 +7,25 @@ import TechStack from "./TechStack/TechStack"
 
 import { useState, useEffect } from "react";
 
-const stackClasses = [stackStyles.modal, stackStyles.stackItemWrapper]
+import { isChildOfModal } from "../utils";
 
 export default function Stack({ stackRef, scrollToSection, keyboardGamesRef, todoRef, garminMockRef, passwordManagerRef, codeCrackerRef, calculatorRef }) {
     const [modalVisible, setModalVisible] = useState(null);
     const [modalFadeClass, setModalFadeClass] = useState(null);
-    const [aboutMeCardFadeClass, setAboutMeCardFadeClass] = useState(null);
+    const [stackItemFadeClass, setStackItemFadeClass] = useState(null);
+    const aboutMeCardFadeClass = stackItemFadeClass ? stackItemFadeClass + 'Modal' : null;
     const [stackPageClick, setStackPageClick] = useState(null);
-    const [scrolledBy, setScrolledBy] = useState(false);
 
 
     const openModal = (modalName) => {
         setModalFadeClass('fadeInModal');
-        setAboutMeCardFadeClass('fadeOutModal');
-        setModalVisible(modalName);
+        setStackItemFadeClass('fadeOut');
+        setTimeout(() => {
+            setModalVisible(modalName);
+        }, 1000);
         setStackPageClick(() => {
             return (e) => {
-                if (!isChildOfModalOrStackItem(e.target)) {
+                if (!isChildOfModal(e.target, stackStyles.modal)) {
                     closeModal();
                 }
             }
@@ -32,7 +34,7 @@ export default function Stack({ stackRef, scrollToSection, keyboardGamesRef, tod
 
     const closeModal = () => {
         setModalFadeClass('fadeOutModal');
-        setAboutMeCardFadeClass('fadeInModal');
+        setStackItemFadeClass('fadeIn');
         setStackPageClick(null);
         setTimeout(() => {
             setModalVisible(null);
@@ -44,26 +46,17 @@ export default function Stack({ stackRef, scrollToSection, keyboardGamesRef, tod
         setModalVisible(null);
         setModalFadeClass(null);
         setStackPageClick(null);
-        setAboutMeCardFadeClass('fadeInModal');
+        setStackItemFadeClass('fadeIn');
         scrollToSection(ref, true);
     }
 
-    const isChildOfModalOrStackItem = (targetElement) => {
-        // check if any class in targetElement's classList matches any class in stackClasses
-        if (stackClasses.some(cls => targetElement.classList.contains(cls))) {
-            return true;
-        } else if (targetElement.parentElement) {
-            return isChildOfModalOrStackItem(targetElement.parentElement);
-        }
-        return false;
-    }
+    
 
     const scrollView = () => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setAboutMeCardFadeClass('fadeInModal');
-                    setScrolledBy(true);
+                    setStackItemFadeClass('fadeIn');
                     observer.disconnect(); // Stop observing after first intersection
                 }
             },
@@ -99,7 +92,7 @@ export default function Stack({ stackRef, scrollToSection, keyboardGamesRef, tod
                 modalFadeClass={modalFadeClass} 
                 openModal={openModal} 
                 closeModal={closeModal} 
-                useFadeInClass={scrolledBy} 
+                stackItemFadeClass={stackItemFadeClass}
                 scrollToProject={scrollToProject}
                 keyboardGamesRef={keyboardGamesRef}
                 todoRef={todoRef}

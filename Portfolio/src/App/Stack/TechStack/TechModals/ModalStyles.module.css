@@ -115,6 +115,10 @@
     .modalContent p {
         font-size: 0.8rem;
     }
+    .expert {
+        gap: 1rem;
+        margin-bottom: .5rem;
+    }
     .expert h3 {
         font-size: .9rem;
     }

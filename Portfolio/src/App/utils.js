@@ -54,4 +54,47 @@ function setTheme(theme) {
     root.style.setProperty('--yellow-color', yellowColor);
 }
 
-export { calcExperienceYears, getProjImgs, getThemeStorage, setTheme };
+const speed = .5;
+function moveItem(itemRef, containerRect, stackItemClass) {
+    const item = itemRef.current;
+    const innerItem = item.querySelector(`.${stackItemClass}`);
+    const innerItemComputed = window.getComputedStyle(innerItem);
+    const itemWidth = parseFloat(innerItemComputed.width);
+    const itemHeight = parseFloat(innerItemComputed.height);
+    const itemRect = item.getBoundingClientRect();
+
+    const computedStyle = window.getComputedStyle(item);
+
+    let top = parseFloat(computedStyle.top) || 0;
+    let left = parseFloat(computedStyle.left) || 0;
+
+    // Determine which edge the item is touching (allow 1px wiggle room)
+    const touchingTop = Math.abs(itemRect.top - containerRect.top) < 1;
+    const touchingRight = Math.abs((itemRect.left + itemWidth) - containerRect.right) < 1;
+    const touchingBottom = Math.abs((itemRect.top + itemHeight) - containerRect.bottom) < 1;
+    const touchingLeft = Math.abs(itemRect.left - containerRect.left) < 1;
+    if (touchingTop && !touchingRight) {
+        left += speed; // Move right
+    } else if (touchingRight && !touchingBottom) {
+        top += speed; // Move down
+    } else if (touchingBottom && !touchingLeft) {
+        left -= speed; // Move left
+    } else if (touchingLeft) {
+        top -= speed; // Move up
+    }
+
+    item.style.top = top + 'px';
+    item.style.left = left + 'px';
+}
+
+const isChildOfModal = (targetElement, modalClass) => {
+    // check if any class in targetElement's classList matches any class in stackClasses
+    if (targetElement.classList.contains(modalClass)) {
+        return true;
+    } else if (targetElement.parentElement) {
+        return isChildOfModal(targetElement.parentElement, modalClass);
+    }
+    return false;
+}
+
+export { calcExperienceYears, getProjImgs, getThemeStorage, setTheme, moveItem, isChildOfModal };

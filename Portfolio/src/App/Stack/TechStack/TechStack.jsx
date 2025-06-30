@@ -17,10 +17,12 @@ import RustModal from './TechModals/RustModal';
 import azFuncLogo from '../../../assets/logos/az-func-logo.png';
 import AzFuncModal from './TechModals/AzFuncModal';
 
+import { moveItem } from '../../utils';
+
 import { useRef, useEffect } from 'react';
 
 export default function TechStack({ 
-    modalVisible, openModal, closeModal, modalFadeClass, useFadeInClass, scrollToProject, keyboardGamesRef, 
+    modalVisible, openModal, closeModal, modalFadeClass, stackItemFadeClass, scrollToProject, keyboardGamesRef, 
     todoRef, garminMockRef, passwordManagerRef, codeCrackerRef, calculatorRef  
 }) {
 
@@ -29,6 +31,7 @@ export default function TechStack({
             name: 'java',
             title: 'Java',
             img: javaLogo,
+            fadeDir: 'NW',
             posStyle: styles.NW,
             fadeInStyle: 'fadeInNW',
             color: 'red',
@@ -38,6 +41,7 @@ export default function TechStack({
             name: 'python',
             title: 'Python',
             img: pyLogo,
+            fadeDir: 'N',
             posStyle: styles.N,
             fadeInStyle: 'fadeInN',
             color: 'blue',
@@ -51,6 +55,7 @@ export default function TechStack({
             name: 'html_css',
             title: 'HTML/CSS',
             img: htmlCSSLogo,
+            fadeDir: 'NE',
             posStyle: styles.NE,
             fadeInStyle: 'fadeInNE',
             color: 'blue',
@@ -60,6 +65,7 @@ export default function TechStack({
             name: 'js',
             title: 'JavaScript',
             img: jsLogo,
+            fadeDir: 'E',
             posStyle: styles.E,
             fadeInStyle: 'fadeInE',
             color: 'yellow',
@@ -72,6 +78,7 @@ export default function TechStack({
             name: 'csharp',
             title: 'C#',
             img: csLogo,
+            fadeDir: 'SE',
             posStyle: styles.SE,
             fadeInStyle: 'fadeInSE',
             color: 'purple',
@@ -84,6 +91,7 @@ export default function TechStack({
             name: 'sql',
             title: 'SQL',
             img: sqlLogo,
+            fadeDir: 'S',
             posStyle: styles.S,
             fadeInStyle: 'fadeInS',
             color: 'blue',
@@ -93,6 +101,7 @@ export default function TechStack({
             name: 'rust',
             title: 'Rust',
             img: rustLogo,
+            fadeDir: 'SW',
             posStyle: styles.SW,
             fadeInStyle: 'fadeInSW',
             color: 'orange',
@@ -102,13 +111,13 @@ export default function TechStack({
             name: 'azFunc',
             title: 'Azure',
             img: azFuncLogo,
+            fadeDir: 'W',
             posStyle: styles.W,
             fadeInStyle: 'fadeInW',
             color: 'blue',
             modal: <AzFuncModal setModalVisible={openModal } />
         }
     ];
-    
 
     const containerRef = useRef(null);
 
@@ -117,7 +126,7 @@ export default function TechStack({
             <div className={styles.stackContainer} ref={containerRef}>
                 {modals.map((modal, index) => (
                     <>
-                        <StackItem key={index} modal={modal} containerRef={containerRef} openModal={openModal} useFadeInClass={useFadeInClass} />
+                        {modalVisible === null && <StackItem key={index} modal={modal} containerRef={containerRef} openModal={openModal} stackItemFadeClass={stackItemFadeClass} />}
                         {modalVisible === modal.name && 
                             <TechModal 
                                 closeModal={closeModal}
@@ -132,44 +141,17 @@ export default function TechStack({
         </div>
     );
 }
-const speed = .5;
-function moveItem(itemRef, containerRect) {
-    const item = itemRef.current;
-    const innerItem = item.querySelector(`.${styles.stackItem}`);
-    const innerItemComputed = window.getComputedStyle(innerItem);
-    const itemWidth = parseFloat(innerItemComputed.width);
-    const itemHeight = parseFloat(innerItemComputed.height);
-    const itemRect = item.getBoundingClientRect();
 
-    const computedStyle = window.getComputedStyle(item);
 
-    let top = parseFloat(computedStyle.top) || 0;
-    let left = parseFloat(computedStyle.left) || 0;
-
-    // Determine which edge the item is touching (allow 1px wiggle room)
-    const touchingTop = Math.abs(itemRect.top - containerRect.top) < 1;
-    const touchingRight = Math.abs((itemRect.left + itemWidth) - containerRect.right) < 1;
-    const touchingBottom = Math.abs((itemRect.top + itemHeight) - containerRect.bottom) < 1;
-    const touchingLeft = Math.abs(itemRect.left - containerRect.left) < 1;
-    if (touchingTop && !touchingRight) {
-        left += speed; // Move right
-    } else if (touchingRight && !touchingBottom) {
-        top += speed; // Move down
-    } else if (touchingBottom && !touchingLeft) {
-        left -= speed; // Move left
-    } else if (touchingLeft) {
-        top -= speed; // Move up
-    }
-
-    item.style.top = top + 'px';
-    item.style.left = left + 'px';
-}
-
-function StackItem({ modal, containerRef, openModal, useFadeInClass }) {
+function StackItem({ modal, containerRef, openModal, stackItemFadeClass }) {
 
     const itemRef = useRef(null);
-    
 
+    let itemClass = `${styles.stackItem} ${styles[modal.color]}`;
+    if (stackItemFadeClass) {
+        itemClass += ` ${stackItemFadeClass}`;
+    }
+    
     useEffect(() => {
         // Initialize positions from CSS to inline style
         const item = itemRef.current;
@@ -182,7 +164,7 @@ function StackItem({ modal, containerRef, openModal, useFadeInClass }) {
         setTimeout(() => {
             const animate = () => {
                 const containerRect = containerRef.current.getBoundingClientRect();
-                moveItem(itemRef, containerRect);
+                moveItem(itemRef, containerRect, styles.stackItem);
                 requestAnimationFrame(animate);
             };
             requestAnimationFrame(animate);
@@ -190,9 +172,10 @@ function StackItem({ modal, containerRef, openModal, useFadeInClass }) {
     }, []);
 
 
+
     return (
-        <div className={`${styles.stackItemWrapper} ${modal.posStyle}`} ref={itemRef} >
-            <div className={`${styles.stackItem} ${styles[modal.color]} ${useFadeInClass ? modal.fadeInStyle : ''}`} onClick={() => openModal(modal.name)}>
+        <div className={`${styles.stackItemWrapper} ${styles[modal.fadeDir]}`} ref={itemRef} >
+            <div className={itemClass} onClick={() => openModal(modal.name)}>
                 <img draggable={false} src={modal.img} alt={modal.title}/>
                 <h3>{modal.title}</h3>
             </div>
