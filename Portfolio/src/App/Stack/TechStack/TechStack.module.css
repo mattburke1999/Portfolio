@@ -70,22 +70,18 @@
 .stackItemWrapper.NW {
     top: 0;
     left: 0;
-    --fade-startX: -100%;
-    --fade-startY: -100%;
 }
 .stackItemWrapper.N {
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 42.5%;
 }
 .stackItemWrapper.NE {
     top: 0;
     right: 0;
 }
 .stackItemWrapper.E {
-    top: 50%;
+    top: 42.5%;
     right: 0;
-    transform: translateY(-50%);
 }
 .stackItemWrapper.SE {
     bottom: 0;
@@ -93,17 +89,15 @@
 }
 .stackItemWrapper.S {
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 42.5%;
 }
 .stackItemWrapper.SW {
     bottom: 0;
     left: 0;
 }
 .stackItemWrapper.W {
-    top: 50%;
+    top: 42.5%;
     left: 0;
-    transform: translateY(-50%);
 }
 
 .modal {

@@ -5,7 +5,7 @@ import stackStyles from './TechStack/TechStack.module.css';
 import AboutMeCard from "./AboutMeCard/AboutMeCard"
 import TechStack from "./TechStack/TechStack"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { isChildOfModal } from "../utils";
 
@@ -49,40 +49,6 @@ export default function Stack({ stackRef, scrollToSection, keyboardGamesRef, tod
         setStackItemFadeClass('fadeIn');
         scrollToSection(ref, true);
     }
-
-    
-
-    const scrollView = () => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setStackItemFadeClass('fadeIn');
-                    observer.disconnect(); // Stop observing after first intersection
-                }
-            },
-            {
-                threshold: 0.2, // Trigger when 20% of the element is visible
-            }
-        );
-
-        if (stackRef.current) {
-            observer.observe(stackRef.current);
-        }
-
-        return () => {
-            if (stackRef.current) {
-                observer.unobserve(stackRef.current);
-            }
-        };
-    }
-
-    useEffect(() => {
-        window.addEventListener('scroll', scrollView);
-
-        return () => {
-            window.removeEventListener('scroll', scrollView);
-        };
-    }, []);
 
     return (
         <div className={styles.stackPage} onClick={stackPageClick} ref={stackRef}>

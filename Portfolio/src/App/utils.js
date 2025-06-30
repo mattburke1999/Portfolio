@@ -55,36 +55,35 @@ function setTheme(theme) {
 }
 
 const speed = .5;
-function moveItem(itemRef, containerRect, stackItemClass) {
-    const item = itemRef.current;
-    const innerItem = item.querySelector(`.${stackItemClass}`);
-    const innerItemComputed = window.getComputedStyle(innerItem);
-    const itemWidth = parseFloat(innerItemComputed.width);
-    const itemHeight = parseFloat(innerItemComputed.height);
+function moveItem(item, containerRef) {
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const itemComputed = window.getComputedStyle(item);
+    const itemWidth = parseFloat(itemComputed.width);
+    const itemHeight = parseFloat(itemComputed.height);
     const itemRect = item.getBoundingClientRect();
 
-    const computedStyle = window.getComputedStyle(item);
-
-    let top = parseFloat(computedStyle.top) || 0;
-    let left = parseFloat(computedStyle.left) || 0;
-
+    let currentX = parseFloat(item.dataset.x || 0);
+    let currentY = parseFloat(item.dataset.y || 0);
     // Determine which edge the item is touching (allow 1px wiggle room)
     const touchingTop = Math.abs(itemRect.top - containerRect.top) < 1;
     const touchingRight = Math.abs((itemRect.left + itemWidth) - containerRect.right) < 1;
     const touchingBottom = Math.abs((itemRect.top + itemHeight) - containerRect.bottom) < 1;
     const touchingLeft = Math.abs(itemRect.left - containerRect.left) < 1;
+    // debugger;
     if (touchingTop && !touchingRight) {
-        left += speed; // Move right
+        currentX += speed; // Move right
     } else if (touchingRight && !touchingBottom) {
-        top += speed; // Move down
+        currentY += speed; // Move down
     } else if (touchingBottom && !touchingLeft) {
-        left -= speed; // Move left
+        currentX -= speed; // Move left
     } else if (touchingLeft) {
-        top -= speed; // Move up
+        currentY -= speed; // Move up
     }
+        
+    item.style.transform = `translate(${currentX}px, ${currentY}px)`;
 
-    item.style.top = top + 'px';
-    item.style.left = left + 'px';
+    item.dataset.x = currentX;
+    item.dataset.y = currentY;
 }
 
 const isChildOfModal = (targetElement, modalClass) => {

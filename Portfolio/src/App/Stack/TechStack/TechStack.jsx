@@ -32,8 +32,6 @@ export default function TechStack({
             title: 'Java',
             img: javaLogo,
             fadeDir: 'NW',
-            posStyle: styles.NW,
-            fadeInStyle: 'fadeInNW',
             color: 'red',
             modal: <JavaModal/>
         },
@@ -42,8 +40,6 @@ export default function TechStack({
             title: 'Python',
             img: pyLogo,
             fadeDir: 'N',
-            posStyle: styles.N,
-            fadeInStyle: 'fadeInN',
             color: 'blue',
             modal: <PythonModal 
                 setModalVisible={openModal}
@@ -56,8 +52,6 @@ export default function TechStack({
             title: 'HTML/CSS',
             img: htmlCSSLogo,
             fadeDir: 'NE',
-            posStyle: styles.NE,
-            fadeInStyle: 'fadeInNE',
             color: 'blue',
             modal: <HtmlModal />
         },
@@ -66,8 +60,6 @@ export default function TechStack({
             title: 'JavaScript',
             img: jsLogo,
             fadeDir: 'E',
-            posStyle: styles.E,
-            fadeInStyle: 'fadeInE',
             color: 'yellow',
             modal: <JSModal 
                 scrollToProject={scrollToProject} keyboardGamesRef={keyboardGamesRef} 
@@ -79,8 +71,6 @@ export default function TechStack({
             title: 'C#',
             img: csLogo,
             fadeDir: 'SE',
-            posStyle: styles.SE,
-            fadeInStyle: 'fadeInSE',
             color: 'purple',
             modal: <CSharpModal 
                 setModalVisible={openModal} 
@@ -92,8 +82,6 @@ export default function TechStack({
             title: 'SQL',
             img: sqlLogo,
             fadeDir: 'S',
-            posStyle: styles.S,
-            fadeInStyle: 'fadeInS',
             color: 'blue',
             modal: <SQLModal />
         },
@@ -102,8 +90,6 @@ export default function TechStack({
             title: 'Rust',
             img: rustLogo,
             fadeDir: 'SW',
-            posStyle: styles.SW,
-            fadeInStyle: 'fadeInSW',
             color: 'orange',
             modal: <RustModal scrollToProject={scrollToProject} keyboardGamesRef={keyboardGamesRef} />
         },
@@ -112,8 +98,6 @@ export default function TechStack({
             title: 'Azure',
             img: azFuncLogo,
             fadeDir: 'W',
-            posStyle: styles.W,
-            fadeInStyle: 'fadeInW',
             color: 'blue',
             modal: <AzFuncModal setModalVisible={openModal } />
         }
@@ -149,26 +133,18 @@ function StackItem({ modal, containerRef, openModal, stackItemFadeClass }) {
 
     let itemClass = `${styles.stackItem} ${styles[modal.color]}`;
     if (stackItemFadeClass) {
-        itemClass += ` ${stackItemFadeClass}`;
+        itemClass += ` ${stackItemFadeClass}${modal.fadeDir}`;
     }
     
     useEffect(() => {
-        // Initialize positions from CSS to inline style
         const item = itemRef.current;
-        if (item) {
-            const computedStyle = window.getComputedStyle(item);
-            item.style.top = computedStyle.top;
-            item.style.left = computedStyle.left;
-        }
-
-        setTimeout(() => {
-            const animate = () => {
-                const containerRect = containerRef.current.getBoundingClientRect();
-                moveItem(itemRef, containerRect, styles.stackItem);
-                requestAnimationFrame(animate);
-            };
+        
+        const animate = () => {
+            
+            moveItem(item, containerRef);
             requestAnimationFrame(animate);
-        }, 1250); // Start animation after 1.25 seconds
+        };
+        requestAnimationFrame(animate);
     }, []);
 
 
