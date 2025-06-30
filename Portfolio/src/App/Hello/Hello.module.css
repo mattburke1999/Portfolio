@@ -130,18 +130,3 @@ h1 span:hover {
     -ms-user-select: none;      /* Internet Explorer/Edge */
     user-select: none; 
 }
-.fadeLeft {
-    --fade-start: 100%;
-    animation: fade 1.5s forwards ease-in;
-}
-
-@keyframes fade{
-    from {
-        opacity: 0;
-        transform: translateX(var(--fade-start));
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
