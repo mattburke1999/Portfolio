@@ -49,25 +49,6 @@ body {
     background-color: black;
 }
 
-.fadeGone {
-    opacity: 0 !important;
-}
-
-.fadeIn {
-    animation: fadeIn 1s ease-in;
-}
-
-@keyframes fadeIn {
-/* start with element at 125% size and opacity 0 and go to normal size with opacity 1*/
-    from {
-        transform: scale(.25);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
 
 .fadeInModal {
     animation: fadeInModal 1s ease-in;
@@ -100,26 +81,8 @@ body {
     
 }
 
-.fadeOut {
-    animation: fadeOut 1s ease-in;
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-    to {
-        opacity: 0;
-        transform: scale(.25);
-    }
-}
-.fadeInN, .fadeInNW, .fadeInW, .fadeInSW, .fadeInS, .fadeInSE, .fadeInE, .fadeInNE {
+.fadeInN, .fadeInNW, .fadeInW, .fadeInSW, .fadeInS, .fadeInSE, .fadeInE, .fadeInNE, .fadeW, .fadeE {
     animation: fadeInAngle 1s ease-in;
-}
-
-.fadeW, .fadeE {
-    animation: fadeInAngle 1s ease-out;
 }
 
 .fadeOutN, .fadeOutNW, .fadeOutW, .fadeOutSW, .fadeOutS, .fadeOutSE, .fadeOutE, .fadeOutNE {
