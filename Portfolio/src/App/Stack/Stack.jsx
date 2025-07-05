@@ -39,7 +39,7 @@ export default function Stack({ stackRef, scrollToSection, keyboardGamesRef, tod
     }
 
     return (
-        <div className={styles.stackPage} ref={stackRef}>
+        <div className={styles.stackPage} ref={stackRef} id='stack'>
             {modalVisible === null && <AboutMeCard fadeClass={aboutMeCardFadeClass}/>}
             <TechStack 
                 modalVisible={modalVisible} 
