@@ -57,7 +57,7 @@ function App() {
         
         refs.forEach((ref, index) => {
             if (ref.current) {
-                const observerInstance = index === refs.length - 1 ? observerLast : observer;                
+                const observerInstance = (index === refs.length - 1 || index === 2) ? observerLast : observer;                
                 observerInstance.observe(ref.current);
             }
         });
@@ -68,7 +68,7 @@ function App() {
         return () => {
             refs.forEach((ref, index) => {
                 if (ref.current) {
-                    const observerInstance = index === refs.length - 1 ? observerLast : observer;                
+                    const observerInstance = (index === refs.length - 1 || index === 2) ? observerLast : observer;                
                     observerInstance.unobserve(ref.current);
                 }
             });
