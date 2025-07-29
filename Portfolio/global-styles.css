@@ -35,10 +35,15 @@
     --yellow-color-dark: #ffd738;
     --yellow-color-light: #f5e05d;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
 body {
     font-family: montserrat, sans-serif;
     z-index: -1000;
-    margin: 0;
 }
 #root {
     position: relative;
