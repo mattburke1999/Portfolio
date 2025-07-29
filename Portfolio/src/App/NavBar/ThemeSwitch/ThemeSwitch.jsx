@@ -5,7 +5,7 @@ import { setTheme, getThemeStorage } from '../../utils';
 import { useEffect, useState } from 'react';
 
 export default function ThemeSwitch() {
-    const [darkMode, setDarkMode] = useState(getThemeStorage());
+    const [darkMode, setDarkMode] = useState(getThemeStorage() === 'dark');
 
     useEffect(() => {
         setTheme(darkMode ? 'dark' : 'light');
