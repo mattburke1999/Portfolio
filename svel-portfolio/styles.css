@@ -1,0 +1,183 @@
+:root {
+    --purple-color: #6d3f8b;
+    --yellow-color: #ffd738;
+    --blue-color: #2176a7;
+    --orange-color: #af4426;
+    --red-color: #ff3d3d;
+    --light-blue-color: #93c5fd;
+    --link-color:#3b82f6;
+    --link-hover-color: #60a5fa;
+    --app-blue: #1180E8;
+    --app-green: #008000;
+    --app-pink: #B53CD6;
+    --nav-bar-color: #595C6D;
+
+    /* Colors for theme */
+    /* --bg-color: #1c1c1c; */
+    --bg-color-dark: #1c1c1c;
+    --bg-color-light: #f5f5f5;
+    /* --text-color: white; */
+    --text-color-dark: white;
+    --text-color-light: black;
+    /* --app-gray: #424242; */
+    --app-gray-dark: #424242;
+    --app-gray-light: #c5c5c5;
+    /* --tag-background-color: white; */
+    --tag-background-color-dark: white;
+    --tag-background-color-light: #424242;
+    /* --tag-text-color: #424242; */
+    --tag-text-color-dark: #424242;
+    --tag-text-color-light: white;
+    /* --light-blue-color: #93c5fd; */
+    --light-blue-color-dark: #93c5fd;
+    --light-blue-color-light: #4c9cff;
+    /* --yellow-color: #ffd738; */
+    --yellow-color-dark: #ffd738;
+    --yellow-color-light: #f5e05d;
+}
+
+html {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --app-gray: var(--app-gray-light);
+    --tag-background-color: var(--tag-background-color-light);
+    --tag-text-color: var(--tag-text-color-light);
+    --light-blue-color: var(--light-blue-color-light);
+    --yellow-color: var(--yellow-color-light);
+}
+
+html[data-theme="dark"] {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --app-gray: var(--app-gray-dark);
+    --tag-background-color: var(--tag-background-color-dark);
+    --tag-text-color: var(--tag-text-color-dark);
+    --light-blue-color: var(--light-blue-color-dark);
+    --yellow-color: var(--yellow-color-dark);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+body {
+    font-family: montserrat, sans-serif;
+}
+#app {
+    position: relative;
+}
+
+html, body, #app {
+    min-height: 100vh;
+}
+
+
+.line-break {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.fadeInModal {
+    animation: fadeInModal 1s ease-in;
+}
+
+@keyframes fadeInModal {
+    from {
+        transform: translate(-50%, -50%) scale(0.25);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.fadeOutModal {
+    animation: fadeOutModal 1s ease-in;
+}
+
+@keyframes fadeOutModal {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(0.25);
+        opacity: 0;
+    }
+    
+}
+
+.fadeInN, .fadeInNW, .fadeInW, .fadeInSW, .fadeInS, .fadeInSE, .fadeInE, .fadeInNE, .fadeW, .fadeE {
+    animation: fadeInAngle 1s ease-in;
+}
+
+.fadeOutN, .fadeOutNW, .fadeOutW, .fadeOutSW, .fadeOutS, .fadeOutSE, .fadeOutE, .fadeOutNE {
+    animation: fadeOutAngle 1s ease-in;
+}
+
+.fadeInN, .fadeOutS {
+    /* fade from north */
+    --fade-startX: 0;
+    --fade-startY: -100%;
+}
+
+.fadeInNW, .fadeOutSE {
+    /* fade from north-west angle */
+    --fade-startX: -100%;
+    --fade-startY: -100%;
+}
+
+.fadeInW, .fadeW, .fadeOutE {
+    --fade-startX: -100%;
+    --fade-startY: 0;
+}
+
+.fadeInSW, .fadeOutNE {
+    --fade-startX: -100%;
+    --fade-startY: 100%;
+}
+
+.fadeInS, .fadeOutN {
+    --fade-startX: 0;
+    --fade-startY: 100%;
+}
+
+.fadeInNE, .fadeOutSW {
+    --fade-startX: 100%;
+    --fade-startY: -100%;
+}
+
+.fadeInE, .fadeE, .fadeOutW {
+    --fade-startX: 100%;
+    --fade-startY: 0;
+}
+
+.fadeInSE, .fadeOutNW {
+    --fade-startX: 100%;
+    --fade-startY: 100%;
+}
+
+@keyframes fadeInAngle {
+    from {
+        opacity: 0;
+        transform: translate(var(--fade-startX), var(--fade-startY));
+    }
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fadeOutAngle {
+    from {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate(var(--fade-startX), var(--fade-startY));
+    }
+}

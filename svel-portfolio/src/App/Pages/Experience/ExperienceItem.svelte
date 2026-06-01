@@ -1,0 +1,203 @@
+<script lang="ts">
+    import type { Experience } from '../../../PageData/experience';
+
+    type Props = {
+        experience: Experience;
+        side: 'left' | 'right';
+    }
+
+    let { experience, side }: Props = $props();
+
+</script>
+
+<div class={['container', side]}>
+    <div class='content'>
+        <div class='dates'>
+            <h2>{experience.dates}</h2>
+        </div>
+        <div class='desc'>
+            <h3>{experience.title}</h3>
+            <ul>
+                {#each experience.descriptions as desc}
+                    <li>{desc}</li>
+                {/each}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Container around content */
+    .container {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+    }
+    .content h2, h3 {
+        margin: 0;
+    }
+    .desc h3 {
+        text-decoration: underline;
+        color: var(--light-blue-color);
+    }
+    .lineBreak {
+        width: 100%;
+        border: 1px dashed white;
+    }
+
+    /* The circles on the timeline */
+    .container::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background-color: var(--app-gray);
+        border: 4px solid var(--app-green);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    /* let the second circle have a blue border */
+    .container:nth-child(2)::after {
+        border: 4px solid var(--app-blue);
+    }
+
+    /* let the third circle have a purple border */
+    .container:nth-child(3)::after {
+        border: 4px solid var(--app-pink);
+    }
+
+    /* Place the container to the left */
+    .left {
+        left: 0;
+    }
+
+    /* Place the container to the right */
+    .right {
+        left: 50%;
+    }
+
+    /* Add arrows to the left container (pointing right) */
+    .left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid var(--app-gray);
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent var(--app-gray);
+    }
+
+    /* Add arrows to the right container (pointing left) */
+    .right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid var(--app-gray);
+        border-width: 10px 11px 10px 0;
+        border-color: transparent var(--app-gray) transparent transparent;
+    }
+
+    /* Fix the circle for containers on the right side */
+    .right::after {
+        left: -16px;
+    }
+
+    /* The actual content */
+    .content, .desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .content {
+        padding: 20px 20px;
+        background-color: var(--app-gray);
+        position: relative;
+        border-radius: 6px;
+        color: var(--text-color);
+        box-shadow: 0px 0px 10px black;
+    }
+    .desc {
+        border: 1px dashed var(--text-color);
+        border-radius: 6px;
+        padding: 10px;
+        width: 100%;
+    }
+    .dates {
+        background-color: var(--tag-background-color-dark);
+        color: var(--tag-text-color-dark);
+        padding: 5px 10px;
+        border-radius: 6px;
+    }
+
+    li {
+        color: var(--text-color);
+        font-size: .95rem;
+    }
+
+    li::marker {
+        color: var(--text-color);
+    }
+
+    ul {
+        padding: 0;
+        padding-left: 1rem;
+        margin: 0;
+    }
+
+    /* Media queries - Responsive timeline on screens less than 600px wide */
+    @media screen and (max-width: 768px) {
+
+        /* Full-width containers */
+        .container {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+        }
+
+        /* Make sure that all arrows are pointing leftwards */
+        .container::before {
+            left: 60px;
+            border: medium solid var(--app-gray);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--app-gray) transparent transparent;
+        }
+
+        /* Make sure all circles are at the same spot */
+        .left::after,
+        .right::after {
+            left: 15px;
+        }
+
+        /* Make all right containers behave like the left ones */
+        .right {
+            left: 0%;
+        }
+        h2 {
+            font-size: 1.1rem;
+        }
+        h3 {
+            font-size: 1rem;
+        }
+        li {
+            font-size: 0.8rem;
+        }
+    }
+
+</style>
