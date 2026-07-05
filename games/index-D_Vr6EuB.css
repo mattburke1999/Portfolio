@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>games</title>
-    <link rel="stylesheet" crossorigin href="./index-D_Vr6EuB.css">
-    <style>
+
 html, body {
     margin: 0;
     padding: 0;
@@ -59,22 +51,3 @@ img {
     height: 175px;
   }
 }
-</style>
-  </head>
-  <body>
-    <div id="app">
-      <a href="/games/jumper/">
-        <img src="./games/images/jumper.png" alt="jumper" />
-        <span>Platform Jumper</span>
-      </a>
-      <a href="/games/solitaire/">
-        <img src="./games/images/solitaire.png" alt="solitaire" />
-        <span>Solitaire</span>
-      </a>
-      <a href="/games/sodoku/">
-        <img src="./games/images/sodoku.png" alt="sodoku" />
-        <span>Sodoku</span>
-      </a>
-    </div>
-  </body>
-</html>
