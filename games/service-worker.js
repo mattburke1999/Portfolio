@@ -13,7 +13,7 @@ const PRECACHE_URLS = [
   "games/solitaire/assets/index-fLNwAP4M.css",
   "games/solitaire/index.html",
   "games/styles.css",
-  "games/sudoku/assets/index-BEW3mIi6.js",
+  "games/sudoku/assets/index-BEW3mIi8.js",
   "games/sudoku/assets/index-BR_ZM9eD.css",
   "games/sudoku/index.html"
 ];
