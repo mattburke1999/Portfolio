@@ -1,8 +1,8 @@
 const CACHE_NAME = "games-v1";
 
 const PRECACHE_URLS = [
-  "games/fruit-merge/assets/index-bFluGI5S.js",
-  "games/fruit-merge/assets/index-EtzCbfPj.css",
+  "games/fruit-merge/assets/index-GUNJf5Kc.js",
+  "games/fruit-merge/assets/index-MzBy2DX-.css",
   "games/fruit-merge/assets/rapier-C4VMFuMK.js",
   "games/fruit-merge/index.html",
   "games/images/fruit-merge.png",
