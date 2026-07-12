@@ -14,6 +14,7 @@ const PRECACHE_URLS = [
   "games/jumper/assets/index-DX7L0S4t.css",
   "games/jumper/assets/jumper_wasm_bg-DFU07g8j.wasm",
   "games/jumper/index.html",
+  "games/manifest.webmanifest",
   "games/solitaire/assets/index-CxK_DShg.js",
   "games/solitaire/assets/index-fLNwAP4M.css",
   "games/solitaire/index.html",

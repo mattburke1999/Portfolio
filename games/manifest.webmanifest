@@ -1,0 +1,8 @@
+{
+  "name": "Portfolio Games",
+  "short_name": "PG",
+  "start_url": "/games",
+  "display": "standalone",
+  "background_color": "#181818",
+  "theme_color": "#181818"
+}
