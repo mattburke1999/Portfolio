@@ -15,6 +15,10 @@ const PRECACHE_URLS = [
   "games/jumper/assets/jumper_wasm_bg-DFU07g8j.wasm",
   "games/jumper/index.html",
   "games/manifest.webmanifest",
+  "games/snake/assets/index-BoWzh2J-.css",
+  "games/snake/assets/index-kF32wgZ-.js",
+  "games/snake/assets/snake_wasm_bg-DiRI00uN.wasm",
+  "games/snake/index.html",
   "games/solitaire/assets/index-CxK_DShg.js",
   "games/solitaire/assets/index-fLNwAP4M.css",
   "games/solitaire/index.html",
@@ -23,6 +27,8 @@ const PRECACHE_URLS = [
   "games/sudoku/assets/index-rjPl03b4.js",
   "games/sudoku/index.html"
 ];
+// cache font awesome from cdn
+PRECACHE_URLS.push("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css");
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
